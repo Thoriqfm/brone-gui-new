@@ -1,0 +1,8 @@
+[project]
+name = "brone-face-backend"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = ["fastapi>=0.110,<1", "uvicorn[standard]>=0.29,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1"]

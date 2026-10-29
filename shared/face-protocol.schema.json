@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brone Face Expression Message v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "request_id",
+    "payload"
+  ],
+  "properties": {
+    "type": {
+      "const": "SET_EXPRESSION"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "emotion",
+        "intensity",
+        "transition_ms"
+      ],
+      "properties": {
+        "emotion": {
+          "enum": [
+            "idle",
+            "happy",
+            "happier",
+            "sad",
+            "cry",
+            "shock",
+            "shy",
+            "thinking"
+          ]
+        },
+        "intensity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "transition_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

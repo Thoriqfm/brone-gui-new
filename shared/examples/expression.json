@@ -1,0 +1,5 @@
+{
+    "type": "SET_EXPRESSION",
+    "request_id": "example-001",
+    "payload": { "emotion": "happy", "intensity": 0.7, "transition_ms": 300 }
+}
