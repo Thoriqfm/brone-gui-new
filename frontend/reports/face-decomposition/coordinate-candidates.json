@@ -1,0 +1,602 @@
+{
+  "method": "Native SVG proportions rasterized at 4x; alpha-weighted RGB matching to 3200x1920 masters, +/-1 logical pixel in quarter-pixel steps. Diagnostic candidates, not visual approval. Effects retain user-approved placement.",
+  "candidates": {
+    "idle": {
+      "leftEye": {
+        "before": {
+          "x": 115,
+          "y": 154,
+          "width": 129,
+          "height": 171
+        },
+        "candidate": {
+          "x": 115.0,
+          "y": 154.0,
+          "width": 129,
+          "height": 171
+        },
+        "sample_rmse_before": 3.7993,
+        "sample_rmse_after": 3.7993,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 556,
+          "y": 154,
+          "width": 129,
+          "height": 171
+        },
+        "candidate": {
+          "x": 556.0,
+          "y": 154.0,
+          "width": 129,
+          "height": 171
+        },
+        "sample_rmse_before": 3.8725,
+        "sample_rmse_after": 3.8725,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 260,
+          "y": 325,
+          "width": 282,
+          "height": 96
+        },
+        "candidate": {
+          "x": 259.75,
+          "y": 325.25,
+          "width": 282,
+          "height": 96
+        },
+        "sample_rmse_before": 13.2188,
+        "sample_rmse_after": 3.0002,
+        "at_search_boundary": false
+      },
+      "faceLines": {
+        "before": {
+          "x": -130,
+          "y": -5,
+          "width": 1060,
+          "height": 274
+        },
+        "candidate": {
+          "x": -129.75,
+          "y": -4.75,
+          "width": 1060,
+          "height": 274
+        },
+        "sample_rmse_before": 32.9211,
+        "sample_rmse_after": 10.5408,
+        "at_search_boundary": false
+      }
+    },
+    "happy": {
+      "leftEye": {
+        "before": {
+          "x": 115,
+          "y": 154,
+          "width": 129,
+          "height": 171
+        },
+        "candidate": {
+          "x": 115.0,
+          "y": 154.0,
+          "width": 129,
+          "height": 171
+        },
+        "sample_rmse_before": 3.7993,
+        "sample_rmse_after": 3.7993,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 556,
+          "y": 154,
+          "width": 129,
+          "height": 171
+        },
+        "candidate": {
+          "x": 556.0,
+          "y": 154.0,
+          "width": 129,
+          "height": 171
+        },
+        "sample_rmse_before": 3.8725,
+        "sample_rmse_after": 3.8725,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 259,
+          "y": 288,
+          "width": 282,
+          "height": 155
+        },
+        "candidate": {
+          "x": 259.5,
+          "y": 287.75,
+          "width": 282,
+          "height": 155
+        },
+        "sample_rmse_before": 16.2187,
+        "sample_rmse_after": 5.3915,
+        "at_search_boundary": false
+      }
+    },
+    "happier": {
+      "leftEye": {
+        "before": {
+          "x": 104,
+          "y": 133,
+          "width": 123,
+          "height": 139
+        },
+        "candidate": {
+          "x": 104.0,
+          "y": 133.0,
+          "width": 123,
+          "height": 139
+        },
+        "sample_rmse_before": 1.9607,
+        "sample_rmse_after": 1.9607,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 573,
+          "y": 133,
+          "width": 123,
+          "height": 139
+        },
+        "candidate": {
+          "x": 573.0,
+          "y": 133.0,
+          "width": 123,
+          "height": 139
+        },
+        "sample_rmse_before": 13.3026,
+        "sample_rmse_after": 13.3026,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 259,
+          "y": 288,
+          "width": 282,
+          "height": 155
+        },
+        "candidate": {
+          "x": 259.5,
+          "y": 287.75,
+          "width": 282,
+          "height": 155
+        },
+        "sample_rmse_before": 16.2194,
+        "sample_rmse_after": 5.3933,
+        "at_search_boundary": false
+      },
+      "effects.blushLeft": {
+        "before": {
+          "x": 135,
+          "y": 272,
+          "width": 61,
+          "height": 36
+        },
+        "candidate": {
+          "x": 135.0,
+          "y": 271.25,
+          "width": 61,
+          "height": 36
+        },
+        "sample_rmse_before": 6.4875,
+        "sample_rmse_after": 0.7244,
+        "at_search_boundary": false
+      },
+      "effects.blushRight": {
+        "before": {
+          "x": 604,
+          "y": 272,
+          "width": 61,
+          "height": 36
+        },
+        "candidate": {
+          "x": 604.0,
+          "y": 271.25,
+          "width": 61,
+          "height": 36
+        },
+        "sample_rmse_before": 6.4875,
+        "sample_rmse_after": 0.7177,
+        "at_search_boundary": false
+      },
+      "effects.blushLineLeft": {
+        "before": {
+          "x": 114,
+          "y": 267,
+          "width": 103,
+          "height": 8
+        },
+        "candidate": {
+          "x": 114.0,
+          "y": 267.5,
+          "width": 103,
+          "height": 8
+        },
+        "sample_rmse_before": 43.0147,
+        "sample_rmse_after": 21.5129,
+        "at_search_boundary": false
+      },
+      "effects.blushLineRight": {
+        "before": {
+          "x": 583,
+          "y": 267,
+          "width": 103,
+          "height": 8
+        },
+        "candidate": {
+          "x": 583.0,
+          "y": 267.5,
+          "width": 103,
+          "height": 8
+        },
+        "sample_rmse_before": 43.0147,
+        "sample_rmse_after": 21.5129,
+        "at_search_boundary": false
+      }
+    },
+    "happier-transition": {
+      "leftEye": {
+        "before": {
+          "x": 95,
+          "y": 159,
+          "width": 156,
+          "height": 153
+        },
+        "candidate": {
+          "x": 95.5,
+          "y": 159.25,
+          "width": 156,
+          "height": 153
+        },
+        "sample_rmse_before": 19.5655,
+        "sample_rmse_after": 5.211,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 545,
+          "y": 149,
+          "width": 160,
+          "height": 163
+        },
+        "candidate": {
+          "x": 545.5,
+          "y": 149.25,
+          "width": 160,
+          "height": 163
+        },
+        "sample_rmse_before": 17.5095,
+        "sample_rmse_after": 6.6287,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 259,
+          "y": 288,
+          "width": 282,
+          "height": 155
+        },
+        "candidate": {
+          "x": 259.5,
+          "y": 287.75,
+          "width": 282,
+          "height": 155
+        },
+        "sample_rmse_before": 16.2194,
+        "sample_rmse_after": 5.3933,
+        "at_search_boundary": false
+      }
+    },
+    "sad": {
+      "leftEye": {
+        "before": {
+          "x": 104,
+          "y": 148,
+          "width": 142,
+          "height": 156
+        },
+        "candidate": {
+          "x": 104.0,
+          "y": 148.0,
+          "width": 142,
+          "height": 156
+        },
+        "sample_rmse_before": 5.0838,
+        "sample_rmse_after": 5.0838,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 554,
+          "y": 148,
+          "width": 142,
+          "height": 156
+        },
+        "candidate": {
+          "x": 554.25,
+          "y": 148.0,
+          "width": 142,
+          "height": 156
+        },
+        "sample_rmse_before": 15.9757,
+        "sample_rmse_after": 6.6071,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 262,
+          "y": 304,
+          "width": 276,
+          "height": 86
+        },
+        "candidate": {
+          "x": 262.0,
+          "y": 303.5,
+          "width": 276,
+          "height": 86
+        },
+        "sample_rmse_before": 23.8893,
+        "sample_rmse_after": 6.5659,
+        "at_search_boundary": false
+      }
+    },
+    "cry": {
+      "leftEye": {
+        "before": {
+          "x": 104,
+          "y": 148,
+          "width": 142,
+          "height": 145
+        },
+        "candidate": {
+          "x": 104.0,
+          "y": 148.0,
+          "width": 142,
+          "height": 145
+        },
+        "sample_rmse_before": 33.1671,
+        "sample_rmse_after": 33.1671,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 554,
+          "y": 148,
+          "width": 142,
+          "height": 183
+        },
+        "candidate": {
+          "x": 554.25,
+          "y": 148.0,
+          "width": 142,
+          "height": 183
+        },
+        "sample_rmse_before": 34.312,
+        "sample_rmse_after": 30.5543,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 262,
+          "y": 304,
+          "width": 276,
+          "height": 86
+        },
+        "candidate": {
+          "x": 262.0,
+          "y": 303.5,
+          "width": 276,
+          "height": 86
+        },
+        "sample_rmse_before": 23.8893,
+        "sample_rmse_after": 6.5659,
+        "at_search_boundary": false
+      }
+    },
+    "shock": {
+      "leftEye": {
+        "before": {
+          "x": 115,
+          "y": 154,
+          "width": 129,
+          "height": 171
+        },
+        "candidate": {
+          "x": 115.0,
+          "y": 154.0,
+          "width": 129,
+          "height": 171
+        },
+        "sample_rmse_before": 3.7993,
+        "sample_rmse_after": 3.7993,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 556,
+          "y": 154,
+          "width": 129,
+          "height": 171
+        },
+        "candidate": {
+          "x": 556.0,
+          "y": 154.0,
+          "width": 129,
+          "height": 171
+        },
+        "sample_rmse_before": 3.8725,
+        "sample_rmse_after": 3.8725,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 322,
+          "y": 304,
+          "width": 156,
+          "height": 148
+        },
+        "candidate": {
+          "x": 322.25,
+          "y": 304.0,
+          "width": 156,
+          "height": 148
+        },
+        "sample_rmse_before": 8.5913,
+        "sample_rmse_after": 2.7421,
+        "at_search_boundary": false
+      },
+      "effects.mark": {
+        "before": {
+          "x": 687,
+          "y": 53,
+          "width": 77,
+          "height": 88
+        },
+        "candidate": {
+          "x": 687.0,
+          "y": 53.0,
+          "width": 77,
+          "height": 88
+        },
+        "sample_rmse_before": 9.6032,
+        "sample_rmse_after": 9.6032,
+        "at_search_boundary": false
+      }
+    },
+    "thinking": {
+      "leftEye": {
+        "before": {
+          "x": 103,
+          "y": 167,
+          "width": 142,
+          "height": 145
+        },
+        "candidate": {
+          "x": 102.5,
+          "y": 167.5,
+          "width": 142,
+          "height": 145
+        },
+        "sample_rmse_before": 23.4281,
+        "sample_rmse_after": 8.1928,
+        "at_search_boundary": false
+      },
+      "rightEye": {
+        "before": {
+          "x": 560,
+          "y": 154,
+          "width": 129,
+          "height": 171
+        },
+        "candidate": {
+          "x": 560.25,
+          "y": 154.0,
+          "width": 129,
+          "height": 171
+        },
+        "sample_rmse_before": 9.3052,
+        "sample_rmse_after": 4.5824,
+        "at_search_boundary": false
+      },
+      "mouth": {
+        "before": {
+          "x": 265,
+          "y": 338,
+          "width": 271,
+          "height": 52
+        },
+        "candidate": {
+          "x": 265.5,
+          "y": 338.0,
+          "width": 271,
+          "height": 52
+        },
+        "sample_rmse_before": 9.4173,
+        "sample_rmse_after": 3.4613,
+        "at_search_boundary": false
+      },
+      "effects.mark": {
+        "before": {
+          "x": 700,
+          "y": 43,
+          "width": 60,
+          "height": 89
+        },
+        "candidate": {
+          "x": 700.0,
+          "y": 43.25,
+          "width": 60,
+          "height": 89
+        },
+        "sample_rmse_before": 15.6974,
+        "sample_rmse_after": 10.5408,
+        "at_search_boundary": false
+      }
+    }
+  },
+  "source_hashes": {
+    "public\\assets\\face-layers\\base\\face-base.svg": "868d03bdfc66f17935c26cb5e282fddaf1b74915f4ae3f2b07a6451d623c0e78",
+    "public\\assets\\face-layers\\base\\face-lines.svg": "e4731dd20d73ea17891e8783170b652276f0704b300ac8e3b4424ef6b790153d",
+    "public\\assets\\face-layers\\effects\\blushing.svg": "2c38076ac42e26a826b0693d1da42c4612e5ccab15a9228774e9db19148f227b",
+    "public\\assets\\face-layers\\effects\\cry-effect.svg": "fdc5e3327df4dcec351e7e47dc43fe122fdcd234622fdb730d8e04a4292d830f",
+    "public\\assets\\face-layers\\effects\\line-for-blushing.svg": "c22eab09dc06ce0c7ad79ceeed861cb386004a825af2ca83656d56525e424b18",
+    "public\\assets\\face-layers\\effects\\question-mark.svg": "58b0bf3989da46798ac599eed89fc482e726e26af481dc1b55490c494d247dc9",
+    "public\\assets\\face-layers\\effects\\shock-effect.svg": "4da16a855af94018d61a8959ea07d6c4a7e8e26191cb514296f860afb0eb0cec",
+    "public\\assets\\face-layers\\mouth\\cry-mouth.svg": "0b031b3493132420e408b654f10ce779e8af91d8171478971860e95b9109d139",
+    "public\\assets\\face-layers\\mouth\\happier-mouth.svg": "73c048221c6da26b212bab4476619b1b75451836ac28657eec22ec7fc52936ec",
+    "public\\assets\\face-layers\\mouth\\idle-mouth.svg": "f3b0bcf0029cff3cc93e727f3108e7f56dfb5aefd1520ff0337328bd13895cbe",
+    "public\\assets\\face-layers\\mouth\\sad-mouth.svg": "0b031b3493132420e408b654f10ce779e8af91d8171478971860e95b9109d139",
+    "public\\assets\\face-layers\\mouth\\shock-mouth.svg": "4cdd64086ca9c93e4875e2a3163383dd28f2c32429cd7b542c2c4ac36775d057",
+    "public\\assets\\face-layers\\mouth\\thinking-mouth.svg": "8a3a1c898f0ad50728158b7ab6307ba3238275dce37dd19d4a6eedf29712703a",
+    "public\\assets\\face-layers\\eyes\\left\\cry-eye-left.svg": "d0b3f146331e177975eea0677d505909c644d796c1ef1a30f1466369de093cac",
+    "public\\assets\\face-layers\\eyes\\left\\happier-eye-left.svg": "7214aa3b1ba73ade4931024bee02b366ef79e4b80fe6df8ec4a3ab76602f43e4",
+    "public\\assets\\face-layers\\eyes\\left\\happier-transition-eye-left.svg": "1de033479864d322b30dfe9a3a8fd6efab8df85bc4c4eacaf105a69dc469b44c",
+    "public\\assets\\face-layers\\eyes\\left\\idle-eye-left.svg": "26b60a07646b84e7aa5af615c240be75b0e61dda1b7d888dc03b014ce06417d5",
+    "public\\assets\\face-layers\\eyes\\left\\sad-eye-left.svg": "241b2d35028231dc22accc6ce7db234a43ec4393b7c99cf47d4e13b8153d4934",
+    "public\\assets\\face-layers\\eyes\\left\\shock-eye-left.svg": "26b60a07646b84e7aa5af615c240be75b0e61dda1b7d888dc03b014ce06417d5",
+    "public\\assets\\face-layers\\eyes\\left\\thinking-eye-left.svg": "4dc998b5373c16a754d8a52241b41965e8aa696ba74dc33b7ab92a56343d5d4e",
+    "public\\assets\\face-layers\\eyes\\right\\cry-eye-right.svg": "611f4a2b20c3098df2c940b9df53f4108b1304e79e5c6855a7721d3e6bb7c04e",
+    "public\\assets\\face-layers\\eyes\\right\\happier-eye-right.svg": "7214aa3b1ba73ade4931024bee02b366ef79e4b80fe6df8ec4a3ab76602f43e4",
+    "public\\assets\\face-layers\\eyes\\right\\happier-transition-eye-right.svg": "007e6458788ab42b52eb7101f03271638c02cb0abc49f4198216a00da77d6d81",
+    "public\\assets\\face-layers\\eyes\\right\\idle-eye-right.svg": "36466adbef1adb5bc948fbd4a25825e6ed4185987f15507cbf88c4eb8effa72f",
+    "public\\assets\\face-layers\\eyes\\right\\sad-eye-right.svg": "c885f9c5c2599be6a101a9bac2f5500ba5559315c92062fba437238bf588edd5",
+    "public\\assets\\face-layers\\eyes\\right\\shock-eye-right.svg": "36466adbef1adb5bc948fbd4a25825e6ed4185987f15507cbf88c4eb8effa72f",
+    "public\\assets\\face-layers\\eyes\\right\\thinking-eye-right.svg": "18dd08a0a138bda0307193f5a61a24ee7ad342913399ca27254cf74098b4143b",
+    "public\\assets\\expressions\\.gitkeep": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "public\\assets\\expressions\\cry.png": "60ad817e1c4ec47a9e8489b5fbc5630a3db45b4e4390f52f9cf55ba9d2c0fe96",
+    "public\\assets\\expressions\\happier-transition.png": "0971683c4483e2c9a2abe10554b1a1e41c06cfc8c32c0ed5cf610b1aa3a53c92",
+    "public\\assets\\expressions\\happier.png": "d1645762e7c9b6a9f735646f215b70099f6c05c3ca8add591fe425af47eba0b6",
+    "public\\assets\\expressions\\happy.png": "3a615bdf2800ad521f8c40bc6ef04b67f1524830bcb65b1ef38dd6b6bb007e07",
+    "public\\assets\\expressions\\idle.png": "b0f4d080cb62a17b7692e63d3ed2781cbbe5b1f9fd85eb7aca07fb4b174040f3",
+    "public\\assets\\expressions\\sad.png": "f5021d9e80cbce40b68e17048b468162d91efc61e9e2064e4b58fedc3315fceb",
+    "public\\assets\\expressions\\shock.png": "69ef2073ee657d7f63d4041784d27506c301deea4e0e29f0f1062ad3163152e5",
+    "public\\assets\\expressions\\thinking.png": "b82149f51b224482f638a563fccb5a45011ce44d6fff17bcc3cf5d236b9780b3",
+    "public\\assets\\expressions\\production\\cry.png": "1f1147db1dfe86a0f724c40434a30588d262f0a09200c28a3149ac1d13c3d0e1",
+    "public\\assets\\expressions\\production\\cry.webp": "1649bb6dd949f312ec27cc1b490559560df5a8035f8571508e62d08483d5df9d",
+    "public\\assets\\expressions\\production\\happier-transition.png": "4cbacafd00643886bb8c579a87ca92a7e02bfb5be5fd5189d1e61c50f6250057",
+    "public\\assets\\expressions\\production\\happier-transition.webp": "a08f1f7ca04bedd69e11323882f31763dbafa919cc608c1f93c209ee8e47284d",
+    "public\\assets\\expressions\\production\\happier.png": "07f0268290485a55bf2b97ead1637febcee5ef45b479b24f51aa0d2dbada4b85",
+    "public\\assets\\expressions\\production\\happier.webp": "c902196a0d5620008bee188e40c6d7507f4567cbcb5c212d14a69b0bdf6c2974",
+    "public\\assets\\expressions\\production\\happy.png": "28f24cddc45241a71d42fd34fe646cfcc4e7ff963e546ccda5c1d2f6faa2ae44",
+    "public\\assets\\expressions\\production\\happy.webp": "b36964bdb64fa00e3048bf39bea18eadfeeb8b2c1060848f79d3089aeb9bdc1f",
+    "public\\assets\\expressions\\production\\idle.png": "9f7c067c1ea32d54c0a65c7a4270702f706e8ac89ff6fad6fe64b770e4a999b1",
+    "public\\assets\\expressions\\production\\idle.webp": "9542c910e09ecfd1266d73b875ae15543159a3773d58dd5444e53d568d28054a",
+    "public\\assets\\expressions\\production\\sad.png": "5a0995413e2fd873470333a270a4c13af40aa47a5d93a5fb8450d2964a4239c7",
+    "public\\assets\\expressions\\production\\sad.webp": "fccc63bf10bfea01153aade4b4b1e2796b8128c2ffbb917f3a673d04dee3b41d",
+    "public\\assets\\expressions\\production\\shock.png": "9c49c2828b089133a80bb8f51e0c48d35f6523f8b2c648f94e4c67fecc61c913",
+    "public\\assets\\expressions\\production\\shock.webp": "bdfc6735e72eebe1abcd4741ac927a4dd2a179eda71e768e1faf5e523b30c619",
+    "public\\assets\\expressions\\production\\thinking.png": "5af301abdd4608f1b75c42f38ee92ab816d2a70c7f5df5f71bb585d2960b3f52",
+    "public\\assets\\expressions\\production\\thinking.webp": "8eb274f7d6f7662d4d7c798ea427621606a3eb0b3ed592842282f1be03e0296b"
+  }
+}

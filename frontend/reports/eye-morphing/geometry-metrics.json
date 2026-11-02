@@ -1,0 +1,17 @@
+{
+  "method": "8 tangent-matched 45-degree cubic arcs; sampled normalized radial error and conservative Euclidean radial bound",
+  "metrics": [
+    {
+      "side": "left",
+      "ellipseSamples": 80008,
+      "maxNormalizedRadialError": 0.000004245528637758511,
+      "radialDistanceBoundLogicalUnits": 0.00034601058397731865
+    },
+    {
+      "side": "right",
+      "ellipseSamples": 80008,
+      "maxNormalizedRadialError": 0.000004245528637758511,
+      "radialDistanceBoundLogicalUnits": 0.00034601058397731865
+    }
+  ]
+}

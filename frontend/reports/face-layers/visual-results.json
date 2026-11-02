@@ -1,0 +1,34 @@
+[
+  {
+    "expression": "idle",
+    "composite_rgb_rmse_0_to_255": 4.179
+  },
+  {
+    "expression": "happy",
+    "composite_rgb_rmse_0_to_255": 4.824
+  },
+  {
+    "expression": "happier",
+    "composite_rgb_rmse_0_to_255": 5.273
+  },
+  {
+    "expression": "happier-transition",
+    "composite_rgb_rmse_0_to_255": 5.641
+  },
+  {
+    "expression": "sad",
+    "composite_rgb_rmse_0_to_255": 5.33
+  },
+  {
+    "expression": "cry",
+    "composite_rgb_rmse_0_to_255": 13.904
+  },
+  {
+    "expression": "shock",
+    "composite_rgb_rmse_0_to_255": 3.861
+  },
+  {
+    "expression": "thinking",
+    "composite_rgb_rmse_0_to_255": 5.322
+  }
+]

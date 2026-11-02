@@ -1,0 +1,23 @@
+[
+  {
+    "expression": "idle"
+  },
+  {
+    "expression": "happy"
+  },
+  {
+    "expression": "happier"
+  },
+  {
+    "expression": "sad"
+  },
+  {
+    "expression": "cry"
+  },
+  {
+    "expression": "shock"
+  },
+  {
+    "expression": "thinking"
+  }
+]

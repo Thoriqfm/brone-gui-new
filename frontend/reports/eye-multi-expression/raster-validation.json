@@ -1,0 +1,537 @@
+{
+  "versions": {
+    "resvg-py": "0.5.0",
+    "Pillow": "13.0.0"
+  },
+  "scope": "16 full XML tree comparisons; 48 transparent RGBA pairs. Static resvg, not browser QA.",
+  "results": [
+    {
+      "expression": "idle",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        123,
+        139
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        185,
+        209
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        246,
+        278
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        123,
+        139
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        185,
+        209
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        246,
+        278
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        142,
+        156
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        213,
+        234
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        284,
+        312
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        142,
+        156
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        213,
+        234
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        284,
+        312
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        142,
+        145
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        213,
+        218
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        284,
+        290
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        142,
+        183
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        213,
+        275
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        284,
+        366
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        142,
+        145
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        213,
+        218
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        284,
+        290
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier-transition",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        156,
+        153
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier-transition",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        234,
+        230
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier-transition",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        312,
+        306
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier-transition",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        160,
+        163
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier-transition",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        240,
+        245
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier-transition",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        320,
+        326
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    }
+  ]
+}

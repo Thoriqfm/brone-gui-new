@@ -1,0 +1,4213 @@
+{
+  "versions": {
+    "resvg-py": "0.5.0",
+    "Pillow": "13.0.0"
+  },
+  "scope": "Static resvg RGBA, not browser QA. Partial aperture containment has a one-pixel antialias margin; endpoint equality and full closure have no tolerance.",
+  "canonicalComparisons": 84,
+  "currentOpenComparisons": 100,
+  "reactDomComparisons": 600,
+  "closedConnectedBlackOnly": 100,
+  "samples": [
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "happier",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "happier",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "sad",
+      "to": "cry",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "cry",
+      "to": "sad",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "idle",
+      "to": "thinking",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "left",
+      "m": 1,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.25,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.5,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 0.75,
+      "b": 1
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.25
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.5
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.75
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 0.9
+    },
+    {
+      "from": "thinking",
+      "to": "idle",
+      "side": "right",
+      "m": 1,
+      "b": 1
+    }
+  ]
+}

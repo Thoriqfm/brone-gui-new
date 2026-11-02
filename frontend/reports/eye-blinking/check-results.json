@@ -1,0 +1,75 @@
+{
+  "environment": {
+    "date": "2026-11-01",
+    "host": "Windows",
+    "node": "24.14.1",
+    "vite": "7.3.7",
+    "animejs": "4.5.0"
+  },
+  "results": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-eye-geometry.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-eye-morphing.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-eye-sad-morphing.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-eye-cry-morphing.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-eye-thinking-morphing.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-eye-blinking.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-mouth-geometry.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-mouth-morphing.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-mouth-expressions.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-expression-controller.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-animation-engine.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-expression-transitions.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-element-transitions.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/verify-face-layers.mjs",
+      "exitCode": 0
+    }
+  ]
+}

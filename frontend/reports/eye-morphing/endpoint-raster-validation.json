@@ -1,0 +1,141 @@
+{
+  "versions": {
+    "resvg-py": "0.5.0",
+    "Pillow": "13.0.0"
+  },
+  "scope": "Actual morph API endpoints compared with original approved SVGs; transparent RGBA, static resvg only.",
+  "results": [
+    {
+      "expression": "idle",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "scale": 1,
+      "rasterSize": [
+        123,
+        139
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "scale": 1.5,
+      "rasterSize": [
+        185,
+        209
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "scale": 2,
+      "rasterSize": [
+        246,
+        278
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        129,
+        171
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        194,
+        257
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        258,
+        342
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "scale": 1,
+      "rasterSize": [
+        123,
+        139
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "scale": 1.5,
+      "rasterSize": [
+        185,
+        209
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "scale": 2,
+      "rasterSize": [
+        246,
+        278
+      ],
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    }
+  ]
+}

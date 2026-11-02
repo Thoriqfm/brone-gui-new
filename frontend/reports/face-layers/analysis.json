@@ -1,0 +1,449 @@
+{
+  "method": "Alpha-weighted RGB template matching at native SVG scale, against masters reduced to 800x480. ROI constrained by visual reference. RMSE normalized 0..1; not a parity threshold. Lines fitted at native scale with negative offset, excluding eye occlusion.",
+  "inventory": [
+    {
+      "file": "base/face-base.svg",
+      "viewBox": "0 0 800 480",
+      "width": 800.0,
+      "height": 480.0,
+      "sha256": "868d03bdfc66f17935c26cb5e282fddaf1b74915f4ae3f2b07a6451d623c0e78"
+    },
+    {
+      "file": "base/face-lines.svg",
+      "viewBox": "0 0 1060 274",
+      "width": 1060.0,
+      "height": 274.0,
+      "sha256": "e4731dd20d73ea17891e8783170b652276f0704b300ac8e3b4424ef6b790153d"
+    },
+    {
+      "file": "effects/blushing.svg",
+      "viewBox": "0 0 61 36",
+      "width": 61.0,
+      "height": 36.0,
+      "sha256": "2c38076ac42e26a826b0693d1da42c4612e5ccab15a9228774e9db19148f227b"
+    },
+    {
+      "file": "effects/cry-effect.svg",
+      "viewBox": "0 0 81 269",
+      "width": 81.0,
+      "height": 269.0,
+      "sha256": "fdc5e3327df4dcec351e7e47dc43fe122fdcd234622fdb730d8e04a4292d830f"
+    },
+    {
+      "file": "effects/line-for-blushing.svg",
+      "viewBox": "0 0 103 8",
+      "width": 103.0,
+      "height": 8.0,
+      "sha256": "c22eab09dc06ce0c7ad79ceeed861cb386004a825af2ca83656d56525e424b18"
+    },
+    {
+      "file": "effects/question-mark.svg",
+      "viewBox": "0 0 60 89",
+      "width": 60.0,
+      "height": 89.0,
+      "sha256": "58b0bf3989da46798ac599eed89fc482e726e26af481dc1b55490c494d247dc9"
+    },
+    {
+      "file": "effects/shock-effect.svg",
+      "viewBox": "0 0 77 88",
+      "width": 77.0,
+      "height": 88.0,
+      "sha256": "4da16a855af94018d61a8959ea07d6c4a7e8e26191cb514296f860afb0eb0cec"
+    },
+    {
+      "file": "eyes/left/cry-eye-left.svg",
+      "viewBox": "0 0 142 145",
+      "width": 142.0,
+      "height": 145.0,
+      "sha256": "d0b3f146331e177975eea0677d505909c644d796c1ef1a30f1466369de093cac"
+    },
+    {
+      "file": "eyes/left/happier-eye-left.svg",
+      "viewBox": "0 0 123 139",
+      "width": 123.0,
+      "height": 139.0,
+      "sha256": "7214aa3b1ba73ade4931024bee02b366ef79e4b80fe6df8ec4a3ab76602f43e4"
+    },
+    {
+      "file": "eyes/left/happier-transition-eye-left.svg",
+      "viewBox": "0 0 156 153",
+      "width": 156.0,
+      "height": 153.0,
+      "sha256": "1de033479864d322b30dfe9a3a8fd6efab8df85bc4c4eacaf105a69dc469b44c"
+    },
+    {
+      "file": "eyes/left/idle-eye-left.svg",
+      "viewBox": "0 0 129 171",
+      "width": 129.0,
+      "height": 171.0,
+      "sha256": "26b60a07646b84e7aa5af615c240be75b0e61dda1b7d888dc03b014ce06417d5"
+    },
+    {
+      "file": "eyes/left/sad-eye-left.svg",
+      "viewBox": "0 0 142 156",
+      "width": 142.0,
+      "height": 156.0,
+      "sha256": "241b2d35028231dc22accc6ce7db234a43ec4393b7c99cf47d4e13b8153d4934"
+    },
+    {
+      "file": "eyes/left/shock-eye-left.svg",
+      "viewBox": "0 0 129 171",
+      "width": 129.0,
+      "height": 171.0,
+      "sha256": "26b60a07646b84e7aa5af615c240be75b0e61dda1b7d888dc03b014ce06417d5"
+    },
+    {
+      "file": "eyes/left/thinking-eye-left.svg",
+      "viewBox": "0 0 142 145",
+      "width": 142.0,
+      "height": 145.0,
+      "sha256": "4dc998b5373c16a754d8a52241b41965e8aa696ba74dc33b7ab92a56343d5d4e"
+    },
+    {
+      "file": "eyes/right/cry-eye-right.svg",
+      "viewBox": "0 0 142 183",
+      "width": 142.0,
+      "height": 183.0,
+      "sha256": "611f4a2b20c3098df2c940b9df53f4108b1304e79e5c6855a7721d3e6bb7c04e"
+    },
+    {
+      "file": "eyes/right/happier-eye-right.svg",
+      "viewBox": "0 0 123 139",
+      "width": 123.0,
+      "height": 139.0,
+      "sha256": "7214aa3b1ba73ade4931024bee02b366ef79e4b80fe6df8ec4a3ab76602f43e4"
+    },
+    {
+      "file": "eyes/right/happier-transition-eye-right.svg",
+      "viewBox": "0 0 160 163",
+      "width": 160.0,
+      "height": 163.0,
+      "sha256": "007e6458788ab42b52eb7101f03271638c02cb0abc49f4198216a00da77d6d81"
+    },
+    {
+      "file": "eyes/right/idle-eye-right.svg",
+      "viewBox": "0 0 129 171",
+      "width": 129.0,
+      "height": 171.0,
+      "sha256": "36466adbef1adb5bc948fbd4a25825e6ed4185987f15507cbf88c4eb8effa72f"
+    },
+    {
+      "file": "eyes/right/sad-eye-right.svg",
+      "viewBox": "0 0 142 156",
+      "width": 142.0,
+      "height": 156.0,
+      "sha256": "c885f9c5c2599be6a101a9bac2f5500ba5559315c92062fba437238bf588edd5"
+    },
+    {
+      "file": "eyes/right/shock-eye-right.svg",
+      "viewBox": "0 0 129 171",
+      "width": 129.0,
+      "height": 171.0,
+      "sha256": "36466adbef1adb5bc948fbd4a25825e6ed4185987f15507cbf88c4eb8effa72f"
+    },
+    {
+      "file": "eyes/right/thinking-eye-right.svg",
+      "viewBox": "0 0 129 171",
+      "width": 129.0,
+      "height": 171.0,
+      "sha256": "18dd08a0a138bda0307193f5a61a24ee7ad342913399ca27254cf74098b4143b"
+    },
+    {
+      "file": "mouth/cry-mouth.svg",
+      "viewBox": "0 0 276 86",
+      "width": 276.0,
+      "height": 86.0,
+      "sha256": "0b031b3493132420e408b654f10ce779e8af91d8171478971860e95b9109d139"
+    },
+    {
+      "file": "mouth/happier-mouth.svg",
+      "viewBox": "0 0 282 155",
+      "width": 282.0,
+      "height": 155.0,
+      "sha256": "73c048221c6da26b212bab4476619b1b75451836ac28657eec22ec7fc52936ec"
+    },
+    {
+      "file": "mouth/idle-mouth.svg",
+      "viewBox": "0 0 282 96",
+      "width": 282.0,
+      "height": 96.0,
+      "sha256": "f3b0bcf0029cff3cc93e727f3108e7f56dfb5aefd1520ff0337328bd13895cbe"
+    },
+    {
+      "file": "mouth/sad-mouth.svg",
+      "viewBox": "0 0 276 86",
+      "width": 276.0,
+      "height": 86.0,
+      "sha256": "0b031b3493132420e408b654f10ce779e8af91d8171478971860e95b9109d139"
+    },
+    {
+      "file": "mouth/shock-mouth.svg",
+      "viewBox": "0 0 156 148",
+      "width": 156.0,
+      "height": 148.0,
+      "sha256": "4cdd64086ca9c93e4875e2a3163383dd28f2c32429cd7b542c2c4ac36775d057"
+    },
+    {
+      "file": "mouth/thinking-mouth.svg",
+      "viewBox": "0 0 271 52",
+      "width": 271.0,
+      "height": 52.0,
+      "sha256": "8a3a1c898f0ad50728158b7ab6307ba3238275dce37dd19d4a6eedf29712703a"
+    }
+  ],
+  "measurements": {
+    "idle": {
+      "leftEye": {
+        "asset": "eyes/left/idle-eye-left.svg",
+        "x": 115,
+        "y": 154,
+        "width": 129,
+        "height": 171,
+        "rmse": 0.02482
+      },
+      "rightEye": {
+        "asset": "eyes/right/idle-eye-right.svg",
+        "x": 556,
+        "y": 154,
+        "width": 129,
+        "height": 171,
+        "rmse": 0.02487
+      },
+      "mouth": {
+        "asset": "mouth/idle-mouth.svg",
+        "x": 260,
+        "y": 325,
+        "width": 282,
+        "height": 96,
+        "rmse": 0.03578
+      }
+    },
+    "happier": {
+      "leftEye": {
+        "asset": "eyes/left/happier-eye-left.svg",
+        "x": 104,
+        "y": 133,
+        "width": 123,
+        "height": 139,
+        "rmse": 0.01916
+      },
+      "rightEye": {
+        "asset": "eyes/right/happier-eye-right.svg",
+        "x": 573,
+        "y": 133,
+        "width": 123,
+        "height": 139,
+        "rmse": 0.04569
+      },
+      "mouth": {
+        "asset": "mouth/happier-mouth.svg",
+        "x": 259,
+        "y": 288,
+        "width": 282,
+        "height": 155,
+        "rmse": 0.04063
+      },
+      "blushLeft": {
+        "asset": "effects/blushing.svg",
+        "x": 135,
+        "y": 272,
+        "width": 61,
+        "height": 36,
+        "rmse": 0.0196
+      },
+      "blushRight": {
+        "asset": "effects/blushing.svg",
+        "x": 604,
+        "y": 272,
+        "width": 61,
+        "height": 36,
+        "rmse": 0.0196
+      },
+      "blushLineLeft": {
+        "asset": "effects/line-for-blushing.svg",
+        "x": 114,
+        "y": 267,
+        "width": 103,
+        "height": 8,
+        "rmse": 0.13209
+      },
+      "blushLineRight": {
+        "asset": "effects/line-for-blushing.svg",
+        "x": 583,
+        "y": 267,
+        "width": 103,
+        "height": 8,
+        "rmse": 0.13207
+      }
+    },
+    "happier-transition": {
+      "leftEye": {
+        "asset": "eyes/left/happier-transition-eye-left.svg",
+        "x": 95,
+        "y": 159,
+        "width": 156,
+        "height": 153,
+        "rmse": 0.05593
+      },
+      "rightEye": {
+        "asset": "eyes/right/happier-transition-eye-right.svg",
+        "x": 545,
+        "y": 149,
+        "width": 160,
+        "height": 163,
+        "rmse": 0.04504
+      },
+      "mouth": {
+        "asset": "mouth/happier-mouth.svg",
+        "x": 259,
+        "y": 288,
+        "width": 282,
+        "height": 155,
+        "rmse": 0.04063
+      }
+    },
+    "sad": {
+      "leftEye": {
+        "asset": "eyes/left/sad-eye-left.svg",
+        "x": 104,
+        "y": 148,
+        "width": 142,
+        "height": 156,
+        "rmse": 0.03351
+      },
+      "rightEye": {
+        "asset": "eyes/right/sad-eye-right.svg",
+        "x": 554,
+        "y": 148,
+        "width": 142,
+        "height": 156,
+        "rmse": 0.04705
+      },
+      "mouth": {
+        "asset": "mouth/sad-mouth.svg",
+        "x": 262,
+        "y": 304,
+        "width": 276,
+        "height": 86,
+        "rmse": 0.0619
+      }
+    },
+    "cry": {
+      "leftEye": {
+        "asset": "eyes/left/cry-eye-left.svg",
+        "x": 104,
+        "y": 148,
+        "width": 142,
+        "height": 145,
+        "rmse": 0.13218
+      },
+      "rightEye": {
+        "asset": "eyes/right/cry-eye-right.svg",
+        "x": 554,
+        "y": 148,
+        "width": 142,
+        "height": 183,
+        "rmse": 0.12497
+      },
+      "mouth": {
+        "asset": "mouth/cry-mouth.svg",
+        "x": 262,
+        "y": 304,
+        "width": 276,
+        "height": 86,
+        "rmse": 0.06189
+      },
+      "tearLeft": {
+        "asset": "effects/cry-effect.svg",
+        "x": 138,
+        "y": 211,
+        "width": 81,
+        "height": 269,
+        "rmse": 0.12153
+      },
+      "tearRight": {
+        "asset": "effects/cry-effect.svg",
+        "x": 581,
+        "y": 211,
+        "width": 81,
+        "height": 269,
+        "rmse": 0.12513
+      }
+    },
+    "shock": {
+      "leftEye": {
+        "asset": "eyes/left/shock-eye-left.svg",
+        "x": 115,
+        "y": 154,
+        "width": 129,
+        "height": 171,
+        "rmse": 0.02482
+      },
+      "rightEye": {
+        "asset": "eyes/right/shock-eye-right.svg",
+        "x": 556,
+        "y": 154,
+        "width": 129,
+        "height": 171,
+        "rmse": 0.02487
+      },
+      "mouth": {
+        "asset": "mouth/shock-mouth.svg",
+        "x": 322,
+        "y": 304,
+        "width": 156,
+        "height": 148,
+        "rmse": 0.02255
+      },
+      "mark": {
+        "asset": "effects/shock-effect.svg",
+        "x": 687,
+        "y": 53,
+        "width": 77,
+        "height": 88,
+        "rmse": 0.04576
+      }
+    },
+    "thinking": {
+      "leftEye": {
+        "asset": "eyes/left/thinking-eye-left.svg",
+        "x": 103,
+        "y": 167,
+        "width": 142,
+        "height": 145,
+        "rmse": 0.07445
+      },
+      "rightEye": {
+        "asset": "eyes/right/thinking-eye-right.svg",
+        "x": 560,
+        "y": 154,
+        "width": 129,
+        "height": 171,
+        "rmse": 0.03153
+      },
+      "mouth": {
+        "asset": "mouth/thinking-mouth.svg",
+        "x": 265,
+        "y": 338,
+        "width": 271,
+        "height": 52,
+        "rmse": 0.03286
+      },
+      "mark": {
+        "asset": "effects/question-mark.svg",
+        "x": 700,
+        "y": 43,
+        "width": 60,
+        "height": 89,
+        "rmse": 0.04553
+      }
+    }
+  },
+  "faceLines": {
+    "x": -130,
+    "y": -5,
+    "width": 1060,
+    "height": 274,
+    "rmse": 0.07272
+  }
+}

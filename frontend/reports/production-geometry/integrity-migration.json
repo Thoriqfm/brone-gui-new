@@ -1,0 +1,26 @@
+{
+  "src/components/face/Eyes.tsx": {
+    "previous": "cbe20a702a443a3fbf31920a150845345b42521e09139cb38893f962f556da5c",
+    "integrated": "aae1be9e65760331461e3612535473a1304ee2a6d74a0d0a1800d2d1db83b51d",
+    "geometryIntegration": "c8726bdc2de05cf4d4b18cb0b1a324cd7bc987e57569421549a7bc56b4f505b2"
+  },
+  "src/components/face/FaceRenderer.tsx": {
+    "previous": "bc93f7627ccdbf5adf64ffa4482e5b56d8f64781ee84ffd252cef86bac4f3180",
+    "integrated": "5979381e873f9729a7bfe1e70d43e0a16fe831e89135a0fab5595ca71accdf35",
+    "geometryIntegration": "ee85937c346812a69190425e5ab81644c014d64186aec99943bb2fbd25d792c2"
+  },
+  "src/animation/expressionTransition.ts": {
+    "previous": "e2e787f08eb79b82975091a9cf94db362fe97330896c2e7a5cf7f3e518119445",
+    "integrated": "60580a9175a36455291ef0ded18f161f726316ebf71618e8aacba8542ceab504",
+    "geometryIntegration": "8b8dfa8f26d713e63970d13ed131c02e9662695914139ae9ae0ed13f5991271c"
+  },
+  "src/animation/transitionStrategy.ts": {
+    "previous": "f6fe39b1cbf4a237abf3b41f6a280c58d427fe5d7b22dde8c78cd642c63e81a4",
+    "integrated": "76fd57c32f2dcb7a365cfec816866ec23ed3134121f35ce36c435f780910ef6d"
+  },
+  "src/animation/useExpressionTransition.ts": {
+    "previous": "31e34eec733444408bcd23c6bde149e5021304e0f7bdaaac5d7af3cc823f568d",
+    "integrated": "33198a04c92733f85d57f7905b19fdb9768ebea9acac3807cbcb18a6280b3e75",
+    "geometryIntegration": "2dd6266534e2ea7be4b1a0b02c4eae22976b7100c921143f0172f2440ddb8827"
+  }
+}

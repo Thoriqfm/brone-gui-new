@@ -1,0 +1,106 @@
+[
+  {
+    "name": "accept idle",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-idle",
+      "payload": {
+        "emotion": "idle",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  },
+  {
+    "name": "accept happy",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-happy",
+      "payload": {
+        "emotion": "happy",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  },
+  {
+    "name": "accept happier",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-happier",
+      "payload": {
+        "emotion": "happier",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  },
+  {
+    "name": "accept sad",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-sad",
+      "payload": {
+        "emotion": "sad",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  },
+  {
+    "name": "accept cry",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-cry",
+      "payload": {
+        "emotion": "cry",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  },
+  {
+    "name": "accept shock",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-shock",
+      "payload": {
+        "emotion": "shock",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  },
+  {
+    "name": "accept thinking",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-thinking",
+      "payload": {
+        "emotion": "thinking",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  },
+  {
+    "name": "reject intentionally unsupported shy",
+    "valid": false,
+    "message": {
+      "type": "SET_EXPRESSION",
+      "request_id": "fixture-shy",
+      "payload": {
+        "emotion": "shy",
+        "intensity": 0.5,
+        "transition_ms": 250
+      }
+    }
+  }
+]

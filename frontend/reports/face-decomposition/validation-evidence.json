@@ -1,0 +1,285 @@
+{
+  "tooling": {
+    "rasterizer": "resvg-py (offline, not the target browser)",
+    "background": "#080f1d"
+  },
+  "inventory": [
+    {
+      "file": "base/face-base.svg",
+      "width": "800",
+      "height": "480",
+      "viewBox": "0 0 800 480"
+    },
+    {
+      "file": "base/face-lines.svg",
+      "width": "1060",
+      "height": "274",
+      "viewBox": "0 0 1060 274"
+    },
+    {
+      "file": "effects/blushing.svg",
+      "width": "61",
+      "height": "36",
+      "viewBox": "0 0 61 36"
+    },
+    {
+      "file": "effects/cry-effect.svg",
+      "width": "81",
+      "height": "269",
+      "viewBox": "0 0 81 269"
+    },
+    {
+      "file": "effects/line-for-blushing.svg",
+      "width": "103",
+      "height": "8",
+      "viewBox": "0 0 103 8"
+    },
+    {
+      "file": "effects/question-mark.svg",
+      "width": "60",
+      "height": "89",
+      "viewBox": "0 0 60 89"
+    },
+    {
+      "file": "effects/shock-effect.svg",
+      "width": "77",
+      "height": "88",
+      "viewBox": "0 0 77 88"
+    },
+    {
+      "file": "eyes/left/cry-eye-left.svg",
+      "width": "142",
+      "height": "145",
+      "viewBox": "0 0 142 145"
+    },
+    {
+      "file": "eyes/left/happier-eye-left.svg",
+      "width": "123",
+      "height": "139",
+      "viewBox": "0 0 123 139"
+    },
+    {
+      "file": "eyes/left/happier-transition-eye-left.svg",
+      "width": "156",
+      "height": "153",
+      "viewBox": "0 0 156 153"
+    },
+    {
+      "file": "eyes/left/idle-eye-left.svg",
+      "width": "129",
+      "height": "171",
+      "viewBox": "0 0 129 171"
+    },
+    {
+      "file": "eyes/left/sad-eye-left.svg",
+      "width": "142",
+      "height": "156",
+      "viewBox": "0 0 142 156"
+    },
+    {
+      "file": "eyes/left/shock-eye-left.svg",
+      "width": "129",
+      "height": "171",
+      "viewBox": "0 0 129 171"
+    },
+    {
+      "file": "eyes/left/thinking-eye-left.svg",
+      "width": "142",
+      "height": "145",
+      "viewBox": "0 0 142 145"
+    },
+    {
+      "file": "eyes/right/cry-eye-right.svg",
+      "width": "142",
+      "height": "183",
+      "viewBox": "0 0 142 183"
+    },
+    {
+      "file": "eyes/right/happier-eye-right.svg",
+      "width": "123",
+      "height": "139",
+      "viewBox": "0 0 123 139"
+    },
+    {
+      "file": "eyes/right/happier-transition-eye-right.svg",
+      "width": "160",
+      "height": "163",
+      "viewBox": "0 0 160 163"
+    },
+    {
+      "file": "eyes/right/idle-eye-right.svg",
+      "width": "129",
+      "height": "171",
+      "viewBox": "0 0 129 171"
+    },
+    {
+      "file": "eyes/right/sad-eye-right.svg",
+      "width": "142",
+      "height": "156",
+      "viewBox": "0 0 142 156"
+    },
+    {
+      "file": "eyes/right/shock-eye-right.svg",
+      "width": "129",
+      "height": "171",
+      "viewBox": "0 0 129 171"
+    },
+    {
+      "file": "eyes/right/thinking-eye-right.svg",
+      "width": "129",
+      "height": "171",
+      "viewBox": "0 0 129 171"
+    },
+    {
+      "file": "mouth/cry-mouth.svg",
+      "width": "276",
+      "height": "86",
+      "viewBox": "0 0 276 86"
+    },
+    {
+      "file": "mouth/happier-mouth.svg",
+      "width": "282",
+      "height": "155",
+      "viewBox": "0 0 282 155"
+    },
+    {
+      "file": "mouth/idle-mouth.svg",
+      "width": "282",
+      "height": "96",
+      "viewBox": "0 0 282 96"
+    },
+    {
+      "file": "mouth/sad-mouth.svg",
+      "width": "276",
+      "height": "86",
+      "viewBox": "0 0 276 86"
+    },
+    {
+      "file": "mouth/shock-mouth.svg",
+      "width": "156",
+      "height": "148",
+      "viewBox": "0 0 156 148"
+    },
+    {
+      "file": "mouth/thinking-mouth.svg",
+      "width": "271",
+      "height": "52",
+      "viewBox": "0 0 271 52"
+    }
+  ],
+  "results": [
+    {
+      "expression": "idle",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 5.5021,
+      "rgb_rmse_after": 4.2111
+    },
+    {
+      "expression": "idle",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 5.0317,
+      "rgb_rmse_after": 2.2933
+    },
+    {
+      "expression": "happy",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 6.1433,
+      "rgb_rmse_after": 4.2774
+    },
+    {
+      "expression": "happy",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 6.3057,
+      "rgb_rmse_after": 2.5708
+    },
+    {
+      "expression": "happier",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 6.5858,
+      "rgb_rmse_after": 4.551
+    },
+    {
+      "expression": "happier",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 7.1876,
+      "rgb_rmse_after": 3.3698
+    },
+    {
+      "expression": "happier-transition",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 6.9596,
+      "rgb_rmse_after": 3.8674
+    },
+    {
+      "expression": "happier-transition",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 7.7094,
+      "rgb_rmse_after": 2.5346
+    },
+    {
+      "expression": "sad",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 6.6796,
+      "rgb_rmse_after": 4.5554
+    },
+    {
+      "expression": "sad",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 6.8596,
+      "rgb_rmse_after": 2.7356
+    },
+    {
+      "expression": "cry",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 14.4368,
+      "rgb_rmse_after": 13.5976
+    },
+    {
+      "expression": "cry",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 14.6456,
+      "rgb_rmse_after": 13.244
+    },
+    {
+      "expression": "shock",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 5.363,
+      "rgb_rmse_after": 4.6288
+    },
+    {
+      "expression": "shock",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 4.4126,
+      "rgb_rmse_after": 2.6757
+    },
+    {
+      "expression": "thinking",
+      "artwork_width": 800,
+      "display_height": 515,
+      "rgb_rmse_before": 6.5981,
+      "rgb_rmse_after": 4.5866
+    },
+    {
+      "expression": "thinking",
+      "artwork_width": 1490,
+      "display_height": 960,
+      "rgb_rmse_before": 6.4945,
+      "rgb_rmse_after": 2.7081
+    }
+  ],
+  "source_hashes_verified": 52
+}

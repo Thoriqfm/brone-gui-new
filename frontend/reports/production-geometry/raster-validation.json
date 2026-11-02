@@ -1,0 +1,725 @@
+{
+  "versions": {
+    "resvg-py": "0.5.0",
+    "Pillow": "13.0.0"
+  },
+  "scope": "Actual React production SSR layer markup exported to static SVG. Transparent RGBA, not browser or robot QA.",
+  "endpointComparisons": [
+    {
+      "expression": "idle",
+      "part": "left",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "idle",
+      "part": "left",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "idle",
+      "part": "left",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "idle",
+      "part": "right",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "idle",
+      "part": "right",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "idle",
+      "part": "right",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "idle",
+      "part": "mouth",
+      "scale": 1,
+      "exactPromised": false,
+      "differingPixels": 1,
+      "maxChannelDifference": 16,
+      "meanAbsoluteChannelDifference": 0.00014775413711583924
+    },
+    {
+      "expression": "idle",
+      "part": "mouth",
+      "scale": 1.5,
+      "exactPromised": false,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "idle",
+      "part": "mouth",
+      "scale": 2,
+      "exactPromised": false,
+      "differingPixels": 1,
+      "maxChannelDifference": 16,
+      "meanAbsoluteChannelDifference": 3.693853427895981e-05
+    },
+    {
+      "expression": "happy",
+      "part": "left",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "left",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "left",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "right",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "right",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "right",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "mouth",
+      "scale": 1,
+      "exactPromised": false,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "mouth",
+      "scale": 1.5,
+      "exactPromised": false,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happy",
+      "part": "mouth",
+      "scale": 2,
+      "exactPromised": false,
+      "differingPixels": 1,
+      "maxChannelDifference": 16,
+      "meanAbsoluteChannelDifference": 2.2878059940517044e-05
+    },
+    {
+      "expression": "happier",
+      "part": "left",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "left",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "left",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "right",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "right",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "right",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "mouth",
+      "scale": 1,
+      "exactPromised": false,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "mouth",
+      "scale": 1.5,
+      "exactPromised": false,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "happier",
+      "part": "mouth",
+      "scale": 2,
+      "exactPromised": false,
+      "differingPixels": 1,
+      "maxChannelDifference": 16,
+      "meanAbsoluteChannelDifference": 2.2878059940517044e-05
+    },
+    {
+      "expression": "sad",
+      "part": "left",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "left",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "left",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "right",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "right",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "right",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "mouth",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "mouth",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "sad",
+      "part": "mouth",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "left",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "left",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "left",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "right",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "right",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "right",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "mouth",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "mouth",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "cry",
+      "part": "mouth",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "left",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "left",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "left",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "right",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "right",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "right",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "mouth",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "mouth",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "shock",
+      "part": "mouth",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "left",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "left",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "left",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "right",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "right",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "right",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "mouth",
+      "scale": 1,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "mouth",
+      "scale": 1.5,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    },
+    {
+      "expression": "thinking",
+      "part": "mouth",
+      "scale": 2,
+      "exactPromised": true,
+      "differingPixels": 0,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0.0
+    }
+  ],
+  "fullFaceComparisons": [
+    {
+      "expression": "idle",
+      "comparison": "asset vs procedural",
+      "differingPixels": 130,
+      "maxChannelDifference": 56,
+      "meanAbsoluteChannelDifference": 0.001954872762863535
+    },
+    {
+      "expression": "idle",
+      "comparison": "reference vs asset",
+      "differingPixels": 59078,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.1570815855704698
+    },
+    {
+      "expression": "idle",
+      "comparison": "reference vs procedural",
+      "differingPixels": 59078,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.15789901426174496
+    },
+    {
+      "expression": "happy",
+      "comparison": "asset vs procedural",
+      "differingPixels": 141,
+      "maxChannelDifference": 56,
+      "meanAbsoluteChannelDifference": 0.002060088087248322
+    },
+    {
+      "expression": "happy",
+      "comparison": "reference vs asset",
+      "differingPixels": 59654,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.17415338366890382
+    },
+    {
+      "expression": "happy",
+      "comparison": "reference vs procedural",
+      "differingPixels": 59652,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.1751487346196868
+    },
+    {
+      "expression": "happier",
+      "comparison": "asset vs procedural",
+      "differingPixels": 80,
+      "maxChannelDifference": 43,
+      "meanAbsoluteChannelDifference": 0.0012323475950782997
+    },
+    {
+      "expression": "happier",
+      "comparison": "reference vs asset",
+      "differingPixels": 46436,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.154713716442953
+    },
+    {
+      "expression": "happier",
+      "comparison": "reference vs procedural",
+      "differingPixels": 46434,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.15474290408277405
+    },
+    {
+      "expression": "sad",
+      "comparison": "asset vs procedural",
+      "differingPixels": 95,
+      "maxChannelDifference": 42,
+      "meanAbsoluteChannelDifference": 0.0007202530760626398
+    },
+    {
+      "expression": "sad",
+      "comparison": "reference vs asset",
+      "differingPixels": 44162,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.16178306767337808
+    },
+    {
+      "expression": "sad",
+      "comparison": "reference vs procedural",
+      "differingPixels": 44163,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.1616713856263982
+    },
+    {
+      "expression": "cry",
+      "comparison": "asset vs procedural",
+      "differingPixels": 95,
+      "maxChannelDifference": 42,
+      "meanAbsoluteChannelDifference": 0.0007202530760626398
+    },
+    {
+      "expression": "cry",
+      "comparison": "reference vs asset",
+      "differingPixels": 145326,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 1.4865252726510068
+    },
+    {
+      "expression": "cry",
+      "comparison": "reference vs procedural",
+      "differingPixels": 145327,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 1.4864135906040268
+    },
+    {
+      "expression": "shock",
+      "comparison": "asset vs procedural",
+      "differingPixels": 189,
+      "maxChannelDifference": 56,
+      "meanAbsoluteChannelDifference": 0.0026964485458612977
+    },
+    {
+      "expression": "shock",
+      "comparison": "reference vs asset",
+      "differingPixels": 60611,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.18477418903803133
+    },
+    {
+      "expression": "shock",
+      "comparison": "reference vs procedural",
+      "differingPixels": 60611,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.18645518736017896
+    },
+    {
+      "expression": "thinking",
+      "comparison": "asset vs procedural",
+      "differingPixels": 138,
+      "maxChannelDifference": 56,
+      "meanAbsoluteChannelDifference": 0.0018486087807606264
+    },
+    {
+      "expression": "thinking",
+      "comparison": "reference vs asset",
+      "differingPixels": 52784,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.1704187639821029
+    },
+    {
+      "expression": "thinking",
+      "comparison": "reference vs procedural",
+      "differingPixels": 52785,
+      "maxChannelDifference": 255,
+      "meanAbsoluteChannelDifference": 0.1713075013982103
+    }
+  ]
+}

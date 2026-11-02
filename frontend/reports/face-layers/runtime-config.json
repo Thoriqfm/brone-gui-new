@@ -1,0 +1,559 @@
+{
+  "assets": {
+    "faceBase": {
+      "src": "/assets/face-layers/base/face-base.svg",
+      "width": 800,
+      "height": 480
+    },
+    "faceLines": {
+      "src": "/assets/face-layers/base/face-lines.svg",
+      "width": 1060,
+      "height": 274
+    },
+    "blushing": {
+      "src": "/assets/face-layers/effects/blushing.svg",
+      "width": 61,
+      "height": 36
+    },
+    "blushLine": {
+      "src": "/assets/face-layers/effects/line-for-blushing.svg",
+      "width": 103,
+      "height": 8
+    },
+    "cryEffect": {
+      "src": "/assets/face-layers/effects/cry-effect.svg",
+      "width": 81,
+      "height": 269
+    },
+    "questionMark": {
+      "src": "/assets/face-layers/effects/question-mark.svg",
+      "width": 60,
+      "height": 89
+    },
+    "shockEffect": {
+      "src": "/assets/face-layers/effects/shock-effect.svg",
+      "width": 77,
+      "height": 88
+    },
+    "idleLeft": {
+      "src": "/assets/face-layers/eyes/left/idle-eye-left.svg",
+      "width": 129,
+      "height": 171
+    },
+    "idleRight": {
+      "src": "/assets/face-layers/eyes/right/idle-eye-right.svg",
+      "width": 129,
+      "height": 171
+    },
+    "happierLeft": {
+      "src": "/assets/face-layers/eyes/left/happier-eye-left.svg",
+      "width": 123,
+      "height": 139
+    },
+    "happierRight": {
+      "src": "/assets/face-layers/eyes/right/happier-eye-right.svg",
+      "width": 123,
+      "height": 139
+    },
+    "transitionLeft": {
+      "src": "/assets/face-layers/eyes/left/happier-transition-eye-left.svg",
+      "width": 156,
+      "height": 153
+    },
+    "transitionRight": {
+      "src": "/assets/face-layers/eyes/right/happier-transition-eye-right.svg",
+      "width": 160,
+      "height": 163
+    },
+    "sadLeft": {
+      "src": "/assets/face-layers/eyes/left/sad-eye-left.svg",
+      "width": 142,
+      "height": 156
+    },
+    "sadRight": {
+      "src": "/assets/face-layers/eyes/right/sad-eye-right.svg",
+      "width": 142,
+      "height": 156
+    },
+    "cryLeft": {
+      "src": "/assets/face-layers/eyes/left/cry-eye-left.svg",
+      "width": 142,
+      "height": 145
+    },
+    "cryRight": {
+      "src": "/assets/face-layers/eyes/right/cry-eye-right.svg",
+      "width": 142,
+      "height": 183
+    },
+    "shockLeft": {
+      "src": "/assets/face-layers/eyes/left/shock-eye-left.svg",
+      "width": 129,
+      "height": 171
+    },
+    "shockRight": {
+      "src": "/assets/face-layers/eyes/right/shock-eye-right.svg",
+      "width": 129,
+      "height": 171
+    },
+    "thinkingLeft": {
+      "src": "/assets/face-layers/eyes/left/thinking-eye-left.svg",
+      "width": 142,
+      "height": 145
+    },
+    "thinkingRight": {
+      "src": "/assets/face-layers/eyes/right/thinking-eye-right.svg",
+      "width": 129,
+      "height": 171
+    },
+    "idleMouth": {
+      "src": "/assets/face-layers/mouth/idle-mouth.svg",
+      "width": 282,
+      "height": 96
+    },
+    "happierMouth": {
+      "src": "/assets/face-layers/mouth/happier-mouth.svg",
+      "width": 282,
+      "height": 155
+    },
+    "sadMouth": {
+      "src": "/assets/face-layers/mouth/sad-mouth.svg",
+      "width": 276,
+      "height": 86
+    },
+    "cryMouth": {
+      "src": "/assets/face-layers/mouth/cry-mouth.svg",
+      "width": 276,
+      "height": 86
+    },
+    "shockMouth": {
+      "src": "/assets/face-layers/mouth/shock-mouth.svg",
+      "width": 156,
+      "height": 148
+    },
+    "thinkingMouth": {
+      "src": "/assets/face-layers/mouth/thinking-mouth.svg",
+      "width": 271,
+      "height": 52
+    }
+  },
+  "compositions": {
+    "idle": {
+      "leftEye": "idleLeft",
+      "rightEye": "idleRight",
+      "mouth": "idleMouth",
+      "effects": []
+    },
+    "happy": {
+      "leftEye": "idleLeft",
+      "rightEye": "idleRight",
+      "mouth": "happierMouth",
+      "effects": []
+    },
+    "happier": {
+      "leftEye": "happierLeft",
+      "rightEye": "happierRight",
+      "mouth": "happierMouth",
+      "effects": [
+        {
+          "id": "blushLeft",
+          "asset": "blushing",
+          "order": "effects"
+        },
+        {
+          "id": "blushRight",
+          "asset": "blushing",
+          "order": "effects"
+        },
+        {
+          "id": "blushLineLeft",
+          "asset": "blushLine",
+          "order": "effects"
+        },
+        {
+          "id": "blushLineRight",
+          "asset": "blushLine",
+          "order": "effects"
+        }
+      ]
+    },
+    "happier-transition": {
+      "leftEye": "transitionLeft",
+      "rightEye": "transitionRight",
+      "mouth": "happierMouth",
+      "effects": []
+    },
+    "sad": {
+      "leftEye": "sadLeft",
+      "rightEye": "sadRight",
+      "mouth": "sadMouth",
+      "effects": []
+    },
+    "cry": {
+      "leftEye": "cryLeft",
+      "rightEye": "cryRight",
+      "mouth": "cryMouth",
+      "effects": [
+        {
+          "id": "tearLeft",
+          "asset": "cryEffect",
+          "order": "effects"
+        },
+        {
+          "id": "tearRight",
+          "asset": "cryEffect",
+          "order": "effects"
+        }
+      ]
+    },
+    "shock": {
+      "leftEye": "shockLeft",
+      "rightEye": "shockRight",
+      "mouth": "shockMouth",
+      "effects": [
+        {
+          "id": "mark",
+          "asset": "shockEffect",
+          "order": "effects"
+        }
+      ]
+    },
+    "thinking": {
+      "leftEye": "thinkingLeft",
+      "rightEye": "thinkingRight",
+      "mouth": "thinkingMouth",
+      "effects": [
+        {
+          "id": "mark",
+          "asset": "questionMark",
+          "order": "effects"
+        }
+      ]
+    }
+  },
+  "layouts": {
+    "idle": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 115,
+        "y": 154,
+        "width": 129,
+        "height": 171
+      },
+      "rightEye": {
+        "x": 556,
+        "y": 154,
+        "width": 129,
+        "height": 171
+      },
+      "mouth": {
+        "x": 259.75,
+        "y": 325.25,
+        "width": 282,
+        "height": 96
+      },
+      "effects": {}
+    },
+    "happy": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 115,
+        "y": 154,
+        "width": 129,
+        "height": 171
+      },
+      "rightEye": {
+        "x": 556,
+        "y": 154,
+        "width": 129,
+        "height": 171
+      },
+      "mouth": {
+        "x": 259.5,
+        "y": 287.75,
+        "width": 282,
+        "height": 155
+      },
+      "effects": {}
+    },
+    "happier": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 104,
+        "y": 133,
+        "width": 123,
+        "height": 139
+      },
+      "rightEye": {
+        "x": 573,
+        "y": 133,
+        "width": 123,
+        "height": 139
+      },
+      "mouth": {
+        "x": 259.5,
+        "y": 287.75,
+        "width": 282,
+        "height": 155
+      },
+      "effects": {
+        "blushLeft": {
+          "x": 135,
+          "y": 271.25,
+          "width": 61,
+          "height": 36
+        },
+        "blushRight": {
+          "x": 604,
+          "y": 271.25,
+          "width": 61,
+          "height": 36
+        },
+        "blushLineLeft": {
+          "x": 114,
+          "y": 267.5,
+          "width": 103,
+          "height": 8
+        },
+        "blushLineRight": {
+          "x": 583,
+          "y": 267.5,
+          "width": 103,
+          "height": 8
+        }
+      }
+    },
+    "happier-transition": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 95.5,
+        "y": 159.25,
+        "width": 156,
+        "height": 153
+      },
+      "rightEye": {
+        "x": 545.5,
+        "y": 149.25,
+        "width": 160,
+        "height": 163
+      },
+      "mouth": {
+        "x": 259.5,
+        "y": 287.75,
+        "width": 282,
+        "height": 155
+      },
+      "effects": {}
+    },
+    "sad": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 104,
+        "y": 148,
+        "width": 142,
+        "height": 156
+      },
+      "rightEye": {
+        "x": 554.25,
+        "y": 148,
+        "width": 142,
+        "height": 156
+      },
+      "mouth": {
+        "x": 262,
+        "y": 303.5,
+        "width": 276,
+        "height": 86
+      },
+      "effects": {}
+    },
+    "cry": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 104,
+        "y": 148,
+        "width": 142,
+        "height": 145
+      },
+      "rightEye": {
+        "x": 554.25,
+        "y": 148,
+        "width": 142,
+        "height": 183
+      },
+      "mouth": {
+        "x": 262,
+        "y": 303.5,
+        "width": 276,
+        "height": 86
+      },
+      "effects": {
+        "tearLeft": {
+          "x": 138,
+          "y": 227,
+          "width": 81,
+          "height": 269
+        },
+        "tearRight": {
+          "x": 581,
+          "y": 227,
+          "width": 81,
+          "height": 269
+        }
+      }
+    },
+    "shock": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 115,
+        "y": 154,
+        "width": 129,
+        "height": 171
+      },
+      "rightEye": {
+        "x": 556,
+        "y": 154,
+        "width": 129,
+        "height": 171
+      },
+      "mouth": {
+        "x": 322.25,
+        "y": 304,
+        "width": 156,
+        "height": 148
+      },
+      "effects": {
+        "mark": {
+          "x": 687,
+          "y": 53,
+          "width": 77,
+          "height": 88
+        }
+      }
+    },
+    "thinking": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 102.5,
+        "y": 167.5,
+        "width": 142,
+        "height": 145
+      },
+      "rightEye": {
+        "x": 560.25,
+        "y": 154,
+        "width": 129,
+        "height": 171
+      },
+      "mouth": {
+        "x": 265.5,
+        "y": 338,
+        "width": 271,
+        "height": 52
+      },
+      "effects": {
+        "mark": {
+          "x": 700,
+          "y": 43.25,
+          "width": 60,
+          "height": 89
+        }
+      }
+    }
+  },
+  "order": {
+    "faceBase": 0,
+    "faceLines": 10,
+    "underEyes": 15,
+    "eyes": 20,
+    "mouth": 30,
+    "effects": 40
+  }
+}

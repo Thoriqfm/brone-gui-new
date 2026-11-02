@@ -7,3 +7,16 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .DS_Store
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Local environment overrides
+.env.*.local
+
+# Generated visual verification artifacts
+/frontend/reports/**/*.png
+/frontend/reports/**/*.svg

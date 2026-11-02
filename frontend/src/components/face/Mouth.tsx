@@ -1,23 +1,24 @@
-import type { Emotion } from "../../schemas/faceMessages";
-export default function Mouth({
-    emotion,
-    intensity,
-}: {
-    emotion: Emotion;
-    intensity: number;
-}) {
-    const sad = emotion === "sad" || emotion === "cry";
-    return (
-        <path
-            d={
-                sad
-                    ? `M595 700 Q745 ${700 - 110 * intensity} 895 700`
-                    : `M595 640 Q745 ${640 + 160 * intensity} 895 640`
-            }
-            fill="none"
-            stroke="#82e4ff"
-            strokeWidth="36"
-            strokeLinecap="round"
-        />
-    );
+import type { RefCallback } from "react";
+import { FACE_LAYER_COMPOSITIONS, type LayerExpression } from "../../config/faceLayerAssets";
+import { FACE_LAYER_LAYOUTS, FACE_LAYER_ORDER } from "../../config/faceLayerLayouts";
+import FaceLayer from "./FaceLayer";
+import ProceduralMouth from "./mouth/ProceduralMouth";
+import { canonicalProductionGeometry, type FaceRendererMode, type ProductionGeometrySample } from "../../animation/productionGeometry";
+
+export default function Mouth({ expression, motionRef, motionRole = "mouth", initialOpacity = 1, renderer = "asset", sample }: { expression: LayerExpression;
+    motionRef?: RefCallback<HTMLDivElement>; motionRole?: string; initialOpacity?: number;
+    renderer?: FaceRendererMode; sample?: ProductionGeometrySample }) {
+    if (renderer === "procedural" && expression !== "happier-transition") {
+        const frame = sample ?? canonicalProductionGeometry(expression), position = frame.layout.mouth;
+        return <div ref={motionRef} className="face-layer procedural-mouth" data-geometry-mouth={expression} style={{
+            left: position.x / 800 * 100 + "%", top: position.y / 480 * 100 + "%",
+            width: position.width / 800 * 100 + "%", height: position.height / 480 * 100 + "%",
+            zIndex: FACE_LAYER_ORDER.mouth, opacity: initialOpacity,
+        }}><ProceduralMouth geometry={frame.mouth} /></div>;
+    }
+    return <FaceLayer motionRef={motionRef} motionRole={motionRole} initialOpacity={initialOpacity}
+        asset={FACE_LAYER_COMPOSITIONS[expression].mouth}
+        position={FACE_LAYER_LAYOUTS[expression].mouth}
+        order={FACE_LAYER_ORDER.mouth}
+    />;
 }

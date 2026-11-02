@@ -1,0 +1,111 @@
+{
+  "versions": {
+    "resvg-py": "0.5.0",
+    "Pillow": "13.0.0"
+  },
+  "scope": "Static resvg, not browser approval",
+  "results": [
+    {
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 525,
+      "onlyBlackStroke": true
+    },
+    {
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "allColorInsideAperture": true
+    },
+    {
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 525,
+      "onlyBlackStroke": true
+    }
+  ]
+}

@@ -1,35 +1,35 @@
-import type { Emotion } from "../../schemas/faceMessages";
-export default function Eyes({
-    emotion,
-    intensity,
-}: {
-    emotion: Emotion;
-    intensity: number;
-}) {
-    const happy = emotion === "happy" || emotion === "happier";
-    const sad = emotion === "sad" || emotion === "cry";
-    return (
-        <g fill="none" stroke="#82e4ff" strokeWidth="42" strokeLinecap="round">
-            {happy ? (
-                <>
-                    <path
-                        d={`M300 385 Q480 ${385 - 160 * intensity} 650 385`}
-                    />
-                    <path
-                        d={`M840 385 Q1010 ${385 - 160 * intensity} 1190 385`}
-                    />
-                </>
-            ) : sad ? (
-                <>
-                    <path d="M300 295 Q480 510 650 320" />
-                    <path d="M840 320 Q1010 510 1190 295" />
-                </>
-            ) : (
-                <>
-                    <path d="M370 310 Q480 300 590 310" />
-                    <path d="M900 310 Q1010 300 1120 310" />
-                </>
-            )}
-        </g>
-    );
+import type { RefCallback } from "react";
+import { FACE_LAYER_COMPOSITIONS, type LayerExpression } from "../../config/faceLayerAssets";
+import { FACE_LAYER_LAYOUTS, FACE_LAYER_ORDER } from "../../config/faceLayerLayouts";
+import FaceLayer from "./FaceLayer";
+import ProceduralEye from "./eyes/ProceduralEye";
+import { canonicalProductionGeometry, type FaceRendererMode, type ProductionGeometrySample } from "../../animation/productionGeometry";
+import MorphBlinkEye from "./eyes/MorphBlinkEye";
+import type { BlinkChannel } from "../../animation/morphBlinkPlayback";
+import type { MorphBlinkContext } from "../../geometry/eyes/blink/morphBlinkAdapter";
+
+export default function Eyes({ expression, leftRef, rightRef, renderer = "asset", sample, blinkChannel, blinkContext }: { expression: LayerExpression;
+    leftRef?: RefCallback<HTMLDivElement>; rightRef?: RefCallback<HTMLDivElement>;
+    renderer?: FaceRendererMode; sample?: ProductionGeometrySample; blinkChannel?: BlinkChannel;
+    blinkContext?: Pick<MorphBlinkContext,"from"|"to"|"morphProgress"> }) {
+    if (renderer === "procedural" && expression !== "happier-transition") {
+        const frame = sample ?? canonicalProductionGeometry(expression);
+        return <>{(["left", "right"] as const).map((side) => {
+            const position = frame.layout[side === "left" ? "leftEye" : "rightEye"];
+            return <div key={side} ref={side === "left" ? leftRef : rightRef}
+                className="face-layer procedural-eye" data-geometry-eye={side} style={{
+                    left: position.x / 800 * 100 + "%", top: position.y / 480 * 100 + "%",
+                    width: position.width / 800 * 100 + "%", height: position.height / 480 * 100 + "%",
+                    zIndex: FACE_LAYER_ORDER.eyes,
+                }}>{import.meta.env.DEV && blinkChannel ? <MorphBlinkEye channel={blinkChannel} context={{
+                    ...(blinkContext ?? {from:expression,to:expression,morphProgress:0}),side,blinkProgress:blinkChannel.progress,current:frame.eyes[side],
+                }}/> : <ProceduralEye geometry={frame.eyes[side]} />}</div>;
+        })}</>;
+    }
+    const assets = FACE_LAYER_COMPOSITIONS[expression];
+    const layout = FACE_LAYER_LAYOUTS[expression];
+    return <>
+        <FaceLayer motionRef={leftRef} motionRole="left-eye" asset={assets.leftEye} position={layout.leftEye} order={FACE_LAYER_ORDER.eyes} />
+        <FaceLayer motionRef={rightRef} motionRole="right-eye" asset={assets.rightEye} position={layout.rightEye} order={FACE_LAYER_ORDER.eyes} />
+    </>;
 }

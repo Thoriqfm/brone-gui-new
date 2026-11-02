@@ -1,0 +1,8 @@
+{
+  "denseSamples": 8820,
+  "visualSamples": 600,
+  "canonicalComparisons": 84,
+  "productionRouteContexts": 420,
+  "status": "PASS",
+  "browser": "unavailable: browser access host/native pipe"
+}

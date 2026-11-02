@@ -1,0 +1,164 @@
+{
+  "pillow": "13.0.0",
+  "libwebp": "1.6.0",
+  "resampling": "Lanczos, premultiplied alpha",
+  "assets": [
+    {
+      "name": "idle",
+      "master_bytes": 262696,
+      "png_bytes": 159434,
+      "webp_bytes": 86952,
+      "master_sha256": "b0f4d080cb62a17b7692e63d3ed2781cbbe5b1f9fd85eb7aca07fb4b174040f3",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    },
+    {
+      "name": "happy",
+      "master_bytes": 271386,
+      "png_bytes": 168134,
+      "webp_bytes": 90128,
+      "master_sha256": "3a615bdf2800ad521f8c40bc6ef04b67f1524830bcb65b1ef38dd6b6bb007e07",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    },
+    {
+      "name": "happier",
+      "master_bytes": 233969,
+      "png_bytes": 159046,
+      "webp_bytes": 86298,
+      "master_sha256": "d1645762e7c9b6a9f735646f215b70099f6c05c3ca8add591fe425af47eba0b6",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    },
+    {
+      "name": "sad",
+      "master_bytes": 285232,
+      "png_bytes": 147725,
+      "webp_bytes": 77852,
+      "master_sha256": "f5021d9e80cbce40b68e17048b468162d91efc61e9e2064e4b58fedc3315fceb",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    },
+    {
+      "name": "cry",
+      "master_bytes": 442888,
+      "png_bytes": 186481,
+      "webp_bytes": 101648,
+      "master_sha256": "60ad817e1c4ec47a9e8489b5fbc5630a3db45b4e4390f52f9cf55ba9d2c0fe96",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    },
+    {
+      "name": "shock",
+      "master_bytes": 273610,
+      "png_bytes": 174511,
+      "webp_bytes": 95366,
+      "master_sha256": "69ef2073ee657d7f63d4041784d27506c301deea4e0e29f0f1062ad3163152e5",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    },
+    {
+      "name": "thinking",
+      "master_bytes": 325402,
+      "png_bytes": 160512,
+      "webp_bytes": 83162,
+      "master_sha256": "b82149f51b224482f638a563fccb5a45011ce44d6fff17bcc3cf5d236b9780b3",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    },
+    {
+      "name": "happier-transition",
+      "master_bytes": 241904,
+      "png_bytes": 146395,
+      "webp_bytes": 80440,
+      "master_sha256": "0971683c4483e2c9a2abe10554b1a1e41c06cfc8c32c0ed5cf610b1aa3a53c92",
+      "dimensions": [
+        1490,
+        894
+      ],
+      "identical_decoded_rgba": true,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "partial_alpha_pixels": 1287
+    }
+  ],
+  "totals": {
+    "master_bytes": 2337087,
+    "png_bytes": 1302238,
+    "webp_bytes": 701846
+  }
+}

@@ -1,0 +1,892 @@
+{
+  "environment": {
+    "resvg-py": "0.5.0",
+    "Pillow": "13.0.0"
+  },
+  "scope": "Static raster verification. Closed shapes are procedural and pending artistic approval. No browser/device/performance claim.",
+  "openEndpointPairs": 42,
+  "results": [
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 525,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "idle",
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 525,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 525,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happy",
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 525,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 11969,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 8116,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 3888,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1321,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 531,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 11969,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 8116,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 3888,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1321,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "happier",
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 531,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 10751,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 7233,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 3405,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1138,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 445,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 10782,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 7258,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 3407,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1140,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "sad",
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 446,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 10515,
+      "bluePixels": 4983,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 7005,
+      "bluePixels": 4783,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 3267,
+      "bluePixels": 3154,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1069,
+      "bluePixels": 1014,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 445,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 13336,
+      "bluePixels": 4989,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 8683,
+      "bluePixels": 4989,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 4018,
+      "bluePixels": 3756,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1391,
+      "bluePixels": 1329,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "cry",
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 446,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 525,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "shock",
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 525,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 0.25,
+      "coloredPixels": 10441,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 0.5,
+      "coloredPixels": 6941,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 0.75,
+      "coloredPixels": 3216,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 0.9,
+      "coloredPixels": 1043,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "left",
+      "progress": 1,
+      "visiblePixels": 445,
+      "oneConnectedBlackContour": true
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 0,
+      "scale": 1,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 0,
+      "scale": 1.5,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 0,
+      "scale": 2,
+      "differingPixels": 0,
+      "maxChannelDifference": 0
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 0.25,
+      "coloredPixels": 13759,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 0.5,
+      "coloredPixels": 9526,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 0.75,
+      "coloredPixels": 4596,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 0.9,
+      "coloredPixels": 1575,
+      "bluePixels": 0,
+      "colorInsideAperture": true
+    },
+    {
+      "expression": "thinking",
+      "side": "right",
+      "progress": 1,
+      "visiblePixels": 525,
+      "oneConnectedBlackContour": true
+    }
+  ]
+}

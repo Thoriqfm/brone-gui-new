@@ -1,0 +1,9 @@
+{
+  "canonicalExpressions": 7,
+  "directedMorphBranches": 42,
+  "domSamples": 462,
+  "blink": "disabled: canonical-only source contract rejects morph geometry",
+  "browser": "unavailable: browser access host and native pipe unavailable",
+  "checks": "SSR composition, exact preset identity, layout, IDs/resources, DOM/React SVG equivalence, coordinator cancellation/readiness/cleanup, real Anime.js scalar progression, local comparison isolation",
+  "statePreserved": true
+}
