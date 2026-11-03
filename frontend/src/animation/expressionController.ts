@@ -10,7 +10,7 @@ export interface ExpressionRequest {
     source: ExpressionRequestSource;
 }
 
-export const MANUAL_TRANSITION_MS = 300;
+export const MANUAL_TRANSITION_MS = 700;
 export type ExpressionRequestResult = "accepted" | "duplicate" | "rejected";
 
 // The only application entry point for semantic expression updates. No visual timing here.

@@ -1,12 +1,14 @@
 {
   "src/components/face/Eyes.tsx": {
     "previous": "cbe20a702a443a3fbf31920a150845345b42521e09139cb38893f962f556da5c",
-    "integrated": "aae1be9e65760331461e3612535473a1304ee2a6d74a0d0a1800d2d1db83b51d",
+    "integrated": "8890daba04132640a03ff33de062c845ad367103d9382030a10fa47cc8d76cdd",
+    "beforeRobotBlink": "aae1be9e65760331461e3612535473a1304ee2a6d74a0d0a1800d2d1db83b51d",
     "geometryIntegration": "c8726bdc2de05cf4d4b18cb0b1a324cd7bc987e57569421549a7bc56b4f505b2"
   },
   "src/components/face/FaceRenderer.tsx": {
     "previous": "bc93f7627ccdbf5adf64ffa4482e5b56d8f64781ee84ffd252cef86bac4f3180",
-    "integrated": "a5afac63d8c74b9c3d6e7b9d033a4b0116229199326f8238d1fb1d418ac13a73",
+    "integrated": "2040f4d17600695844d9de82db76b222a92e94fd81a7a516a1dffe58b820bc3b",
+    "beforeRobotBlink": "a5afac63d8c74b9c3d6e7b9d033a4b0116229199326f8238d1fb1d418ac13a73",
     "beforeEffectMotion": "5979381e873f9729a7bfe1e70d43e0a16fe831e89135a0fab5595ca71accdf35",
     "geometryIntegration": "ee85937c346812a69190425e5ab81644c014d64186aec99943bb2fbd25d792c2"
   },
@@ -24,6 +26,10 @@
   "src/geometry/mouth/index.ts": {
     "previous": "60e102dec0f8797a11ce8f63128c83b7cc58163d007a655eb40552470ab65d4e",
     "integrated": "c1b211c9913db1f29509d48f10b87256ca468671e0726833833e1b2c3d05527a"
+  },
+  "src/animation/expressionController.ts": {
+    "previous": "27de8e26522bf2fde1200f2510b1fa6a20ecd43f2872d6d3f81693821ff8bb4d",
+    "integrated": "3837915d04b5380a4ca84fcd50a89d095caf39b1d403b3bf6dc3617f4b546db6"
   },
   "src/animation/transitionStrategy.ts": {
     "previous": "f6fe39b1cbf4a237abf3b41f6a280c58d427fe5d7b22dde8c78cd642c63e81a4",

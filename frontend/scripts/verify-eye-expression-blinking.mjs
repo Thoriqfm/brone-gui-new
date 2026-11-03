@@ -218,7 +218,9 @@ try {
     await new Promise(r=>setTimeout(r,35));select(switched,"thinking");await new Promise(r=>setTimeout(r,350));near(switched.p(),0);assert.equal(selector(switched).props.value,"thinking");switched.cleanup();
     assert.strictEqual(useFaceStore.getState(),state);assert.equal(JSON.stringify([P,L,C,A]),snapshot);
     const dist=(await Promise.all((await readdir("dist/assets")).filter(f=>f.endsWith(".js")).map(f=>readFile("dist/assets/"+f,"utf8")))).join("");
-    assert.doesNotMatch(dist,/data-blink-|expression-blink-|Blink expression:|No layered blink configuration|Shared blink artwork changed/);
+    assert.match(dist,/data-active-eye/);
+    assert.match(dist,/data-blink-interior/);
+    assert.doesNotMatch(dist,/Blink expression:|Enable manual morph-aware blink validation/,"development controls remain excluded while live blink geometry is bundled");
     await mkdir(folder,{recursive:true});await writeFile(folder+"/samples.json",JSON.stringify(renders,null,2)+"\n");
     await writeFile(folder+"/geometry-metrics.json",JSON.stringify(metrics,null,2)+"\n");
     const image=s=>"data:image/svg+xml;base64,"+Buffer.from(s).toString("base64");

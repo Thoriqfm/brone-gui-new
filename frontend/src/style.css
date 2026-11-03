@@ -28,6 +28,61 @@ small {
     font-size: 13px;
     color: #9cb2c8;
 }
+.robot-preview {
+    position: fixed;
+    inset: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Match the approved face-base.svg beyond the proportional artwork. */
+    background: #CBD8E2;
+}
+.robot-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.robot-stage > .face-canvas {
+    /* Fill normal landscape widths; cap zoom on ultrawide screens so the
+       face's eyes/mouth/punctuation remain inside the visible central 420 units. */
+    width: min(100vw, calc(100vh * 800 / 420));
+    width: min(100vw, calc(100dvh * 800 / 420));
+    aspect-ratio: 800 / 480;
+    max-width: none;
+    flex: none;
+}
+.face-controls {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 50;
+    width: min(380px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+    padding: 20px;
+    border: 1px solid #35506c;
+    border-radius: 12px;
+    background: #101e30;
+}
+.face-controls h1 { margin-top: 0; }
+.face-controls .buttons button { min-height: 44px; }
+.face-controls .buttons { margin-top: 16px; }
+kbd { font: inherit; font-size: .85em; color: #a2bacf; }
+button:focus-visible, select:focus-visible { outline: 2px solid #82e4ff; outline-offset: 3px; }
+.development-tools {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    margin: 0;
+    overflow: auto;
+    padding: 24px;
+    background: #080f1d;
+}
+.development-tools > header { margin: 0 0 24px; }
 .face-canvas {
     width: 100%;
     max-width: 1490px;

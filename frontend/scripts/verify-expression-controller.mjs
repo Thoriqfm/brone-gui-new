@@ -20,6 +20,7 @@ try {
     const { parseFaceMessage, EMOTIONS } = await server.ssrLoadModule("/src/schemas/faceMessages.ts");
     const { connectFaceSocket } = await server.ssrLoadModule("/src/services/websocketClient.ts");
     const { default: FaceRenderer } = await server.ssrLoadModule("/src/components/face/FaceRenderer.tsx");
+    const { default: RobotFaceStage } = await server.ssrLoadModule("/src/components/face/RobotFaceStage.tsx");
     const { default: FullImageFaceRenderer } = await server.ssrLoadModule("/src/components/face/FullImageFaceRenderer.tsx");
     const { default: MouthGeometryComparison } = await server.ssrLoadModule("/src/components/face/mouth/MouthGeometryComparison.tsx");
     const { default: EyeGeometryComparison } = await server.ssrLoadModule("/src/components/face/eyes/EyeGeometryComparison.tsx");
@@ -31,7 +32,7 @@ try {
     assert.equal(useFaceStore.getState().transitionMs, 0);
     assert.equal(useFaceStore.getState().source, null);
     assert.equal(useFaceStore.getState().requestId, undefined);
-    assert.equal(MANUAL_TRANSITION_MS, 300);
+    assert.equal(MANUAL_TRANSITION_MS, 700);
     let updates = 0;
     unsubscribe = useFaceStore.subscribe(() => updates++);
     const request = (changes = {}) => ({ emotion: "happy", intensity: 0.5,
@@ -184,8 +185,8 @@ try {
     const hooks = {
         useState(initial) {
             const index = stateIndex++;
-            if (!(index in states)) states[index] = initial;
-            return [states[index], (value) => { states[index] = value; }];
+            if (!(index in states)) states[index] = typeof initial === "function" ? initial() : initial;
+            return [states[index], (value) => { states[index] = typeof value === "function" ? value(states[index]) : value; }];
         },
         useEffect(effect) { if (!mounted) effects.push(effect); },
     };
@@ -200,18 +201,26 @@ try {
         "./components/face/mouth/MouthGeometryComparison": { default: MouthGeometryComparison },
         "./components/face/eyes/EyeGeometryComparison": { default: EyeGeometryComparison },
         "./components/face/FaceRenderer": { default: FaceRenderer },
+        "./components/face/RobotFaceStage": { default: RobotFaceStage },
         "./components/face/FullImageFaceRenderer": { default: FullImageFaceRenderer },
         "./components/face/ProductionGeometryComparison": { default: () => null },
         "./services/websocketClient": { connectFaceSocket },
-        "./stores/faceStore": { useFaceStore: (selector) => selector(useFaceStore.getState()) },
+        "./stores/faceStore": { useFaceStore: Object.assign((selector) => selector(useFaceStore.getState()), { getState: useFaceStore.getState }) },
         "./schemas/faceMessages": { EMOTIONS },
         "./animation/expressionController": { requestExpression, MANUAL_TRANSITION_MS },
     };
     const module = { exports: {} };
-    compileFunction(appCode, ["require", "module", "exports"])((name) => {
+    const keyListeners = new Set();
+    const windowFixture = { addEventListener(type, fn) { assert.equal(type, "keydown"); keyListeners.add(fn); },
+        removeEventListener(type, fn) { assert.equal(type, "keydown"); keyListeners.delete(fn); } };
+    let fullscreenRequests = 0, fullscreenExits = 0, rejectFullscreen = false;
+    const documentFixture = { fullscreenElement: null,
+        documentElement: { async requestFullscreen() { fullscreenRequests++; if (rejectFullscreen) throw new Error("denied"); documentFixture.fullscreenElement = this; } },
+        async exitFullscreen() { fullscreenExits++; documentFixture.fullscreenElement = null; } };
+    compileFunction(appCode, ["require", "module", "exports", "window", "document"])((name) => {
         assert.ok(name in imports, "Unexpected App dependency: " + name);
         return imports[name];
-    }, module, module.exports);
+    }, module, module.exports, windowFixture, documentFixture);
     const render = () => { stateIndex = 0; return module.exports.default(); };
     const find = (tree, predicate) => {
         if (!react.isValidElement(tree)) return undefined;
@@ -221,30 +230,64 @@ try {
             if (match) return match;
         }
     };
-    const button = (tree, label) => find(tree, (e) => e.type === "button" && e.props.children === label);
-    const isPreview = (tree) => find(tree, (e) => e.type === FaceRenderer).props.transition;
+    const button = (tree, label) => find(tree, (e) => e.type === "button" && (e.props.children === label || e.props["aria-label"] === label));
+    const isPreview = (tree) => find(tree, (e) => e.type === FaceRenderer && e.props.transition !== undefined)?.props.transition;
     let tree = render();
+    assert.equal(find(tree, e => e.type === "aside"), undefined, "controls hidden on load");
+    assert.equal(find(tree, e => e.type === FullImageFaceRenderer), undefined, "reference/previews unmounted on load");
+    assert.equal(find(tree, e => e.type === RobotFaceStage).props.renderer, "procedural");
+    assert.equal(find(tree, e => e.type === "button"), undefined, "no controls visible in robot view");
+    mounted = true;
+    const removeShortcuts = effects[1]();
+    keyListeners.values().next().value({ key: "h", preventDefault() {} });
+    tree = render();
     const stateBeforeRendererSwitch = useFaceStore.getState();
     for (const renderer of ["procedural", "asset"]) {
         find(tree, (e) => e.type === "select" && e.props["aria-label"] === "Live renderer")
             .props.onChange({ target: { value: renderer } });
         tree = render();
-        assert.equal(find(tree, (e) => e.type === FaceRenderer).props.renderer, renderer);
+        assert.equal(find(tree, (e) => e.type === RobotFaceStage).props.renderer, renderer);
         assert.strictEqual(useFaceStore.getState(), stateBeforeRendererSwitch);
     }
     mounted = true;
     dispose = effects[0]();
+    assert.equal(keyListeners.size, 1);
+    const key = (value, extra = {}) => {
+        const event = { key: value, preventDefault() { this.defaultPrevented = true; }, ...extra };
+        for (const fn of keyListeners) fn(event);
+        return event;
+    };
+    for (const [index, emotion] of EMOTIONS.entries()) {
+        const previous = useFaceStore.getState();
+        assert.equal(key(String(index + 1)).defaultPrevented, true);
+        assert.equal(useFaceStore.getState().emotion, emotion);
+        if (previous.emotion !== emotion) assert.equal(useFaceStore.getState().transitionMs, 700);
+        else assert.strictEqual(useFaceStore.getState(), previous, "same expression does not restart animation");
+    }
+    const ignoredState = useFaceStore.getState();
+    for (const extra of [{ repeat: true }, { ctrlKey: true }, { altKey: true }, { metaKey: true }, { defaultPrevented: true },
+        { target: { isContentEditable: true } }, { target: { closest: () => ({}) } }]) key("1", extra);
+    key("0"); key("ArrowLeft");
+    assert.strictEqual(useFaceStore.getState(), ignoredState, "shortcuts ignore editing, modifiers, repeat and unrelated keys");
+    key("H"); tree = render(); assert.equal(find(tree, e => e.type === "aside"), undefined);
+    key("h"); tree = render(); assert.ok(find(tree, e => e.type === "aside"));
+    key("f"); await Promise.resolve(); assert.equal(fullscreenRequests, 1);
+    key("F"); await Promise.resolve(); assert.equal(fullscreenExits, 1);
+    rejectFullscreen = true;
+    key("f"); await Promise.resolve(); await Promise.resolve(); tree = render();
+    assert.ok(find(tree, e => e.props.role === "alert"), "fullscreen rejection keeps controls usable");
+    button(tree, "Development previews").props.onClick(); tree = render();
     socket = sockets.at(-1);
     const stateBeforePreview = useFaceStore.getState();
     button(tree, "happier-transition (preview only)").props.onClick();
     tree = render();
     assert.equal(isPreview(tree), true);
     assert.strictEqual(useFaceStore.getState(), stateBeforePreview);
-    button(tree, "happy").props.onClick();
+    key("2");
     tree = render();
     assert.equal(isPreview(tree), false);
     assert.equal(useFaceStore.getState().emotion, "happy");
-    assert.equal(useFaceStore.getState().transitionMs, 300);
+    assert.equal(useFaceStore.getState().transitionMs, 700);
     assert.equal(useFaceStore.getState().source, "manual");
     button(tree, "happier-transition (preview only)").props.onClick();
     tree = render();
@@ -264,14 +307,16 @@ try {
     assert.equal(useFaceStore.getState().source, "websocket");
     assert.equal(useFaceStore.getState().requestId, "wire-id");
     assert.equal(useFaceStore.getState().transitionMs, 789);
-    button(tree, "sad").props.onClick();
+    key("4");
     tree = render();
     assert.equal(useFaceStore.getState().intensity, 1, "Manual request retains current intensity");
     assert.equal(useFaceStore.getState().requestId, undefined);
     assert.equal(useFaceStore.getState().source, "manual");
     assert.ok(find(tree, (e) => e.type === FullImageFaceRenderer));
+    key("h"); tree = render();
     for (const emotion of EMOTIONS) assert.ok(button(tree, emotion));
     assert.equal(button(tree, "shy"), undefined);
+    removeShortcuts(); assert.equal(keyListeners.size, 0, "keyboard listener removed on unmount");
     dispose(); dispose = undefined;
     assert.equal(timers.size, 0);
     console.log("PASS: controller defaults/validation/metadata/deduplication/latest-wins; strict parser; WebSocket routing/reset/reconnect/cleanup; App manual/live preview isolation (shallow hook harness).");

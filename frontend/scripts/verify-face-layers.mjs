@@ -104,9 +104,13 @@ try {
     const { default: App } = await server.ssrLoadModule("/src/App.tsx");
     selectEmotion("idle");
     const app = renderToStaticMarkup(createElement(App));
-    assert.ok(app.includes("Original full-image PNG reference"));
-    assert.ok(app.includes("Composed SVG layers"));
-    assert.ok(app.includes("happier-transition (preview only)"));
+    assert.ok(app.includes('class="robot-stage"'));
+    assert.ok(app.includes('data-renderer="procedural"'));
+    assert.ok(!app.includes('id="face-controls"'));
+    assert.ok(!app.includes('class="controls-toggle"'));
+    assert.ok(!app.includes("Original full-image PNG reference"));
+    assert.ok(!app.includes("Composed SVG layers"));
+    assert.ok(!app.includes("happier-transition (preview only)"));
     assert.ok(!app.includes("shy"));
     await mkdir("reports/face-layers", { recursive: true });
     await writeFile("reports/face-layers/runtime-config.json", JSON.stringify({

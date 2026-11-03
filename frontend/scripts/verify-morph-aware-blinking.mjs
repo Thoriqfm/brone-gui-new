@@ -151,7 +151,7 @@ try {
     const realOpening=realRuns.at(-1);realOpening.seek(-20);assert.equal(realPlayback.blinkProgress,1,"real Anime hold");
     realOpening.seek(150);assert.equal(realPlayback.blinkProgress,0);assert.equal(realFrames.at(-1)[0],currentMorph,"real Anime reopening preserves evolved morph");
     realPlayback.dispose();realEngine.dispose();
-    const html=render(FaceRenderer,{renderer:"procedural",expression:"cry",blinkChannel:channel});assert.match(html,/manual-validation/);refs(html);
+    const html=render(FaceRenderer,{renderer:"procedural",expression:"cry",blinkChannel:channel});assert.match(html,/data-production-blink="enabled"/);refs(html);
     assert.strictEqual(useFaceStore.getState(),state);assert.equal(JSON.stringify(eye.EYE_EXPRESSION_PRESETS),snapshot);
     await mkdir("reports/morph-aware-blinking",{recursive:true});
     await writeFile("reports/morph-aware-blinking/samples.json",JSON.stringify(samples));

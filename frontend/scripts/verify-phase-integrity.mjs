@@ -9,6 +9,7 @@ const migrations = JSON.parse(await readFile("reports/production-geometry/integr
 assert.deepEqual(Object.keys(migrations).sort(), [
     "src/components/face/Eyes.tsx", "src/components/face/FaceRenderer.tsx",
     "src/animation/expressionTransition.ts", "src/animation/transitionStrategy.ts", "src/animation/useExpressionTransition.ts",
+    "src/animation/expressionController.ts",
     "src/geometry/mouth/expressionPresets.ts", "src/geometry/mouth/index.ts",
 ].sort(), "only the explicitly integrated files have migration hashes");
 export async function assertPhaseIntegrity(file, expected) {

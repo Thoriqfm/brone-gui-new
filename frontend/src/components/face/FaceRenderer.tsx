@@ -25,7 +25,7 @@ function FaceComposition({ expression, duration, transition, renderer, blinkChan
     const elementLayout = renderer === "asset" && (layers.length === 1
         ? layers[0].expression === "idle" || layers[0].expression === "happy"
         : layers[1].strategy === "ELEMENT_BASED");
-    return <div className="face-canvas" data-renderer={renderer} data-production-blink={import.meta.env.DEV && blinkChannel?"manual-validation":"disabled"}>
+    return <div className="face-canvas" data-renderer={renderer} data-production-blink={renderer === "procedural" && blinkChannel ? "enabled" : "disabled"}>
         <div ref={rootRef} className="face-artwork" role="img" aria-label={"Brone " + expression}>
             <FaceBase expression={expression} />
             {geometry ? <GeometryTransitionLayer key={layers[1].id} layers={layers} attach={attach} attachFrame={attachFrame} prepared={prepared} blinkChannel={blinkChannel} /> : elementLayout

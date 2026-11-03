@@ -40,7 +40,7 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
             const frame = sampleProductionGeometry(from, to, faceProgress);
             for (const [side, node, template] of [["left", left, templates[0]], ["right", right, templates[1]]] as const) {
                 positionGeometry(node, frame.layout[side === "left" ? "leftEye" : "rightEye"]);
-                if (import.meta.env.DEV && blinkChannel) updateMorphBlinkSurface(node.querySelector("[data-active-eye] svg")!,{
+                if (blinkChannel) updateMorphBlinkSurface(node.querySelector("[data-active-eye] svg")!,{
                     ...productionEyeMorphContext(from,to,faceProgress),side,blinkProgress:blinkChannel.progress,current:frame.eyes[side],
                 });
                 else updateProductionEye(node.querySelector("svg")!, frame.eyes[side], scope + "-" + side, template);

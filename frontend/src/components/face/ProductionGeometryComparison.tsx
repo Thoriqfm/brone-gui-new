@@ -12,7 +12,7 @@ import FullImageFaceRenderer from "./FullImageFaceRenderer";
 export default function ProductionGeometryComparison() {
     const [expression, setExpression] = useState<Emotion>("idle");
     const [previous, setPrevious] = useState<Emotion>("idle");
-    const [duration, setDuration] = useState(1000);
+    const [duration, setDuration] = useState(700);
     const [view, setView] = useState("all");
     const [automaticBlink, setAutomaticBlink] = useState(true);
     const [open, setOpen] = useState(false);
@@ -52,7 +52,7 @@ export default function ProductionGeometryComparison() {
                 <option value="asset">Asset renderer</option><option value="procedural">Procedural renderer</option>
             </select></label>{" "}
             <label>Transition duration: <select value={duration} onChange={event => setDuration(Number(event.target.value))}>
-                <option value={0}>Immediate endpoints</option><option value={300}>300 ms</option><option value={1000}>1000 ms</option>
+                <option value={0}>Immediate endpoints</option><option value={300}>300 ms</option><option value={700}>700 ms</option><option value={1000}>1000 ms</option>
             </select></label>
             <label><input type="checkbox" checked={automaticBlink} onChange={e=>setAutomaticBlink(e.target.checked)}/> Automatic blinking (3–6 seconds)</label>
             <label><input type="checkbox" checked={manualBlink} onChange={e=>setManualBlink(e.target.checked)}/> Enable manual morph-aware blink validation</label>
