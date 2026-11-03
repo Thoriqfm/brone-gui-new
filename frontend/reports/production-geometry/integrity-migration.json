@@ -6,13 +6,24 @@
   },
   "src/components/face/FaceRenderer.tsx": {
     "previous": "bc93f7627ccdbf5adf64ffa4482e5b56d8f64781ee84ffd252cef86bac4f3180",
-    "integrated": "5979381e873f9729a7bfe1e70d43e0a16fe831e89135a0fab5595ca71accdf35",
+    "integrated": "a5afac63d8c74b9c3d6e7b9d033a4b0116229199326f8238d1fb1d418ac13a73",
+    "beforeEffectMotion": "5979381e873f9729a7bfe1e70d43e0a16fe831e89135a0fab5595ca71accdf35",
     "geometryIntegration": "ee85937c346812a69190425e5ab81644c014d64186aec99943bb2fbd25d792c2"
   },
   "src/animation/expressionTransition.ts": {
     "previous": "e2e787f08eb79b82975091a9cf94db362fe97330896c2e7a5cf7f3e518119445",
-    "integrated": "60580a9175a36455291ef0ded18f161f726316ebf71618e8aacba8542ceab504",
+    "integrated": "3e25da52a72e2e464380e5f1d0929a782bfd9d5dec9b66d7a83666aa1fb6faa5",
+    "beforeCrySequence": "eff0a03c9c1507279cda7e7410ad6f40ef7d74115d49cb8fc9c9ae1f692fefc4",
+    "beforeEffectMotion": "60580a9175a36455291ef0ded18f161f726316ebf71618e8aacba8542ceab504",
     "geometryIntegration": "8b8dfa8f26d713e63970d13ed131c02e9662695914139ae9ae0ed13f5991271c"
+  },
+  "src/geometry/mouth/expressionPresets.ts": {
+    "previous": "ddb1f82c8a8c6e1647775e8bbac4f9168dad27c901530036734743411bbe0a13",
+    "integrated": "9093549901fde92128b198279291ce56e98d22b1b53c13abc4826981275841e2"
+  },
+  "src/geometry/mouth/index.ts": {
+    "previous": "60e102dec0f8797a11ce8f63128c83b7cc58163d007a655eb40552470ab65d4e",
+    "integrated": "c1b211c9913db1f29509d48f10b87256ca468671e0726833833e1b2c3d05527a"
   },
   "src/animation/transitionStrategy.ts": {
     "previous": "f6fe39b1cbf4a237abf3b41f6a280c58d427fe5d7b22dde8c78cd642c63e81a4",

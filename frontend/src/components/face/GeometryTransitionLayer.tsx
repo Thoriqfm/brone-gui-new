@@ -8,6 +8,7 @@ import { isEmotion } from "../../schemas/faceMessages";
 import Eyes from "./Eyes";
 import Mouth from "./Mouth";
 import FaceEffects from "./FaceEffects";
+import { sampleFaceTransitionProgress, updateFaceEffectMotion } from "../../animation/faceEffectMotion";
 
 export default function GeometryTransitionLayer({ layers, attach, attachFrame, prepared, blinkChannel }: {
     layers: readonly TransitionComposition[];
@@ -35,17 +36,19 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
             endpoints[1].style.display = p >= 1 ? "contents" : "none";
             overlay.style.display = p > 0 && p < 1 ? "contents" : "none";
             if (p <= 0 || p >= 1) return; // Untouched canonical React SVG endpoints.
-            const frame = sampleProductionGeometry(from, to, p);
+            const faceProgress = sampleFaceTransitionProgress(from, to, p);
+            const frame = sampleProductionGeometry(from, to, faceProgress);
             for (const [side, node, template] of [["left", left, templates[0]], ["right", right, templates[1]]] as const) {
                 positionGeometry(node, frame.layout[side === "left" ? "leftEye" : "rightEye"]);
                 if (import.meta.env.DEV && blinkChannel) updateMorphBlinkSurface(node.querySelector("[data-active-eye] svg")!,{
-                    ...productionEyeMorphContext(from,to,p),side,blinkProgress:blinkChannel.progress,current:frame.eyes[side],
+                    ...productionEyeMorphContext(from,to,faceProgress),side,blinkProgress:blinkChannel.progress,current:frame.eyes[side],
                 });
                 else updateProductionEye(node.querySelector("svg")!, frame.eyes[side], scope + "-" + side, template);
             }
             positionGeometry(mouth, frame.layout.mouth);
             updateProductionMouth(mouth.querySelector("svg")!, frame.mouth, scope + "-mouth");
-            effects[0].style.opacity = String(1 - p); effects[1].style.opacity = String(p);
+            updateFaceEffectMotion(effects[0], from, "exit", p, to);
+            updateFaceEffectMotion(effects[1], to, "enter", p, from);
         };
         attach(target.id, element); attachFrame(target.id, draw);
         draw(0);
@@ -62,13 +65,13 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
             style={{ display: index === 0 ? "contents" : "none" }}>
             <Eyes expression={expression} renderer="procedural" blinkChannel={blinkChannel} />
             <Mouth expression={expression} renderer="procedural" />
-            <FaceEffects expression={expression} />
+            <FaceEffects expression={expression} motion />
         </div>)}
         <div data-geometry-overlay="true" style={{ display: "none" }}>
             <Eyes expression={from} renderer="procedural" sample={middle} blinkChannel={blinkChannel} blinkContext={productionEyeMorphContext(from,to,.5)} />
             <Mouth expression={from} renderer="procedural" sample={middle} />
-            <div className="geometry-effects" data-geometry-effects="source"><FaceEffects expression={from} /></div>
-            <div className="geometry-effects" data-geometry-effects="target"><FaceEffects expression={to} /></div>
+            <div className="geometry-effects" data-geometry-effects="source"><FaceEffects expression={from} motion resting={false} /></div>
+            <div className="geometry-effects" data-geometry-effects="target"><FaceEffects expression={to} motion resting={false} /></div>
         </div>
     </div>;
 }

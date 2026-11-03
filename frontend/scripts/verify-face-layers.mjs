@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { readFile, mkdir, writeFile, realpath } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { createServer } from "vite";
+import { parse } from "./production-renderer-test-dom.mjs";
 
 const server = await createServer({ server: { middlewareMode: true }, appType: "custom" });
 try {
@@ -63,10 +64,12 @@ try {
     }
     selectEmotion("cry");
     const cry = renderToStaticMarkup(createElement(Renderer));
-    const tears = cry.match(/<img\b[^>]*data-layer="cryEffect"[^>]*>/g) ?? [];
+    const tears = parse(cry).querySelectorAll('[data-layer="cryEffect"]');
     assert.equal(tears.length, 2);
     for (const tear of tears) {
-        const zIndex = Number(tear.match(/z-index:(\d+)/)?.[1]);
+        const positioned = tear.parent;
+        assert.match(positioned.getAttribute("class"), /face-layer/);
+        const zIndex = Number(positioned.getAttribute("style").match(/z-index:(\d+)/)?.[1]);
         assert.ok(zIndex > layouts.FACE_LAYER_ORDER.eyes, "Cry effect must cover eye outlines");
     }
     for (const id of ["tearLeft", "tearRight"]) {

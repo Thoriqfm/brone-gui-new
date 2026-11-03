@@ -2,6 +2,7 @@ import type { LayerExpression } from "../config/faceLayerAssets";
 import type { AnimationEngine } from "./animationEngine";
 import { idleToHappy, type ElementTarget } from "./presets/idleToHappy";
 import { selectTransitionStrategy, type TransitionStrategy } from "./transitionStrategy";
+import { sampleFaceTransitionProgress } from "./faceEffectMotion";
 
 export interface TransitionComposition {
     id: number;
@@ -201,11 +202,26 @@ export function createExpressionTransition(
                 target.unregister = engine.registerTarget(name(layer.id), target.element);
             }
             for (const layer of [outgoing, incoming]) {
+                const target = mounted.get(layer.id)!;
+                const stagedCry = outgoing.expression === "cry" || incoming.expression === "cry";
+                if (stagedCry) target.element.setAttribute("data-progress", "0");
+                const draw = (p: number) => {
+                    if (stagedCry) {
+                        const faceProgress = sampleFaceTransitionProgress(outgoing.expression, incoming.expression, p);
+                        target.element.style.opacity = String(layer.id === outgoing.id ? 1 - faceProgress : faceProgress);
+                    }
+                    frames.get(layer.id)?.(p);
+                };
+                draw(0);
                 if (!engine.start(name(layer.id), {
-                    opacity: layer.id === outgoing.id ? [1, 0] : [0, 1],
+                    ...(stagedCry ? { "data-progress": [0, 1] } : { opacity: layer.id === outgoing.id ? [1, 0] : [0, 1] }),
                     duration: transition.duration,
                     ease: "linear",
-                    onComplete: finish,
+                    onUpdate: () => {
+                        const opacity = Number(target.element.style.opacity);
+                        draw(stagedCry ? Number(target.element.getAttribute("data-progress")) : layer.id === outgoing.id ? 1 - opacity : opacity);
+                    },
+                    onComplete: () => { draw(1); finish(); },
                 })) throw new Error("Expression transition target is unavailable");
             }
         } catch (error) {

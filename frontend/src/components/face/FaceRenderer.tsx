@@ -30,7 +30,10 @@ function FaceComposition({ expression, duration, transition, renderer, blinkChan
             <FaceBase expression={expression} />
             {geometry ? <GeometryTransitionLayer key={layers[1].id} layers={layers} attach={attach} attachFrame={attachFrame} prepared={prepared} blinkChannel={blinkChannel} /> : elementLayout
                 ? <ElementExpressionLayer layers={layers} attachElement={attachElement} prepared={prepared} />
-                : layers.map((layer) => <ExpressionTransitionLayer key={layer.id} layer={layer} attach={attach} prepared={prepared} renderer={renderer} blinkChannel={blinkChannel} />)}
+                : layers.map((layer, index) => <ExpressionTransitionLayer key={layer.id} layer={layer} attach={attach} attachFrame={attachFrame}
+                    effectPhase={layers.length === 2 ? index === 0 ? "exit" : "enter" : undefined}
+                    otherExpression={layers.length === 2 ? layers[1 - index].expression : undefined}
+                    prepared={prepared} renderer={renderer} blinkChannel={blinkChannel} />)}
         </div>
     </div>;
 }

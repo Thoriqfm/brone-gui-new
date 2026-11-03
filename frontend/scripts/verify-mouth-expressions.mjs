@@ -87,6 +87,32 @@ try {
         console.log("PASS endpoint: "+name+" "+g.width+"x"+g.height+" cavity="+g.cavity.curves.length+" tongue="+(g.tongue?.curves.length??0));
     }
     assert.deepEqual(MOUTH_PRESETS.SAD,MOUTH_PRESETS.CRY,"approved Sad/Cry artwork is identical");
+    // Direct expression pairs must preserve artwork at both ends and stay simple
+    // throughout the morph, including the tongue disappearing into Thinking.
+    for(const from of MOUTH_EXPRESSIONS) for(const to of MOUTH_EXPRESSIONS) if(from!==to) {
+        const samplePair=p=>api.sampleMouthTransition(from,to,p);
+        assert.strictEqual(samplePair(0),presets[from].geometry);
+        assert.strictEqual(samplePair(1),presets[to].geometry);
+        assert.throws(()=>samplePair(NaN),RangeError);
+        for(const [name,p] of [[from,1e-10],[to,1-1e-10]]) {
+            const g=samplePair(p), original=presets[name].geometry;
+            sameCurve(original.cavity,g.cavity,original);
+            sameCurve(original.outline??original.cavity,g.outline??g.cavity,original);
+            if(original.tongue) sameCurve(original.tongue,g.tongue,original);
+        }
+        for(let i=1;i<20;i++) {
+            const p=i/20,g=samplePair(p),reverse=api.sampleMouthTransition(to,from,1-p);
+            validate(g); paths(g);
+            for(const key of ["cavity","outline","tongue"]) if(g[key]) {
+                simple(polygon(g[key]));
+                points(g[key]).forEach((point,i)=>point.forEach((n,axis)=>near(n,points(reverse[key])[i][axis])));
+            }
+        }
+    }
+    assert.throws(()=>api.sampleMouthTransition("shy","happy",.5),RangeError);
+    assert.throws(()=>api.sampleMouthTransition("happy","shy",.5),RangeError);
+    assert.equal(JSON.stringify(presets),snapshot,"direct morphs leave source presets untouched");
+    console.log("PASS: all 30 directed mouth pairs; exact endpoints, source-curve preservation, simple intermediate contours, reverse symmetry and invalid input rejection");
     assert.notDeepEqual(MOUTH_PRESETS.SAD.outline,MOUTH_PRESETS.SAD.cavity,"independent source outline retained");
     assert.ok(points(MOUTH_PRESETS.SAD.cavity).some(p=>p[1]<0),"valid controls outside viewBox retained");
     // Exact subdivision checked analytically at several split and evaluation parameters.

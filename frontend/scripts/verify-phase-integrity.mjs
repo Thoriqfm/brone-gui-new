@@ -2,13 +2,14 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 
-// Historical geometry/blink baselines remain immutable. Only the five explicitly
-// migrated renderer/coordinator files may match a separately recorded new hash.
+// Historical geometry/blink baselines remain immutable. Explicit renderer,
+// coordinator and direct-mouth changes have separately recorded new hashes.
 // Both the old baseline and new integration hash must match the recorded pair.
 const migrations = JSON.parse(await readFile("reports/production-geometry/integrity-migration.json", "utf8"));
 assert.deepEqual(Object.keys(migrations).sort(), [
     "src/components/face/Eyes.tsx", "src/components/face/FaceRenderer.tsx",
     "src/animation/expressionTransition.ts", "src/animation/transitionStrategy.ts", "src/animation/useExpressionTransition.ts",
+    "src/geometry/mouth/expressionPresets.ts", "src/geometry/mouth/index.ts",
 ].sort(), "only the explicitly integrated files have migration hashes");
 export async function assertPhaseIntegrity(file, expected) {
     const current = createHash("sha256").update(await readFile(file)).digest("hex");

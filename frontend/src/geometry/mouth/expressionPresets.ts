@@ -65,3 +65,45 @@ export function sampleIdleMouthTransition(target: MouthTarget, progress: number)
     const [from, to] = IDLE_MOUTH_TRANSITIONS[target];
     return interpolateMouthGeometry(from, to, progress);
 }
+
+const directTransitions = new Map<string, readonly [MouthGeometry, MouthGeometry]>();
+
+/** Align source landmarks directly to destination landmarks, without an Idle leg. */
+export function sampleMouthTransition(from: MouthExpression, to: MouthExpression, progress: number): MouthGeometry {
+    if (!MOUTH_EXPRESSIONS.includes(from) || !MOUTH_EXPRESSIONS.includes(to)) throw new RangeError("Unsupported mouth expression");
+    if (!Number.isFinite(progress)) throw new RangeError("Mouth progress must be finite");
+    const a = MOUTH_EXPRESSION_PRESETS[from].geometry, b = MOUTH_EXPRESSION_PRESETS[to].geometry;
+    if (progress <= 0 || from === to) return a;
+    if (progress >= 1) return b;
+    // Keep the established Idle routes and all their existing intermediate frames.
+    if (from === "idle") return sampleIdleMouthTransition(to as MouthTarget, progress);
+    if (to === "idle") return sampleIdleMouthTransition(from, 1 - progress);
+    const key = from + ":" + to;
+    let pair = directTransitions.get(key);
+    if (!pair) {
+        const [ac, bc] = alignContours(a.cavity, b.cavity, cavityLandmarks(from, a.cavity), cavityLandmarks(to, b.cavity));
+        const ao = a.outline ?? a.cavity, bo = b.outline ?? b.cavity;
+        const [outlineA, outlineB] = alignContours(ao, bo, cavityLandmarks(from, ao, true), cavityLandmarks(to, bo, true));
+        let at: MouthContour, bt: MouthContour;
+        if (a.tongue && b.tongue) {
+            [at, bt] = alignContours(a.tongue, b.tongue, tongueLandmarks(from, a.tongue), tongueLandmarks(to, b.tongue));
+        } else {
+            // Thinking has no tongue: collapse/fade only that contour at its
+            // existing lower-center landmark, retaining the other mouth's topology.
+            const collapse = (geometry: MouthGeometry, tongue: MouthContour): MouthContour => {
+                const anchor = geometry.cavity.curves[2][2];
+                return { start: anchor, curves: tongue.curves.map(() => [anchor, anchor, anchor]) };
+            };
+            at = a.tongue ?? collapse(a, b.tongue!);
+            bt = b.tongue ?? collapse(b, a.tongue!);
+        }
+        pair = [
+            { ...a, cavity: ac, outline: outlineA, tongue: at, clipTongue: true, tongueOpacity: a.tongue ? 1 : 0 },
+            { ...b, cavity: bc, outline: outlineB, tongue: bt, clipTongue: true, tongueOpacity: b.tongue ? 1 : 0 },
+        ];
+        pair.forEach(validateMouthGeometry);
+        directTransitions.set(key, pair);
+        directTransitions.set(to + ":" + from, [pair[1], pair[0]]);
+    }
+    return interpolateMouthGeometry(pair[0], pair[1], progress);
+}

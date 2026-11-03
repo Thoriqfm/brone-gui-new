@@ -60,7 +60,7 @@ export default function ProductionGeometryComparison() {
                 <button onClick={()=>playback.current?.seekBlink(0)}>Reset production Blink</button></div>
             <p role="status">Current comparison expression: {expression}. Renderer status: asset fallback available; procedural opt-in; blinking {automaticBlink ? (view === "asset" ? "automatic paused (asset view)" : "automatic development validation") : manualBlink?"manual development validation":"disabled"}.
                 {" "}{previous} → {expression}: {previous === expression ? "no expression change" : `procedural morph; eyes ${route.eyes}; mouth ${route.mouth}`}.
-                {" "}Asset renderer retains its original fades. The procedural renderer morphs every expression pair; some channels pass through Idle.
+                {" "}Asset eyes and mouths retain their original fades. Both renderers animate expression effects. Procedural mouths morph directly between expressions; some eye transitions pass through Idle.
                 {" "}These controls do not change the live expression.</p>
         </section>
         <div className={view === "all" ? "face-comparison" : ""}>

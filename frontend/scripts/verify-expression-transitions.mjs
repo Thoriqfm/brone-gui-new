@@ -29,13 +29,14 @@ try {
     assert.equal((pairedHtml.match(/data-layer="faceBase"/g) ?? []).length, 1);
     assert.equal((pairedHtml.match(/data-layer="cryEffect"/g) ?? []).length, 2);
     const initial = { id: 0, expression: "idle", initialOpacity: 1 };
-    const node = (opacity) => ({ isConnected: true, style: { opacity: String(opacity) } });
+    const node = (opacity) => ({ isConnected: true, style: { opacity: String(opacity) }, attributes: {},
+        setAttribute(name, value) { this.attributes[name] = String(value); }, getAttribute(name) { return this.attributes[name] ?? null; } });
     function driverFixture() {
         const instances = [];
         return { instances, create(target, parameters) {
             assert.equal(parameters.autoplay, false);
             assert.deepEqual(Object.keys(parameters).filter((key) => !key.startsWith("on")).sort(),
-                ["autoplay", "duration", "ease", "opacity"]);
+                ["autoplay", "duration", "ease", parameters["data-progress"] ? "data-progress" : "opacity"].sort());
             assert.equal(parameters.ease, "linear");
             const original = target.style.opacity;
             const instance = { target, parameters, cancelled: false, reverts: 0,
@@ -46,8 +47,11 @@ try {
                     if (instance.cancelled) return;
                     parameters.onBeforeUpdate?.(instance);
                     if (instance.cancelled) return;
-                    const [from, to] = parameters.opacity;
-                    target.style.opacity = String(from + (to - from) * progress);
+                    if (parameters["data-progress"]) target.setAttribute("data-progress", progress);
+                    else {
+                        const [from, to] = parameters.opacity;
+                        target.style.opacity = String(from + (to - from) * progress);
+                    }
                     parameters.onUpdate?.(instance);
                 },
                 complete() { instance.seek(1); parameters.onComplete(instance); },

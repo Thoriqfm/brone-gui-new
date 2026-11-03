@@ -123,7 +123,7 @@ try {
     assert.equal(requestExpression({emotion:"shy",intensity:.5,transitionMs:0,source:"manual"}),"rejected");
     assert.strictEqual(useFaceStore.getState(),rejectState);
     // Every distinct canonical pair must morph; existing direct legs are reused
-    // independently by eyes/mouth, with an explicit Idle bridge where needed.
+    // independently by eyes/mouth; only eyes may need an explicit Idle bridge.
     let directions=0, samples=0;
     for(const from of schemas.EMOTIONS) for(const to of schemas.EMOTIONS) {
         const supported=geometry.supportsProductionMorph(from,to);
@@ -167,7 +167,7 @@ try {
         "idle-happy":{eyes:"unchanged",mouth:"direct"},
         "idle-shock":{eyes:"unchanged",mouth:"direct"},
         "happier-happy":{eyes:"direct",mouth:"unchanged"},
-        "thinking-sad":{eyes:"via idle",mouth:"via idle"},
+        "thinking-sad":{eyes:"via idle",mouth:"direct"},
         "sad-cry":{eyes:"direct",mouth:"unchanged"},
     };
     for(const [pair,expected] of Object.entries(routes))assert.deepEqual(geometry.productionMorphRoute(...pair.split("-")),expected);
@@ -178,7 +178,21 @@ try {
     }
     const bridge=geometry.sampleProductionGeometry("thinking","sad",.5);
     assert.strictEqual(bridge.eyes.left,EYE_EXPRESSION_PRESETS.idle.left);
-    assert.strictEqual(bridge.mouth,MOUTH_EXPRESSION_PRESETS.idle.geometry);
+    assert.notDeepEqual(bridge.mouth,MOUTH_EXPRESSION_PRESETS.idle.geometry);
+    // Every changing mouth travels directly between its own endpoints, including
+    // Shock/Thinking and reverse. Dimensions and placement must never detour to Idle.
+    for(const from of schemas.EMOTIONS) for(const to of schemas.EMOTIONS) if(from!==to) {
+        const a=geometry.canonicalProductionGeometry(from),b=geometry.canonicalProductionGeometry(to);
+        const route=geometry.productionMorphRoute(from,to);
+        assert.notEqual(route.mouth,"via idle");
+        for(const p of [.001,.25,.499999,.5,.500001,.75,.999]) {
+            const frame=geometry.sampleProductionGeometry(from,to,p);
+            for(const key of ["width","height","strokeWidth","cavityStrokeWidth"])
+                assert.ok(Math.abs(frame.mouth[key]-(a.mouth[key]*(1-p)+b.mouth[key]*p))<1e-8,`${from} -> ${to}: direct mouth ${key}`);
+            for(const key of ["x","y","width","height"])
+                assert.ok(Math.abs(frame.layout.mouth[key]-(a.layout.mouth[key]*(1-p)+b.layout.mouth[key]*p))<1e-8,`${from} -> ${to}: direct mouth layout ${key}`);
+        }
+    }
     for(const from of schemas.EMOTIONS)for(const to of schemas.EMOTIONS)if(from!==to) {
         const positions=[.5-1e-6,.5,.5+1e-6].map(p=>geometry.sampleProductionGeometry(from,to,p).layout);
         for(const key of ["leftEye","rightEye","mouth"])for(const property of ["x","y","width","height"])
@@ -186,7 +200,7 @@ try {
     }
     // Actual procedural SVGs at placed geometry samples; effects are omitted so
     // the existing eye/mouth morph routes can be inspected without overlay fades.
-    const routePairs=[["idle","happy"],["idle","shock"],["happier","happy"],["thinking","sad"],["sad","thinking"],["happier","cry"],["cry","happier"]];
+    const routePairs=[["shock","thinking"],["thinking","shock"],["happier","happy"],["thinking","sad"],["sad","thinking"],["happier","cry"],["cry","happier"]];
     const points=[0,.1,.25,.5,.75,.9,1];
     let routeSheet=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2240" height="1680"><rect width="100%" height="100%" fill="#e4e8ef"/>`;
     for(const [row,[from,to]] of routePairs.entries())for(const [col,p] of points.entries()) {

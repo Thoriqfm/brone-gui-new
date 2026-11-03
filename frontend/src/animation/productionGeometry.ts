@@ -1,7 +1,7 @@
 import { isEmotion, type Emotion } from "../schemas/faceMessages";
 import { FACE_LAYER_LAYOUTS } from "../config/faceLayerLayouts";
 import { EYE_EXPRESSION_PRESETS, interpolateEyeGeometry, interpolateEyeLayout } from "../geometry/eyes";
-import { MOUTH_EXPRESSION_PRESETS, sampleIdleMouthTransition, type MouthExpression } from "../geometry/mouth";
+import { MOUTH_EXPRESSION_PRESETS, sampleMouthTransition, type MouthExpression } from "../geometry/mouth";
 
 export type FaceRendererMode = "asset" | "procedural";
 // Happy and Happier use the same approved mouth export, at the same layout.
@@ -21,7 +21,7 @@ export function productionMorphRoute(from: Emotion, to: Emotion) {
     const ma = PRODUCTION_MOUTH_MAP[from], mb = PRODUCTION_MOUTH_MAP[to];
     const sameMouth = ma === mb || ((ma === "sad" || ma === "cry") && (mb === "sad" || mb === "cry"));
     return { eyes: a === b ? "unchanged" : eyeBridge ? "via idle" : "direct",
-        mouth: sameMouth ? "unchanged" : ma === "idle" || mb === "idle" ? "direct" : "via idle" } as const;
+        mouth: sameMouth ? "unchanged" : "direct" } as const;
 }
 export function canonicalProductionGeometry(expression: Emotion) {
     if (!isEmotion(expression)) throw new RangeError("Unknown production expression");
@@ -37,8 +37,7 @@ export function sampleProductionGeometry(from: Emotion, to: Emotion, progress: n
     if (progress >= 1) return b;
     const p = progress, route = productionMorphRoute(from, to);
     const ea = eyeExpression(from), eb = eyeExpression(to);
-    // Every leg uses an existing approved correspondence. No direct interpolation
-    // between unrelated non-Idle contours is introduced.
+    // Eyes retain their existing approved legs independently of the mouth route.
     const eyeFrom = route.eyes === "via idle" && p >= .5 ? "idle" : ea;
     const eyeTo = route.eyes === "via idle" && p < .5 ? "idle" : eb;
     const ep = route.eyes === "via idle" ? p < .5 ? p * 2 : (p - .5) * 2 : p;
@@ -47,17 +46,12 @@ export function sampleProductionGeometry(from: Emotion, to: Emotion, progress: n
         right: eyeFrom === eyeTo ? EYE_EXPRESSION_PRESETS[eyeFrom].right : interpolateEyeGeometry(EYE_EXPRESSION_PRESETS[eyeFrom].right, EYE_EXPRESSION_PRESETS[eyeTo].right, ep),
     };
     const ma = PRODUCTION_MOUTH_MAP[from], mb = PRODUCTION_MOUTH_MAP[to];
-    const target = route.mouth === "via idle" ? p < .5 ? ma : mb : ma === "idle" ? mb : ma;
-    const mp = route.mouth === "via idle" ? Math.abs(2 * p - 1) : ma === "idle" ? p : 1 - p;
     const mouth = route.mouth === "unchanged" ? a.mouth :
-        sampleIdleMouthTransition(target as Exclude<MouthExpression, "idle">, mp);
-    const mouthFrom = route.mouth === "via idle" && p >= .5 ? FACE_LAYER_LAYOUTS.idle.mouth : a.layout.mouth;
-    const mouthTo = route.mouth === "via idle" && p < .5 ? FACE_LAYER_LAYOUTS.idle.mouth : b.layout.mouth;
-    const mouthProgress = route.mouth === "via idle" ? p < .5 ? p * 2 : (p - .5) * 2 : p;
+        sampleMouthTransition(ma, mb, p);
     return { eyes, mouth, layout: { ...a.layout,
         leftEye: interpolateEyeLayout(FACE_LAYER_LAYOUTS[eyeFrom].leftEye, FACE_LAYER_LAYOUTS[eyeTo].leftEye, ep),
         rightEye: interpolateEyeLayout(FACE_LAYER_LAYOUTS[eyeFrom].rightEye, FACE_LAYER_LAYOUTS[eyeTo].rightEye, ep),
-        mouth: interpolateEyeLayout(mouthFrom, mouthTo, mouthProgress),
+        mouth: interpolateEyeLayout(a.layout.mouth, b.layout.mouth, p),
     } };
 }
 export type ProductionGeometrySample = ReturnType<typeof canonicalProductionGeometry> | ReturnType<typeof sampleProductionGeometry>;

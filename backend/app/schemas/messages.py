@@ -1,7 +1,7 @@
 from typing import Literal
 from pydantic import BaseModel, Field
 
-Emotion = Literal['idle','happy','happier','sad','cry','shock','shy','thinking']
+Emotion = Literal['idle','happy','happier','sad','cry','shock','thinking']
 
 class ExpressionPayload(BaseModel):
     emotion: Emotion

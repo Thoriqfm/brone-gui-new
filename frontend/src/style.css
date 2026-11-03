@@ -133,6 +133,16 @@ p {
     transform-origin: center;
 }
 .geometry-effects { position: absolute; inset: 0; z-index: 40; pointer-events: none; }
+.effect-rest[data-effect-expression="thinking"] .face-element-image {
+    animation: thinking-effect-float 2.6s ease-in-out infinite;
+}
+@keyframes thinking-effect-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2.8%); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .effect-rest[data-effect-expression="thinking"] .face-element-image { animation: none; }
+}
 .face-element-image {
     display: block;
     width: 100%;
