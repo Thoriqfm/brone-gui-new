@@ -6,9 +6,13 @@ import { createServer } from "vite";
 const server = await createServer({ optimizeDeps: { noDiscovery: true, include: [] }, server: { middlewareMode: true, hmr: false }, appType: "custom" });
 try {
     const api = await server.ssrLoadModule("/src/geometry/mouth/index.ts");
-    const { MOUTH_PRESETS, MOUTH_EXPRESSIONS, MOUTH_TARGETS, MOUTH_EXPRESSION_PRESETS: presets, IDLE_MOUTH_TRANSITIONS: pairs,
+    const { MOUTH_PRESETS, MOUTH_EXPRESSION_PRESETS: presets, IDLE_MOUTH_TRANSITIONS: pairs,
         sampleIdleMouthTransition: sample, interpolateMouthGeometry: morph, interpolateMouthLayout: layout,
         generateMouthPaths: paths, validateMouthGeometry: validate, subdivideCubic: split, reverseContour, alignContours } = api;
+    // Preserve the established normalized routes here; timeout's absolute-control
+    // routes and original single-path endpoint are checked by verify-timeout.mjs.
+    const MOUTH_EXPRESSIONS = api.MOUTH_EXPRESSIONS.filter(name => name !== "timeout");
+    const MOUTH_TARGETS = api.MOUTH_TARGETS.filter(name => name !== "timeout");
     const { default: ProceduralMouth } = await server.ssrLoadModule("/src/components/face/mouth/ProceduralMouth.tsx");
     const { default: Mouth } = await server.ssrLoadModule("/src/components/face/Mouth.tsx");
     const { default: Comparison } = await server.ssrLoadModule("/src/components/face/mouth/MouthGeometryComparison.tsx");

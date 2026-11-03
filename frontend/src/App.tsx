@@ -53,7 +53,7 @@ export default function App() {
             const target = event.target as HTMLElement | null;
             if (event.defaultPrevented || event.repeat || event.ctrlKey || event.altKey || event.metaKey ||
                 target?.isContentEditable || target?.closest?.("input, textarea, select, [contenteditable], [role='textbox']")) return;
-            const index = "1234567".indexOf(event.key);
+            const index = "12345678".indexOf(event.key);
             if (event.key.length === 1 && index >= 0) {
                 event.preventDefault();
                 selectExpression(index);
@@ -91,7 +91,7 @@ export default function App() {
                     onChange={event => { if (event.target.value === "asset" || event.target.value === "procedural") setRenderer(event.target.value); }}>
                     <option value="procedural">Procedural geometry</option><option value="asset">Original asset</option>
                 </select></label>
-                <p><kbd>1–7</kbd> expression · <kbd>H</kbd> controls · <kbd>F</kbd> fullscreen. Use Esc to leave browser fullscreen.</p>
+                <p><kbd>1–8</kbd> expression · <kbd>H</kbd> controls · <kbd>F</kbd> fullscreen. Use Esc to leave browser fullscreen.</p>
                 <div className="buttons">
                     <button type="button" aria-keyshortcuts="F" onClick={() => void toggleFullscreen()}>Toggle fullscreen</button>
                     {import.meta.env.DEV && <button type="button" onClick={() => { setDevelopmentOpen(true); setControlsOpen(false); }}>Development previews</button>}

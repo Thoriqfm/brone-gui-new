@@ -1,6 +1,6 @@
 import type { EyeCommand, EyeReference, EyeSvgNode, LayeredEyeGeometry } from "./types";
 
-const paint = "id fill stroke strokeWidth opacity fillOpacity filter mask transform";
+const paint = "id fill stroke strokeWidth strokeLinejoin opacity fillOpacity filter mask transform";
 // Required properties precede '|'; optional ones follow it. Unknown properties fail closed.
 const attributes = {
     g: "|" + paint, path: "|" + paint,
@@ -15,7 +15,7 @@ const attributes = {
 const numeric = new Set("cx cy rx ry x y width height x1 y1 x2 y2 strokeWidth opacity fillOpacity offset floodOpacity dy stdDeviation k2 k3".split(" "));
 const positive = new Set(["rx", "ry", "width", "height", "strokeWidth"]);
 const opacity = new Set(["opacity", "fillOpacity", "offset", "floodOpacity"]);
-const enums: Record<string, string> = { maskUnits: "userSpaceOnUse", gradientUnits: "userSpaceOnUse",
+const enums: Record<string, string> = { strokeLinejoin: "round", maskUnits: "userSpaceOnUse", gradientUnits: "userSpaceOnUse",
     filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB", mode: "normal", type: "matrix", operator: "arithmetic" };
 const primitiveTags = Object.keys(attributes).filter((tag) => tag.startsWith("fe"));
 const paintTags = ["g", "path", "ellipse", "rect", "use", "mask", "defs"];

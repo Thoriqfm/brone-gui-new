@@ -18,6 +18,7 @@ try {
     const { useFaceStore } = await load("stores/faceStore.ts");
     const { requestExpression } = await load("animation/expressionController.ts");
     const schemas = await load("schemas/faceMessages.ts");
+    const geometryEmotions = schemas.EMOTIONS.filter(name => name !== "timeout");
     const { FACE_LAYER_COMPOSITIONS, FACE_LAYER_ASSETS } = await load("config/faceLayerAssets.ts");
     const { FACE_LAYER_LAYOUTS, FACE_LAYER_ORDER } = await load("config/faceLayerLayouts.ts");
     const { default: FaceRenderer } = await load("components/face/FaceRenderer.tsx");
@@ -70,7 +71,7 @@ try {
         parts.sort((a,b)=>a.order-b.order||a.index-b.index);
         return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1490" height="960" viewBox="0 0 800 ${height}"><defs><clipPath id="lines-window"><rect width="800" height="480"/></clipPath></defs><g transform="translate(0 ${offset})">${parts.map(p=>p.markup).join("")}</g></svg>`;
     }
-    for(const expression of schemas.EMOTIONS) {
+    for(const expression of geometryEmotions) {
         requestExpression({emotion:expression,intensity:.5,transitionMs:300,source:"manual"});
         const state=useFaceStore.getState(), frame=geometry.canonicalProductionGeometry(expression);
         assert.strictEqual(frame.eyes,EYE_EXPRESSION_PRESETS[expression]);
@@ -125,7 +126,7 @@ try {
     // Every distinct canonical pair must morph; existing direct legs are reused
     // independently by eyes/mouth; only eyes may need an explicit Idle bridge.
     let directions=0, samples=0;
-    for(const from of schemas.EMOTIONS) for(const to of schemas.EMOTIONS) {
+    for(const from of geometryEmotions) for(const to of geometryEmotions) {
         const supported=geometry.supportsProductionMorph(from,to);
         assert.equal(selectTransitionStrategy(from,to,300,false,true),supported?"GEOMETRY":"CROSSFADE");
         if(!supported) { assert.throws(()=>geometry.sampleProductionGeometry(from,to,.5),RangeError); continue; }
@@ -181,7 +182,7 @@ try {
     assert.notDeepEqual(bridge.mouth,MOUTH_EXPRESSION_PRESETS.idle.geometry);
     // Every changing mouth travels directly between its own endpoints, including
     // Shock/Thinking and reverse. Dimensions and placement must never detour to Idle.
-    for(const from of schemas.EMOTIONS) for(const to of schemas.EMOTIONS) if(from!==to) {
+    for(const from of geometryEmotions) for(const to of geometryEmotions) if(from!==to) {
         const a=geometry.canonicalProductionGeometry(from),b=geometry.canonicalProductionGeometry(to);
         const route=geometry.productionMorphRoute(from,to);
         assert.notEqual(route.mouth,"via idle");
@@ -193,7 +194,7 @@ try {
                 assert.ok(Math.abs(frame.layout.mouth[key]-(a.layout.mouth[key]*(1-p)+b.layout.mouth[key]*p))<1e-8,`${from} -> ${to}: direct mouth layout ${key}`);
         }
     }
-    for(const from of schemas.EMOTIONS)for(const to of schemas.EMOTIONS)if(from!==to) {
+    for(const from of geometryEmotions)for(const to of geometryEmotions)if(from!==to) {
         const positions=[.5-1e-6,.5,.5+1e-6].map(p=>geometry.sampleProductionGeometry(from,to,p).layout);
         for(const key of ["leftEye","rightEye","mouth"])for(const property of ["x","y","width","height"])
             assert.ok(Math.abs(positions[0][key][property]-positions[2][key][property])<.01,"bridge layout stays continuous");
@@ -295,7 +296,7 @@ try {
     const inspect=()=>{index=0;return module.exports.default();};
     const isolated=useFaceStore.getState();
     for(const expression of schemas.EMOTIONS){const tree=inspect();find(tree,e=>e.type==="select").props.onChange({target:{value:expression}});assert.equal(cells[0],expression);renderToStaticMarkup(inspect());assert.strictEqual(useFaceStore.getState(),isolated);}
-    find(inspect(),e=>e.type==="select").props.onChange({target:{value:"shy"}});assert.equal(cells[0],"thinking");
+    find(inspect(),e=>e.type==="select").props.onChange({target:{value:"shy"}});assert.equal(cells[0],schemas.EMOTIONS.at(-1));
     // Automatic mode is enabled without a manual checkbox, with no store writes.
     let tree=inspect();
     assert.equal(find(tree,e=>e.type==="input").props.checked,true);

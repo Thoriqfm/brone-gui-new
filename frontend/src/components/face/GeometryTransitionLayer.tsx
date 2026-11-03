@@ -4,7 +4,7 @@ import { sampleProductionGeometry, productionEyeMorphContext } from "../../anima
 import type { BlinkChannel } from "../../animation/morphBlinkPlayback";
 import { updateMorphBlinkSurface } from "./eyes/MorphBlinkEye";
 import { positionGeometry, updateProductionEye, updateProductionMouth } from "../../animation/productionGeometryDom";
-import { isEmotion } from "../../schemas/faceMessages";
+import { isGeometryEmotion } from "../../animation/productionGeometry";
 import Eyes from "./Eyes";
 import Mouth from "./Mouth";
 import FaceEffects from "./FaceEffects";
@@ -19,7 +19,9 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
 }) {
     const [source, target] = layers;
     const from = source.expression, to = target.expression;
-    if (!isEmotion(from) || !isEmotion(to)) throw new RangeError("Geometry requires canonical expressions");
+    // Spiral correspondence has no eyelid aperture; suspend blinking on its legs.
+    const morphBlink = from === "timeout" || to === "timeout" ? undefined : blinkChannel;
+    if (!isGeometryEmotion(from) || !isGeometryEmotion(to)) throw new RangeError("Geometry requires canonical expressions");
     const root = useRef<HTMLDivElement>(null), scope = "production-" + useId();
     const middle = useMemo(() => sampleProductionGeometry(from, to, .5), [from, to]);
     useLayoutEffect(() => {
@@ -31,6 +33,13 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
         const mouth = overlay.querySelector<HTMLDivElement>("[data-geometry-mouth]")!;
         const effects = overlay.querySelectorAll<HTMLDivElement>("[data-geometry-effects]");
         const templates = element.querySelectorAll<SVGSVGElement>("[data-idle-eye-templates] svg");
+        for (const endpoint of endpoints) for (const side of ["left", "right"] as const) {
+            const image = endpoint.querySelector<HTMLElement>(`[data-layer="timeout${side === "left" ? "Left" : "Right"}"]`);
+            if (image) {
+                image.style.animation = "none";
+                image.style.transform = `rotate(${endpoint === endpoints[0] ? source.timeoutRotation?.[side] ?? 0 : 0}deg)`;
+            }
+        }
         const draw = (p: number) => {
             endpoints[0].style.display = p <= 0 ? "contents" : "none";
             endpoints[1].style.display = p >= 1 ? "contents" : "none";
@@ -40,8 +49,13 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
             const frame = sampleProductionGeometry(from, to, faceProgress);
             for (const [side, node, template] of [["left", left, templates[0]], ["right", right, templates[1]]] as const) {
                 positionGeometry(node, frame.layout[side === "left" ? "leftEye" : "rightEye"]);
-                if (blinkChannel) updateMorphBlinkSurface(node.querySelector("[data-active-eye] svg")!,{
-                    ...productionEyeMorphContext(from,to,faceProgress),side,blinkProgress:blinkChannel.progress,current:frame.eyes[side],
+                if (from === "timeout") {
+                    const leg = to === "idle" || to === "happy" || to === "shock" ? faceProgress : Math.min(1, faceProgress * 2);
+                    node.style.transform = `rotate(${(source.timeoutRotation?.[side] ?? 0) * (1 - leg)}deg)`;
+                    node.style.transformOrigin = "center";
+                }
+                if (morphBlink) updateMorphBlinkSurface(node.querySelector("[data-active-eye] svg")!,{
+                    ...productionEyeMorphContext(from,to,faceProgress),side,blinkProgress:morphBlink.progress,current:frame.eyes[side],
                 });
                 else updateProductionEye(node.querySelector("svg")!, frame.eyes[side], scope + "-" + side, template);
             }
@@ -63,12 +77,12 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
         <div hidden data-idle-eye-templates="true"><Eyes expression="idle" renderer="procedural" /></div>
         {[from, to].map((expression, index) => <div key={index} data-geometry-endpoint={expression}
             style={{ display: index === 0 ? "contents" : "none" }}>
-            <Eyes expression={expression} renderer="procedural" blinkChannel={blinkChannel} />
+            <Eyes expression={expression} renderer="procedural" blinkChannel={morphBlink} />
             <Mouth expression={expression} renderer="procedural" />
             <FaceEffects expression={expression} motion />
         </div>)}
         <div data-geometry-overlay="true" style={{ display: "none" }}>
-            <Eyes expression={from} renderer="procedural" sample={middle} blinkChannel={blinkChannel} blinkContext={productionEyeMorphContext(from,to,.5)} />
+            <Eyes expression={from} renderer="procedural" sample={middle} blinkChannel={morphBlink} blinkContext={morphBlink ? productionEyeMorphContext(from,to,.5) : undefined} />
             <Mouth expression={from} renderer="procedural" sample={middle} />
             <div className="geometry-effects" data-geometry-effects="source"><FaceEffects expression={from} motion resting={false} /></div>
             <div className="geometry-effects" data-geometry-effects="target"><FaceEffects expression={to} motion resting={false} /></div>

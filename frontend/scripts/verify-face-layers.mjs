@@ -90,7 +90,7 @@ try {
     assert.equal(assets.FACE_LAYER_COMPOSITIONS["happier-transition"].effects.length, 0);
     assert.equal(used.size, Object.keys(assets.FACE_LAYER_ASSETS).length, "Unused supplied SVG");
     const { EMOTIONS, parseFaceMessage } = await server.ssrLoadModule("/src/schemas/faceMessages.ts");
-    assert.deepEqual(EMOTIONS, ["idle", "happy", "happier", "sad", "cry", "shock", "thinking"]);
+    assert.deepEqual(EMOTIONS, ["idle", "happy", "happier", "sad", "cry", "shock", "thinking", "timeout"]);
     assert.deepEqual([...assets.LAYER_EXPRESSIONS].sort(), [...EMOTIONS, "happier-transition"].sort());
     const schema = JSON.parse(await readFile(new URL("../../shared/face-protocol.schema.json", import.meta.url), "utf8"));
     assert.deepEqual(EMOTIONS, schema.properties.payload.properties.emotion.enum);

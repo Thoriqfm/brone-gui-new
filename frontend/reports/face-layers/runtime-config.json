@@ -105,6 +105,16 @@
       "width": 129,
       "height": 171
     },
+    "timeoutLeft": {
+      "src": "/assets/face-layers/eyes/left/timeout-eye-left.svg",
+      "width": 160,
+      "height": 162
+    },
+    "timeoutRight": {
+      "src": "/assets/face-layers/eyes/right/timeout-eye-right.svg",
+      "width": 160,
+      "height": 162
+    },
     "idleMouth": {
       "src": "/assets/face-layers/mouth/idle-mouth.svg",
       "width": 282,
@@ -134,9 +144,20 @@
       "src": "/assets/face-layers/mouth/thinking-mouth.svg",
       "width": 271,
       "height": 52
+    },
+    "timeoutMouth": {
+      "src": "/assets/face-layers/mouth/timeout-mouth.svg",
+      "width": 253,
+      "height": 45
     }
   },
   "compositions": {
+    "timeout": {
+      "leftEye": "timeoutLeft",
+      "rightEye": "timeoutRight",
+      "mouth": "timeoutMouth",
+      "effects": []
+    },
     "idle": {
       "leftEye": "idleLeft",
       "rightEye": "idleRight",
@@ -231,6 +252,39 @@
     }
   },
   "layouts": {
+    "timeout": {
+      "faceBase": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 480
+      },
+      "faceLines": {
+        "x": -129.75,
+        "y": -4.75,
+        "width": 1060,
+        "height": 274
+      },
+      "leftEye": {
+        "x": 93,
+        "y": 131,
+        "width": 160,
+        "height": 162
+      },
+      "rightEye": {
+        "x": 547,
+        "y": 131,
+        "width": 160,
+        "height": 162
+      },
+      "mouth": {
+        "x": 274,
+        "y": 355,
+        "width": 253,
+        "height": 45
+      },
+      "effects": {}
+    },
     "idle": {
       "faceBase": {
         "x": 0,

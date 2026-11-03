@@ -115,7 +115,7 @@ try {
     const { default: ProceduralMouth } = await load("components/face/mouth/ProceduralMouth.tsx");
     const { default: ProceduralEye } = await load("components/face/eyes/ProceduralEye.tsx");
     const cryPairs = EMOTIONS.filter(name => name !== "cry").flatMap(name => [[name, "cry"], ["cry", name]]);
-    for (const [from, to] of [...cryPairs, ["shock", "thinking"], ["thinking", "shock"]]) {
+    for (const [from, to] of [...cryPairs.filter(pair => pair.every(geometry.isGeometryEmotion)), ["shock", "thinking"], ["thinking", "shock"]]) {
         const props = { layers: [{ id: 0, expression: from, initialOpacity: 1 }, { id: 1, expression: to, initialOpacity: 0, strategy: "GEOMETRY" }], attach() {}, attachFrame() {}, prepared() {} };
         const root = render(geometryModule.default, props).querySelector('[data-transition="geometry"]');
         const mounted = await mountFrames("GeometryTransitionLayer.tsx", props, root, [root]);
@@ -151,7 +151,7 @@ try {
     // effect callbacks even though its two visual opacities run in reverse.
     const { createExpressionTransition } = await load("animation/expressionTransition.ts");
     const { createAnimationEngine } = await load("animation/animationEngine.ts");
-    for (const [from, to] of cryPairs) {
+    for (const [from, to] of cryPairs.filter(pair => !pair.includes("timeout"))) {
     const runs = [], values = new Map(), nodes = []; let publications = 0;
     const engine = createAnimationEngine({ create(target, parameters) {
         const run = { play() {}, cancel() {}, revert() {}, seek(p) {

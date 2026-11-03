@@ -32,7 +32,8 @@
             "sad",
             "cry",
             "shock",
-            "thinking"
+            "thinking",
+            "timeout"
           ]
         },
         "intensity": {

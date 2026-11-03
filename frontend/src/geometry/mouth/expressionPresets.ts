@@ -4,13 +4,15 @@ import { MOUTH_STYLE, validateMouthGeometry } from "./pathGenerator";
 import { interpolateMouthGeometry } from "./geometryInterpolator";
 import { alignContours, cornerPosition, type ContourLandmarks } from "./topology";
 import type { MouthContour, MouthGeometry } from "./types";
+import { TIMEOUT_MOUTH } from "./timeoutSource";
 
-export const MOUTH_EXPRESSIONS = ["idle", "happy", "sad", "cry", "shock", "thinking"] as const;
+export const MOUTH_EXPRESSIONS = ["idle", "happy", "sad", "cry", "shock", "thinking", "timeout"] as const;
 export type MouthExpression = typeof MOUTH_EXPRESSIONS[number];
 export type MouthTarget = Exclude<MouthExpression, "idle">;
 export const MOUTH_TARGETS = /* @__PURE__ */ MOUTH_EXPRESSIONS.filter((name): name is MouthTarget => name !== "idle");
-export const MOUTH_LABELS: Record<MouthExpression, string> = { idle: "Idle", happy: "Happy", sad: "Sad", cry: "Cry", shock: "Shock", thinking: "Thinking" };
+export const MOUTH_LABELS: Record<MouthExpression, string> = { idle: "Idle", happy: "Happy", sad: "Sad", cry: "Cry", shock: "Shock", thinking: "Thinking", timeout: "Timeout" };
 export const MOUTH_EXPRESSION_PRESETS = {
+    timeout: { geometry: TIMEOUT_MOUTH, layout: FACE_LAYER_LAYOUTS.timeout.mouth, style: MOUTH_STYLE },
     idle: { geometry: MOUTH_PRESETS.IDLE, layout: FACE_LAYER_LAYOUTS.idle.mouth, style: MOUTH_STYLE },
     happy: { geometry: MOUTH_PRESETS.HAPPY, layout: FACE_LAYER_LAYOUTS.happy.mouth, style: MOUTH_STYLE },
     sad: { geometry: MOUTH_PRESETS.SAD, layout: FACE_LAYER_LAYOUTS.sad.mouth, style: MOUTH_STYLE },
@@ -28,6 +30,7 @@ function cavityLandmarks(name: MouthExpression, c: MouthContour, outline = false
             : { anchors: [1.5, cornerPosition(c, 0, false), 3.5, cornerPosition(c, 2, true)], reverse: true };
         case "shock": return outline ? { anchors: [0, 3, 2, 1], reverse: true } : { anchors: [1, 2, 3, 0] };
         case "thinking": return { anchors: [1, 0, 3, 2], reverse: true };
+        case "timeout": return { anchors: [3, cornerPosition(c, 16, false), 12, cornerPosition(c, 7, true)], reverse: true };
     }
 }
 function tongueLandmarks(name: MouthExpression, c: MouthContour): ContourLandmarks {
@@ -63,7 +66,7 @@ export function sampleIdleMouthTransition(target: MouthTarget, progress: number)
     if (progress <= 0) return MOUTH_PRESETS.IDLE;
     if (progress >= 1) return MOUTH_EXPRESSION_PRESETS[target].geometry;
     const [from, to] = IDLE_MOUTH_TRANSITIONS[target];
-    return interpolateMouthGeometry(from, to, progress);
+    return interpolateMouthGeometry(from, to, progress, target === "timeout");
 }
 
 const directTransitions = new Map<string, readonly [MouthGeometry, MouthGeometry]>();
@@ -94,8 +97,9 @@ export function sampleMouthTransition(from: MouthExpression, to: MouthExpression
                 const anchor = geometry.cavity.curves[2][2];
                 return { start: anchor, curves: tongue.curves.map(() => [anchor, anchor, anchor]) };
             };
-            at = a.tongue ?? collapse(a, b.tongue!);
-            bt = b.tongue ?? collapse(b, a.tongue!);
+            const absent: MouthContour = { start: [.5, .5], curves: [[[.5, .5], [.5, .5], [.5, .5]]] };
+            at = a.tongue ?? collapse(a, b.tongue ?? absent);
+            bt = b.tongue ?? collapse(b, a.tongue ?? absent);
         }
         pair = [
             { ...a, cavity: ac, outline: outlineA, tongue: at, clipTongue: true, tongueOpacity: a.tongue ? 1 : 0 },
@@ -105,5 +109,5 @@ export function sampleMouthTransition(from: MouthExpression, to: MouthExpression
         directTransitions.set(key, pair);
         directTransitions.set(to + ":" + from, [pair[1], pair[0]]);
     }
-    return interpolateMouthGeometry(pair[0], pair[1], progress);
+    return interpolateMouthGeometry(pair[0], pair[1], progress, from === "timeout" || to === "timeout");
 }

@@ -30,6 +30,12 @@ export const FACE_LAYER_ORDER = {
 } as const;
 
 export const FACE_LAYER_LAYOUTS: Record<LayerExpression, FaceLayerLayout> = {
+    timeout: {
+        ...base,
+        leftEye: { x: 93, y: 131, width: 160, height: 162 },
+        rightEye: { x: 547, y: 131, width: 160, height: 162 },
+        mouth: { x: 274, y: 355, width: 253, height: 45 }, effects: {},
+    },
     idle: {
         ...base,
         leftEye: { x: 115, y: 154, width: 129, height: 171 },

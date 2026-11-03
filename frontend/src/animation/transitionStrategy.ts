@@ -5,6 +5,7 @@ export type TransitionStrategy = "ELEMENT_BASED" | "CROSSFADE" | "IMMEDIATE" | "
 export function selectTransitionStrategy(from: LayerExpression, to: LayerExpression,
     duration: number, immediate = false, procedural = false): TransitionStrategy {
     if (immediate || duration === 0 || from === "happier-transition" || to === "happier-transition") return "IMMEDIATE";
+    if ((from === "timeout" || to === "timeout") && supportsProductionMorph(from, to)) return "GEOMETRY";
     if (procedural) return supportsProductionMorph(from, to) ? "GEOMETRY" : "CROSSFADE";
     return from === "idle" && to === "happy" ? "ELEMENT_BASED" : "CROSSFADE";
 }

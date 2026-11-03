@@ -20,3 +20,4 @@ __pycache__/
 # Generated visual verification artifacts
 /frontend/reports/**/*.png
 /frontend/reports/**/*.svg
+/frontend/reports/timeout/morph-frames.json

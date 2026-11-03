@@ -6,6 +6,7 @@ export const EMOTIONS = [
     "cry",
     "shock",
     "thinking",
+    "timeout",
 ] as const;
 export type Emotion = (typeof EMOTIONS)[number];
 export type FaceMessage =

@@ -205,6 +205,17 @@ p {
     object-fit: contain;
 }
 
+/* Rotate the artwork only, preserving measured placement and transition ownership. */
+[data-layer="timeoutLeft"], [data-layer="timeoutRight"] {
+    animation: timeout-eye-spin 2.4s linear infinite;
+    transform-origin: center;
+}
+[data-layer="timeoutRight"] { animation-direction: reverse; }
+@keyframes timeout-eye-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+    [data-layer="timeoutLeft"], [data-layer="timeoutRight"] { animation: none; }
+}
+
 /* Static development comparison; production mouth styling is unchanged. */
 .mouth-geometry-comparison { margin-top: 1.5rem; }
 .mouth-geometry-comparison summary { cursor: pointer; margin-bottom: 1rem; }

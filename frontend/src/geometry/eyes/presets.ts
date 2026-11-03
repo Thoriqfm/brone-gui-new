@@ -1,5 +1,6 @@
 import type { EyeGeometry } from "./types";
 import { SOURCE_EYE_PRESETS } from "./sourcePresets";
+import { TIMEOUT_EYES } from "./timeoutSource";
 
 // Measured from both Idle SVGs: identical artwork after Figma reference renaming.
 // Native source coordinates; highlights must not be mirrored.
@@ -325,6 +326,7 @@ export const EYE_PRESETS = /* @__PURE__ */ (() => freeze({ IDLE_LEFT, IDLE_RIGHT
 const idle = /* @__PURE__ */ (() => freeze({ left: EYE_PRESETS.IDLE_LEFT, right: EYE_PRESETS.IDLE_RIGHT }))();
 // Both eye assets AND layouts match in FACE_LAYER_COMPOSITIONS/FACE_LAYER_LAYOUTS.
 export const EYE_EXPRESSION_PRESETS = /* @__PURE__ */ (() => freeze({ idle, happy: idle, shock: idle,
+    timeout: TIMEOUT_EYES,
     happier: { left: EYE_PRESETS.HAPPIER_LEFT, right: EYE_PRESETS.HAPPIER_RIGHT },
     sad: { left: EYE_PRESETS.SAD_LEFT, right: EYE_PRESETS.SAD_RIGHT },
     cry: { left: EYE_PRESETS.CRY_LEFT, right: EYE_PRESETS.CRY_RIGHT },

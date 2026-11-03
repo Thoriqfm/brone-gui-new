@@ -3,7 +3,7 @@ import { FACE_LAYER_COMPOSITIONS, type LayerExpression } from "../../config/face
 import { FACE_LAYER_LAYOUTS, FACE_LAYER_ORDER } from "../../config/faceLayerLayouts";
 import FaceLayer from "./FaceLayer";
 import ProceduralEye from "./eyes/ProceduralEye";
-import { canonicalProductionGeometry, type FaceRendererMode, type ProductionGeometrySample } from "../../animation/productionGeometry";
+import { canonicalProductionGeometry, isGeometryEmotion, type FaceRendererMode, type ProductionGeometrySample } from "../../animation/productionGeometry";
 import MorphBlinkEye from "./eyes/MorphBlinkEye";
 import type { BlinkChannel } from "../../animation/morphBlinkPlayback";
 import type { MorphBlinkContext } from "../../geometry/eyes/blink/morphBlinkAdapter";
@@ -12,7 +12,7 @@ export default function Eyes({ expression, leftRef, rightRef, renderer = "asset"
     leftRef?: RefCallback<HTMLDivElement>; rightRef?: RefCallback<HTMLDivElement>;
     renderer?: FaceRendererMode; sample?: ProductionGeometrySample; blinkChannel?: BlinkChannel;
     blinkContext?: Pick<MorphBlinkContext,"from"|"to"|"morphProgress"> }) {
-    if (renderer === "procedural" && expression !== "happier-transition") {
+    if (isGeometryEmotion(expression) && ((renderer === "procedural" && expression !== "timeout") || sample)) {
         const frame = sample ?? canonicalProductionGeometry(expression);
         return <>{(["left", "right"] as const).map((side) => {
             const position = frame.layout[side === "left" ? "leftEye" : "rightEye"];
@@ -21,7 +21,7 @@ export default function Eyes({ expression, leftRef, rightRef, renderer = "asset"
                     left: position.x / 800 * 100 + "%", top: position.y / 480 * 100 + "%",
                     width: position.width / 800 * 100 + "%", height: position.height / 480 * 100 + "%",
                     zIndex: FACE_LAYER_ORDER.eyes,
-                }}>{blinkChannel ? <MorphBlinkEye channel={blinkChannel} context={{
+                }}>{blinkChannel && expression !== "timeout" ? <MorphBlinkEye channel={blinkChannel} context={{
                     ...(blinkContext ?? {from:expression,to:expression,morphProgress:0}),side,blinkProgress:blinkChannel.progress,current:frame.eyes[side],
                 }}/> : <ProceduralEye geometry={frame.eyes[side]} />}</div>;
         })}</>;

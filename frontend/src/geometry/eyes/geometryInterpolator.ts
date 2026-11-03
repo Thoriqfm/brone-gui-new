@@ -109,6 +109,14 @@ export function interpolateEyeGeometry(from: EyeConfiguration, to: EyeConfigurat
     validateEyeGeometry(from); validateEyeGeometry(to);
     if (from.side !== to.side) throw new RangeError("Eye sides must match");
     const side = from.side, idle = EYE_EXPRESSION_PRESETS.idle[side], happier = EYE_EXPRESSION_PRESETS.happier[side];
+    const timeout = EYE_EXPRESSION_PRESETS.timeout[side];
+    const timeoutForward = sameSource(from, idle) && sameSource(to, timeout);
+    const timeoutReverse = sameSource(from, timeout) && sameSource(to, idle);
+    if (timeoutForward || timeoutReverse) {
+        if (t === 0) return from;
+        if (t === 1) return to;
+        return interpolateTimeoutEye(side, timeoutForward ? t : 1 - t);
+    }
     const thinking = EYE_EXPRESSION_PRESETS.thinking[side];
     const thinkingForward = sameSource(from,idle) && sameSource(to,thinking);
     const thinkingReverse = sameSource(from,thinking) && sameSource(to,idle);
@@ -509,6 +517,59 @@ function interpolateThinkingEye(side: Side,p: number): EyeConfiguration {
     ]};
     validateLayeredEye(result);return result;
 }
+const timeoutPrepared: Partial<Record<Side, ReturnType<typeof prepareTimeout>>> = {};
+function prepareTimeout(side: Side) {
+    const idle = EYE_EXPRESSION_PRESETS.idle[side], target = EYE_EXPRESSION_PRESETS.timeout[side];
+    const spiral = contour(target.layers[1].commands);
+    // Inspected outer-boundary vertices: top, right, bottom, left. The ribbon
+    // winds in the opposite direction to Idle. Subdivide without fitting curves.
+    const anchors: Anchors = side === "left" ? [130, 112, 94, 147] : [94, 147, 130, 112];
+    return alignSadContours(idle.outline, spiral, anchors, true, [0, 2, 4, 6]);
+}
+function interpolateTimeoutEye(side: Side, p: number): LayeredEyeGeometry {
+    const idle = EYE_EXPRESSION_PRESETS.idle[side], target = EYE_EXPRESSION_PRESETS.timeout[side];
+    const m = timeoutPrepared[side] ??= prepareTimeout(side);
+    // Fill reaches the outline center; the stroke covers the extra source inset.
+    // One shared contour avoids detached slivers while the spiral opens.
+    const outline = interpolateContour(m.from, m.to, p);
+    const circle = target.layers[0].attributes, defs = target.layers[2].children;
+    const gradient = defs[1].attributes, dotGradient = defs[0].attributes;
+    const small = idle.highlights.ellipse!, g = idle.gradient;
+    const center: EyePoint = [circle.cx, circle.cy];
+    const collapsed: EyeContour = { start: center, curves: idle.highlights.contour!.curves.map(() => [center, center, center]) };
+    const highlight = interpolateContour(idle.highlights.contour!, collapsed, p);
+    const color = (a: string, b: string): `#${string}` => "#" + [1, 3, 5].map(i =>
+        Math.round(mix(parseInt(a.slice(i, i + 2), 16), parseInt(b.slice(i, i + 2), 16), p)).toString(16).padStart(2, "0")).join("") as `#${string}`;
+    const result: LayeredEyeGeometry = { kind: "layered", side,
+        width: mix(idle.width, target.width, p), height: mix(idle.height, target.height, p), layers: [
+            { tag: "g", attributes: { filter: { ref: "timeoutShadow" } }, children: [
+                { tag: "path", attributes: { fill: { ref: "timeoutGradient" } }, commands: commands(outline), children: [] } ] },
+            { tag: "path", attributes: { stroke: "black", strokeWidth: mix(idle.strokeWidth, 4, p), strokeLinejoin: "round" }, commands: commands(outline), children: [] },
+            { tag: "ellipse", attributes: { cx: mix(small.center[0], circle.cx, p), cy: mix(small.center[1], circle.cy, p),
+                rx: mix(small.radius[0], circle.rx, p), ry: mix(small.radius[1], circle.ry, p), fill: { ref: "timeoutDot" } }, children: [] },
+            { tag: "path", attributes: { fill: "white" }, commands: commands(highlight), children: [] },
+            { tag: "defs", attributes: {}, children: [
+                { tag: "linearGradient", attributes: { id: "timeoutGradient", x1: mix(g.start[0], gradient.x1, p), y1: mix(g.start[1], gradient.y1, p),
+                    x2: mix(g.end[0], gradient.x2, p), y2: mix(g.end[1], gradient.y2, p), gradientUnits: "userSpaceOnUse" },
+                    children: g.stops.map(s => ({ tag: "stop", attributes: { offset: s.offset, stopColor: s.color as `#${string}` }, children: [] })) },
+                { tag: "linearGradient", attributes: { ...dotGradient, id: "timeoutDot" }, children: g.stops.map(s => ({
+                    tag: "stop", attributes: { offset: s.offset, stopColor: color("#ffffff", s.color) }, children: [] })) },
+                { tag: "filter", attributes: { id: "timeoutShadow", x: idle.shadow.region[0], y: idle.shadow.region[1], width: idle.shadow.region[2], height: idle.shadow.region[3], filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, children: [
+                    { tag: "feFlood", attributes: { floodOpacity: 0, result: "background" }, children: [] },
+                    { tag: "feBlend", attributes: { mode: "normal", in: "SourceGraphic", in2: "background", result: "shape" }, children: [] },
+                    { tag: "feColorMatrix", attributes: { in: "SourceAlpha", type: "matrix", values: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,0], result: "hardAlpha" }, children: [] },
+                    { tag: "feOffset", attributes: { dy: idle.shadow.offsetY }, children: [] },
+                    { tag: "feGaussianBlur", attributes: { stdDeviation: idle.shadow.blur }, children: [] },
+                    { tag: "feComposite", attributes: { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }, children: [] },
+                    { tag: "feColorMatrix", attributes: { type: "matrix", values: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,idle.shadow.opacity*(1-p),0] }, children: [] },
+                    { tag: "feBlend", attributes: { mode: "normal", in2: "shape", result: "shadow" }, children: [] },
+                ] },
+            ] },
+        ] };
+    validateLayeredEye(result);
+    return result;
+}
+
 export function interpolateEyeLayout(from: LayerPosition, to: LayerPosition, progress: number): LayerPosition {
     const t = eyeProgress(progress);
     for (const p of [from, to]) if (!p || ![p.x, p.y, p.width, p.height].every(Number.isFinite) || p.width <= 0 || p.height <= 0)

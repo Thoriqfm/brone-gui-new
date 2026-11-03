@@ -3,12 +3,12 @@ import { FACE_LAYER_COMPOSITIONS, type LayerExpression } from "../../config/face
 import { FACE_LAYER_LAYOUTS, FACE_LAYER_ORDER } from "../../config/faceLayerLayouts";
 import FaceLayer from "./FaceLayer";
 import ProceduralMouth from "./mouth/ProceduralMouth";
-import { canonicalProductionGeometry, type FaceRendererMode, type ProductionGeometrySample } from "../../animation/productionGeometry";
+import { canonicalProductionGeometry, isGeometryEmotion, type FaceRendererMode, type ProductionGeometrySample } from "../../animation/productionGeometry";
 
 export default function Mouth({ expression, motionRef, motionRole = "mouth", initialOpacity = 1, renderer = "asset", sample }: { expression: LayerExpression;
     motionRef?: RefCallback<HTMLDivElement>; motionRole?: string; initialOpacity?: number;
     renderer?: FaceRendererMode; sample?: ProductionGeometrySample }) {
-    if (renderer === "procedural" && expression !== "happier-transition") {
+    if (isGeometryEmotion(expression) && ((renderer === "procedural" && expression !== "timeout") || sample)) {
         const frame = sample ?? canonicalProductionGeometry(expression), position = frame.layout.mouth;
         return <div ref={motionRef} className="face-layer procedural-mouth" data-geometry-mouth={expression} style={{
             left: position.x / 800 * 100 + "%", top: position.y / 480 * 100 + "%",

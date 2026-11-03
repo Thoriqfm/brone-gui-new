@@ -49,6 +49,7 @@ interface EyePaintAttributes {
     readonly fill?: EyePaint;
     readonly stroke?: EyePaint;
     readonly strokeWidth?: number;
+    readonly strokeLinejoin?: "round";
     readonly opacity?: number;
     readonly fillOpacity?: number;
     readonly filter?: EyeReference;

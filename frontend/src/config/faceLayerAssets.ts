@@ -25,17 +25,20 @@ export const FACE_LAYER_ASSETS = {
     shockRight: asset("eyes/right/shock-eye-right.svg", 129, 171),
     thinkingLeft: asset("eyes/left/thinking-eye-left.svg", 142, 145),
     thinkingRight: asset("eyes/right/thinking-eye-right.svg", 129, 171),
+    timeoutLeft: asset("eyes/left/timeout-eye-left.svg", 160, 162),
+    timeoutRight: asset("eyes/right/timeout-eye-right.svg", 160, 162),
     idleMouth: asset("mouth/idle-mouth.svg", 282, 96),
     happierMouth: asset("mouth/happier-mouth.svg", 282, 155),
     sadMouth: asset("mouth/sad-mouth.svg", 276, 86),
     cryMouth: asset("mouth/cry-mouth.svg", 276, 86),
     shockMouth: asset("mouth/shock-mouth.svg", 156, 148),
     thinkingMouth: asset("mouth/thinking-mouth.svg", 271, 52),
+    timeoutMouth: asset("mouth/timeout-mouth.svg", 253, 45),
 } as const;
 
 export type FaceLayerAsset = keyof typeof FACE_LAYER_ASSETS;
 export const LAYER_EXPRESSIONS = [
-    "idle", "happy", "happier", "happier-transition", "sad", "cry", "shock", "thinking",
+    "idle", "happy", "happier", "happier-transition", "sad", "cry", "shock", "thinking", "timeout",
 ] as const;
 export type LayerExpression = (typeof LAYER_EXPRESSIONS)[number];
 
@@ -49,6 +52,7 @@ interface Composition {
 // Combinations verified against the corresponding full-image master.
 // Both cheek assets already include their pink hatch marks.
 export const FACE_LAYER_COMPOSITIONS: Record<LayerExpression, Composition> = {
+    timeout: { leftEye: "timeoutLeft", rightEye: "timeoutRight", mouth: "timeoutMouth", effects: [] },
     idle: { leftEye: "idleLeft", rightEye: "idleRight", mouth: "idleMouth", effects: [] },
     // Happy reuses idle eyes and the happier mouth, matching happy.png.
     happy: { leftEye: "idleLeft", rightEye: "idleRight", mouth: "happierMouth", effects: [] },

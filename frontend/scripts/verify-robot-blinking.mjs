@@ -94,9 +94,14 @@ try {
     const { EMOTIONS } = await load("schemas/faceMessages.ts");
     for (const expression of EMOTIONS) {
         const html = renderToStaticMarkup(createElement(FaceRenderer, { renderer: "procedural", expression, blinkChannel: channel }));
-        assert.match(html, /data-production-blink="enabled"/); assert.match(html, /data-active-eye/);
+        assert.match(html, /data-production-blink="enabled"/);
+        if (expression === "timeout") {
+            assert.doesNotMatch(html, /data-active-eye/);
+            assert.match(html, /data-layer="timeoutLeft"/);
+            assert.match(html, /data-layer="timeoutRight"/);
+        } else assert.match(html, /data-active-eye/);
     }
     const bundle = (await Promise.all((await readdir("dist/assets")).filter(f => f.endsWith(".js")).map(f => readFile("dist/assets/" + f, "utf8")))).join("");
     assert.match(bundle, /data-active-eye/); assert.match(bundle, /visibilitychange/);
-    console.log("PASS: robot automatic blink readiness/close/hold/open, visibility, reduced motion, renderer/overlay pause, setup replay, cleanup/stale callbacks, seven expressions, production bundle and store isolation.");
+    console.log(`PASS: robot automatic blink readiness/close/hold/open, visibility, reduced motion, renderer/overlay pause, setup replay, cleanup/stale callbacks, ${EMOTIONS.length} expressions including timeout spiral blink isolation, production bundle and store isolation.`);
 } finally { await server.close(); }

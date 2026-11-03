@@ -10,7 +10,7 @@ function normalizedProgress(progress: number): number {
 const lerp = (a: number, b: number, t: number) => t === 0 ? a : t === 1 ? b : a * (1 - t) + b * t;
 
 /** Compatible normalized control nets only; no path-string or asset interpolation. */
-export function interpolateMouthGeometry(from: MouthGeometry, to: MouthGeometry, progress: number): MouthGeometry {
+export function interpolateMouthGeometry(from: MouthGeometry, to: MouthGeometry, progress: number, absolute = false): MouthGeometry {
     const t = normalizedProgress(progress);
     for (const [label, geometry] of [["from", from], ["to", to]] as const) {
         try { validateMouthGeometry(geometry); }
@@ -24,7 +24,12 @@ export function interpolateMouthGeometry(from: MouthGeometry, to: MouthGeometry,
     }
     if (t === 0) return from;
     if (t === 1) return to;
-    const point = (a: MouthPoint, b: MouthPoint): MouthPoint => [lerp(a[0], b[0], t), lerp(a[1], b[1], t)];
+    // A short, narrow mouth needs absolute controls to preserve its stroke inset
+    // while dimensions change. Keep established normalized routes unchanged.
+    const point = (a: MouthPoint, b: MouthPoint): MouthPoint => absolute
+        ? [lerp(a[0] * from.width, b[0] * to.width, t) / lerp(from.width, to.width, t),
+            lerp(a[1] * from.height, b[1] * to.height, t) / lerp(from.height, to.height, t)]
+        : [lerp(a[0], b[0], t), lerp(a[1], b[1], t)];
     const contour = (a: MouthContour, b: MouthContour): MouthContour => ({
         start: point(a.start, b.start),
         curves: a.curves.map((c, i) => [point(c[0], b.curves[i][0]), point(c[1], b.curves[i][1]), point(c[2], b.curves[i][2])]),

@@ -9,6 +9,7 @@ export interface TransitionComposition {
     expression: LayerExpression;
     initialOpacity: 0 | 1;
     strategy?: TransitionStrategy;
+    timeoutRotation?: { left: number; right: number };
 }
 interface MountedComposition {
     element: HTMLDivElement;
@@ -107,13 +108,22 @@ export function createExpressionTransition(
             const opacity = (layer: TransitionComposition) =>
                 Number(mounted.get(layer.id)?.element.style.opacity ?? layer.initialOpacity);
             const outgoing = layers.reduce((a, b) => opacity(b) >= opacity(a) ? b : a);
+            // Carry the visible spiral phase into the new geometry surface.
+            // Snapshot before React replaces the outgoing asset composition.
+            const angle = (side: "left" | "right") => {
+                const image = mounted.get(outgoing.id)?.element.querySelector?.(`[data-layer="timeout${side === "left" ? "Left" : "Right"}"]`);
+                if (!image || typeof getComputedStyle !== "function") return 0;
+                const values = getComputedStyle(image).transform.match(/^matrix\(([^)]+)\)$/)?.[1].split(",").map(Number);
+                return values ? Math.atan2(values[1], values[0]) * 180 / Math.PI : 0;
+            };
+            const timeoutRotation = outgoing.expression === "timeout" ? { left: angle("left"), right: angle("right") } : undefined;
             if (outgoing.expression === expression) {
                 layers = [{ id: nextId++, expression, initialOpacity: 1 }];
             } else {
                 const retained = mounted.get(outgoing.id);
                 if (retained) retained.element.style.opacity = "1";
                 layers = [
-                    { ...outgoing, initialOpacity: 1 },
+                    { ...outgoing, initialOpacity: 1, timeoutRotation },
                     { id: nextId++, expression, initialOpacity: 0,
                         strategy: selectTransitionStrategy(outgoing.expression, expression, duration, false, procedural) },
                 ];

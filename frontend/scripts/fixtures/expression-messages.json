@@ -1,5 +1,21 @@
 [
   {
+    "name": "accept timeout",
+    "valid": true,
+    "message": {
+      "type": "SET_EXPRESSION", "request_id": "fixture-timeout",
+      "payload": { "emotion": "timeout", "intensity": 1, "transition_ms": 700 }
+    }
+  },
+  {
+    "name": "reject misspelled timeout",
+    "valid": false,
+    "message": {
+      "type": "SET_EXPRESSION", "request_id": "fixture-timeout-invalid",
+      "payload": { "emotion": "time-out", "intensity": 1, "transition_ms": 700 }
+    }
+  },
+  {
     "name": "accept idle",
     "valid": true,
     "message": {
