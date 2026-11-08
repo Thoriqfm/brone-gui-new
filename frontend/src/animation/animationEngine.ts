@@ -11,7 +11,8 @@ export interface AnimationDriver {
 
 // Loaded only from the mounted hook, never during module evaluation or SSR.
 export async function loadAnimeDriver(): Promise<AnimationDriver> {
-    const { animate } = await import("animejs");
+    const { animate, engine } = await import("animejs");
+    engine.fps = 40; // Experimental cap for Anime.js; native CSS/SVG animations are independent.
     return { create: (target, parameters) => animate(target, parameters) };
 }
 

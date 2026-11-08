@@ -1,5 +1,7 @@
 # ANIMATION SPEC
 
+Experimental frame cap: the shared Anime.js engine is limited to 40 FPS when its driver loads. Expression transitions and procedural blinking retain their requested durations; fewer intermediate frames are sampled. Native CSS/SVG animations (including thinking, timeout and flowing tears) remain browser-scheduled. This is a configured cap, not a measured Jetson performance result.
+
 Initial scaffold uses simple SVG placeholder face. Production animation assets and viseme-by-expression mapping are future work.
 
 Settled `cry` effects use `cry-effect-flow.svg`: a 1.8-second loop sends small ripples down the tear-strip sides while keeping the eye attachment and rounded bottom fixed. Native SVG/CSS animation makes no per-frame React/store updates. Entry reveal and exit drainage retain the original static `cry-effect.svg`; `prefers-reduced-motion: reduce` restores its original path for the settled effect too. Eye/mouth geometry, tear placement, and the JSON protocol are unchanged.
