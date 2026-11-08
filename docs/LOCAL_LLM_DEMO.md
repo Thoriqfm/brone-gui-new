@@ -6,6 +6,13 @@ Log bukan sumber input; service pengirim harus memanggil endpoint.
 
 ## Menjalankan
 
+Jika dependency sudah terpasang, cukup jalankan `npm.cmd run dev` dari root repository
+(`npm run dev` di Linux/macOS). Frontend dan backend berjalan dalam satu terminal,
+WebSocket lokal langsung aktif, dan Ctrl+C menghentikan keduanya. Hentikan dulu
+server yang sebelumnya dijalankan terpisah di port 8000/5173.
+
+Untuk setup pertama atau menjalankan layanan secara terpisah:
+
 Dari root repository, buka dua terminal PowerShell.
 
 Terminal backend (gunakan satu worker):

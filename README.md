@@ -6,6 +6,20 @@ React + TypeScript frontend; Python FastAPI backend; WebSocket connection. The S
 - Node.js 20.19+ or 22.12+ (Node 24 recommended)
 - Python 3.10+; npm
 
+## Run both services from the root
+
+After the one-time backend virtualenv/dependency and frontend dependency setup below:
+
+```powershell
+npm.cmd run dev
+```
+
+On Linux/macOS use `npm run dev` (or `bash scripts/start-dev.sh`). No root dependency installation is needed. The launcher uses the existing `backend/.venv` and `frontend/node_modules`, runs FastAPI with reload on 8000 and Vite on 5173, and enables the local frontend WebSocket automatically. Both listen on `127.0.0.1`. Logs appear in one terminal; Ctrl+C stops both, including the backend reload worker. If either service exits, the other is stopped too. Stop any separately running servers on these ports before starting the combined launcher.
+
+Frontend: http://127.0.0.1:5173. API docs: http://127.0.0.1:8000/docs.
+
+The commands below remain available for running each service separately.
+
 ## Terminal 1 — backend (PowerShell)
 ```powershell
 cd backend
