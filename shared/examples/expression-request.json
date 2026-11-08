@@ -1,0 +1,7 @@
+{
+  "type": "SET_EXPRESSION",
+  "request_id": "llm-turn-001",
+  "payload": {
+    "emotion": "happy"
+  }
+}

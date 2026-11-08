@@ -20,6 +20,32 @@ try {
     const { renderToStaticMarkup } = await import(pathToFileURL(await realpath("node_modules/react-dom/server.node.js")));
     const render = (component, props) => parse(renderToStaticMarkup(react.createElement(component, props)));
     const { default: Effects } = await load("components/face/FaceEffects.tsx");
+    // Only settled live tears select the native SVG ripple. Transition artwork
+    // stays static so entry reveal and downward drainage keep their ownership.
+    for (const [props, animated] of [
+        [{ expression: "cry", motion: true }, true],
+        [{ expression: "cry", motion: true, resting: false }, false],
+        [{ expression: "cry" }, false],
+    ]) {
+        const images = render(Effects, props).querySelectorAll('[data-layer="cryEffect"]');
+        assert.equal(images.length, 2);
+        for (const image of images) assert.ok(image.getAttribute("src").endsWith(
+            animated ? "/cry-effect-flow.svg" : "/cry-effect.svg"));
+    }
+    const flow = await readFile("public/assets/face-layers/effects/cry-effect-flow.svg", "utf8");
+    const originalTear = await readFile("public/assets/face-layers/effects/cry-effect.svg", "utf8");
+    assert.equal(flow.match(/<path d="([^"]+)"/)[1], originalTear.match(/<path d="([^"]+)"/)[1], "reduced-motion fallback retains original artwork");
+    assert.match(flow, /@media \(prefers-reduced-motion: reduce\) \{ path \{ animation: none; \} \}/);
+    const wavePaths = [...flow.matchAll(/d: path\("([^"]+)"\)/g)].map(match => match[1]);
+    assert.equal(wavePaths.length, 9);
+    assert.equal(wavePaths[0], wavePaths.at(-1), "loop joins without a shape jump");
+    assert.equal(new Set(wavePaths).size, 8, "ripples move through eight phases");
+    const signature = d => d.replace(/-?\d+(?:\.\d+)?/g, "#");
+    for (const path of wavePaths) {
+        assert.equal(signature(path), signature(wavePaths[0]), "matching cubic topology interpolates smoothly");
+        assert.equal(path.slice(0, path.indexOf("17.0742") + 7), wavePaths[0].slice(0, wavePaths[0].indexOf("17.0742") + 7), "upper eye attachment never moves");
+        assert.ok(path.includes("C80.0573 257.036 69.1361 268.488 55.434 268.488H24.8625C12.3803 268.488 1.98187 258.92 0.94536 246.481"), "rounded bottom remains fixed");
+    }
     const before = useFaceStore.getState();
     let samples = 0;
     for (const expression of EMOTIONS) for (const other of EMOTIONS) if (expression !== other) {
@@ -55,7 +81,7 @@ try {
                         if (i === 100) assert.equal(frame.clipBottom, 0);
                     } else {
                         assert.equal(frame.clipBottom, 0, "exit never retracts the reveal upward");
-                        if (p >= .4) assert.equal(frame.tearOffsetPercent, 100, "tears gone before face changes");
+                        if (p >= (other === "happier" ? .2 : .4)) assert.equal(frame.tearOffsetPercent, 100, "tears gone before eyes change");
                     }
                 }
                 if ((expression === "shock" && other === "thinking") || (expression === "thinking" && other === "shock")) {
@@ -82,8 +108,9 @@ try {
     assert.equal(motion.sampleFaceEffectMotion("thinking", "enter", .4).opacity, 0);
     for (const p of [NaN, Infinity, -Infinity]) assert.throws(() => motion.sampleFaceEffectMotion("cry", "enter", p), RangeError);
     for (const other of EMOTIONS.filter(name => name !== "cry")) {
-        for (const p of [0, .1, .39, .4]) assert.equal(motion.sampleFaceTransitionProgress("cry", other, p), 0, "cry face held while tears drain");
-        for (const p of [.6, .7, .9, 1]) assert.equal(motion.sampleFaceTransitionProgress(other, "cry", p), 1, "cry face complete before external tears");
+        const tearShare = other === "happier" ? .2 : .4, faceShare = 1 - tearShare;
+        for (const p of [0, tearShare / 2, tearShare]) assert.equal(motion.sampleFaceTransitionProgress("cry", other, p), 0, "cry eyes held while tears drain");
+        for (const p of [faceShare, (1 + faceShare) / 2, 1]) assert.equal(motion.sampleFaceTransitionProgress(other, "cry", p), 1, "cry eyes complete before external tears");
     }
 
     // Execute the actual component layout effects with mounted SSR nodes. This
@@ -112,10 +139,29 @@ try {
         return { draw: frames.values().next().value, cleanup: () => cleanups.forEach(f => f?.()), frames };
     }
     const geometry = await load("animation/productionGeometry.ts");
+    // Happier/Cry's two eye legs get 80% of the requested duration, not 60%.
+    assert.ok(Math.abs(motion.sampleFaceTransitionProgress("happier", "cry", .4) - .5) < 1e-10);
+    assert.ok(Math.abs(motion.sampleFaceTransitionProgress("cry", "happier", .6) - .5) < 1e-10);
+    const revisedExpressions = ["happier", "sad", "cry"];
+    for (const from of revisedExpressions) for (const to of revisedExpressions) if (from !== to) {
+        assert.notEqual(geometry.productionMorphRoute(from, to).mouth, "via idle");
+        const a = geometry.canonicalProductionGeometry(from), b = geometry.canonicalProductionGeometry(to);
+        for (const p of [0, .001, .1, .2, .4, .5, .6, .8, .9, .999, 1]) {
+            const eyeProgress = motion.sampleFaceTransitionProgress(from, to, p);
+            const frame = geometry.sampleProductionGeometry(from, to, eyeProgress, p);
+            const direct = geometry.sampleProductionGeometry(from, to, p);
+            assert.deepEqual(frame.mouth, direct.mouth, `${from}/${to}: no idle leg, hold, or accelerated mouth`);
+            for (const key of ["x", "y", "width", "height"]) assert.ok(Math.abs(
+                frame.layout.mouth[key] - (a.layout.mouth[key] * (1 - p) + b.layout.mouth[key] * p)) < 1e-9,
+                "mouth placement also uses full-duration direct progress");
+        }
+    }
+    for (const invalid of [NaN, Infinity, -Infinity]) assert.throws(() =>
+        geometry.sampleProductionGeometry("happier", "cry", .5, invalid), RangeError);
     const { default: ProceduralMouth } = await load("components/face/mouth/ProceduralMouth.tsx");
     const { default: ProceduralEye } = await load("components/face/eyes/ProceduralEye.tsx");
     const cryPairs = EMOTIONS.filter(name => name !== "cry").flatMap(name => [[name, "cry"], ["cry", name]]);
-    for (const [from, to] of [...cryPairs.filter(pair => pair.every(geometry.isGeometryEmotion)), ["shock", "thinking"], ["thinking", "shock"]]) {
+    for (const [from, to] of [...cryPairs.filter(pair => pair.every(geometry.isGeometryEmotion)), ["happier", "sad"], ["sad", "happier"], ["shock", "thinking"], ["thinking", "shock"]]) {
         const props = { layers: [{ id: 0, expression: from, initialOpacity: 1 }, { id: 1, expression: to, initialOpacity: 0, strategy: "GEOMETRY" }], attach() {}, attachFrame() {}, prepared() {} };
         const root = render(geometryModule.default, props).querySelector('[data-transition="geometry"]');
         const mounted = await mountFrames("GeometryTransitionLayer.tsx", props, root, [root]);
@@ -127,8 +173,12 @@ try {
                 normalize(overlay.querySelector(`[data-geometry-eye="${side}"]`).querySelector("svg")),
                 normalize(render(ProceduralEye, { geometry: frame.eyes[side] }).querySelector("svg")),
                 "actual eyes and internal water follow staged face progress");
-            assert.deepEqual(normalize(overlay.querySelector("[data-geometry-mouth]").querySelector("svg")),
-                normalize(render(ProceduralMouth, { geometry: frame.mouth }).querySelector("svg")), "actual mouth follows staged face progress");
+            const directMouthTiming = ["happier", "sad", "cry"].includes(from) && ["happier", "sad", "cry"].includes(to);
+            const mouthFrame = directMouthTiming ? geometry.sampleProductionGeometry(from, to, p) : frame;
+            const mouthNode = overlay.querySelector("[data-geometry-mouth]");
+            assert.deepEqual(normalize(mouthNode.querySelector("svg")),
+                normalize(render(ProceduralMouth, { geometry: mouthFrame.mouth }).querySelector("svg")), "affected mouths use full-duration direct progress independently of cry staging");
+            assert.equal(mouthNode.style.height, mouthFrame.layout.mouth.height / 480 * 100 + "%");
             const groups = root.querySelectorAll("[data-geometry-effects]");
             for (const [i, expression] of [from, to].entries()) for (const node of groups[i].querySelectorAll("[data-element-role]"))
                 assert.equal(Number(node.style.opacity), motion.sampleFaceEffectMotion(expression, i ? "enter" : "exit", p, i ? from : to).opacity);
@@ -186,5 +236,5 @@ try {
     coordinator.dispose(); engine.dispose();
     }
     assert.strictEqual(useFaceStore.getState(), before, "no per-frame store writes");
-    console.log(`PASS: ${samples} effect samples; staged cry eyes/water before tears, downward drainage before face exit, no fade/fixed window; blush grouping; punctuation handoff; actual geometry/asset callbacks and cleanup; unchanged store.`);
+    console.log(`PASS: six Happier/Sad/Cry mouth directions use full-duration direct geometry/layout; Happier/Cry eye timing 80%; resting tear ripple and reduced-motion fallback; ${samples} effect samples; staged cry eyes/water before tears, downward drainage before eye exit, no fade/fixed window; blush grouping; punctuation handoff; actual geometry/asset callbacks and cleanup; unchanged store.`);
 } finally { await server.close(); }

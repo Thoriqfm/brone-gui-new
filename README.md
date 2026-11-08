@@ -23,13 +23,13 @@ npm install
 Copy-Item .env.example .env
 npm run dev
 ```
-Open http://127.0.0.1:5173. The demo face cycles via WebSocket every 3 seconds. The manual buttons work without the backend. Open http://127.0.0.1:8000/health to check service.
+Open http://127.0.0.1:5173. To enable backend commands, set `VITE_WS_ENABLED=true` in `frontend/.env.local` and restart Vite. The backend holds the latest expression; it no longer cycles demo expressions. The manual buttons work without the backend. Open http://127.0.0.1:8000/health to check service. Follow [the local LLM integration demo](docs/LOCAL_LLM_DEMO.md) to send JSON through HTTP or Swagger UI.
 
 ## Checks
 `cd frontend && npm run build`
 `cd backend && python -m pytest`
 
 ## Notes
-- WebSocket demo is intentionally unidirectional and for local development only.
+- WebSocket display updates are unidirectional and for local development only; command ingress is `POST /api/face/expression`.
 - FastAPI does not yet serve the frontend build, audio, or live TTS.
 - No database, Tauri or ROS2 required for this baseline.

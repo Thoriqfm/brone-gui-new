@@ -23,7 +23,8 @@
     "cryEffect": {
       "src": "/assets/face-layers/effects/cry-effect.svg",
       "width": 81,
-      "height": 269
+      "height": 269,
+      "animatedSrc": "/assets/face-layers/effects/cry-effect-flow.svg"
     },
     "questionMark": {
       "src": "/assets/face-layers/effects/question-mark.svg",

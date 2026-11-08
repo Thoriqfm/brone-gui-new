@@ -34,13 +34,13 @@ export function canonicalProductionGeometry(expression: Emotion) {
         mouth: MOUTH_EXPRESSION_PRESETS[PRODUCTION_MOUTH_MAP[expression]].geometry,
         layout: FACE_LAYER_LAYOUTS[expression] };
 }
-export function sampleProductionGeometry(from: Emotion, to: Emotion, progress: number) {
+export function sampleProductionGeometry(from: Emotion, to: Emotion, progress: number, mouthProgress = progress) {
     if (!isGeometryEmotion(from) || !isGeometryEmotion(to) || from === to) throw new RangeError("Unsupported production morph");
-    if (!Number.isFinite(progress)) throw new RangeError("Invalid production progress");
+    if (!Number.isFinite(progress) || !Number.isFinite(mouthProgress)) throw new RangeError("Invalid production progress");
     const a = canonicalProductionGeometry(from), b = canonicalProductionGeometry(to);
-    if (progress <= 0) return a;
-    if (progress >= 1) return b;
-    const p = progress, route = productionMorphRoute(from, to);
+    if (progress <= 0 && mouthProgress <= 0) return a;
+    if (progress >= 1 && mouthProgress >= 1) return b;
+    const p = Math.max(0, Math.min(1, progress)), mp = Math.max(0, Math.min(1, mouthProgress)), route = productionMorphRoute(from, to);
     const ea = eyeExpression(from), eb = eyeExpression(to);
     // Eyes retain their existing approved legs independently of the mouth route.
     const eyeFrom = route.eyes === "via idle" && p >= .5 ? "idle" : ea;
@@ -52,11 +52,11 @@ export function sampleProductionGeometry(from: Emotion, to: Emotion, progress: n
     };
     const ma = PRODUCTION_MOUTH_MAP[from], mb = PRODUCTION_MOUTH_MAP[to];
     const mouth = route.mouth === "unchanged" ? a.mouth :
-        sampleMouthTransition(ma, mb, p);
+        sampleMouthTransition(ma, mb, mp);
     return { eyes, mouth, layout: { ...a.layout,
         leftEye: interpolateEyeLayout(FACE_LAYER_LAYOUTS[eyeFrom].leftEye, FACE_LAYER_LAYOUTS[eyeTo].leftEye, ep),
         rightEye: interpolateEyeLayout(FACE_LAYER_LAYOUTS[eyeFrom].rightEye, FACE_LAYER_LAYOUTS[eyeTo].rightEye, ep),
-        mouth: interpolateEyeLayout(a.layout.mouth, b.layout.mouth, p),
+        mouth: interpolateEyeLayout(a.layout.mouth, b.layout.mouth, mp),
     } };
 }
 export type ProductionGeometrySample = ReturnType<typeof canonicalProductionGeometry> | ReturnType<typeof sampleProductionGeometry>;

@@ -15,11 +15,13 @@ function Effect({
     id,
     attach,
     motion = false,
+    resting = true,
 }: {
     expression: LayerExpression;
     id: string;
     attach?: AttachEffect;
     motion?: boolean;
+    resting?: boolean;
 }) {
     const effect = FACE_LAYER_COMPOSITIONS[expression].effects.find(
         (item) => item.id === id,
@@ -31,6 +33,7 @@ function Effect({
     return (
         <FaceLayer
             asset={effect.asset}
+            animate={motion && resting}
             position={FACE_LAYER_LAYOUTS[expression].effects[id]}
             order={FACE_LAYER_ORDER[effect.order]}
             motionRef={attach || motion ? ref : undefined}
@@ -56,6 +59,7 @@ export default function FaceEffects({
             id={effect.id}
             attach={attachEffect}
             motion={motion}
+            resting={resting}
         />
     ));
     return motion ? <div className={resting ? "geometry-effects effect-rest" : "geometry-effects"}

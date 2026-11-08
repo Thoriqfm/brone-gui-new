@@ -8,7 +8,10 @@ export const FACE_LAYER_ASSETS = {
     faceLines: asset("base/face-lines.svg", 1060, 274),
     blushing: asset("effects/blushing.svg", 61, 36),
     blushLine: asset("effects/line-for-blushing.svg", 103, 8),
-    cryEffect: asset("effects/cry-effect.svg", 81, 269),
+    cryEffect: {
+        ...asset("effects/cry-effect.svg", 81, 269),
+        animatedSrc: `${root}effects/cry-effect-flow.svg`,
+    },
     questionMark: asset("effects/question-mark.svg", 60, 89),
     shockEffect: asset("effects/shock-effect.svg", 77, 88),
     idleLeft: asset("eyes/left/idle-eye-left.svg", 129, 171),

@@ -23,7 +23,7 @@ Develop and test a **2D animated face for the Brone robot**, using React + TypeS
 - Prevent per-frame React store updates/re-renders. High-frequency updates belong in the animation layer.
 - All data received over WebSocket and HTTP is untrusted: validate at runtime, even when a TypeScript type exists.
 - Keep `shared/face-protocol.schema.json`, TypeScript parser/types and Python Pydantic models synchronized when the protocol changes. Add valid and invalid fixtures/tests.
-- The v0.1 backend **only broadcasts demo `SET_EXPRESSION` messages**. `RESET_FACE` is accepted by the frontend parser but not in shared schema or Python models. Do not imply playback/viseme messages work yet.
+- The v0.1 backend accepts `SET_EXPRESSION` through `POST /api/face/expression`, retains the latest state in one process, and broadcasts it through `/ws/face`, including on reconnect. `RESET_FACE` is accepted by the frontend parser but not in shared schema or Python models. Do not imply playback/viseme messages work yet.
 - Do not accidentally replace Brone artwork or violate facial design constraints. Before changing face geometry, consult `docs/ANIMATION_SPEC.md` and request actual design assets if not supplied.
 - Never present target FPS/latency as measured results; record the device, software versions, sample size and methodology.
 - Do not introduce Tauri, Electron, ROS2, Next.js, a database or real AI inference unless a task explicitly needs them.

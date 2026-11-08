@@ -19,6 +19,9 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
 }) {
     const [source, target] = layers;
     const from = source.expression, to = target.expression;
+    // These mouths morph directly for the full duration, even while cry eyes
+    // wait for drainage or finish before the external tears appear.
+    const directMouthTiming = ["happier", "sad", "cry"].includes(from) && ["happier", "sad", "cry"].includes(to);
     // Spiral correspondence has no eyelid aperture; suspend blinking on its legs.
     const morphBlink = from === "timeout" || to === "timeout" ? undefined : blinkChannel;
     if (!isGeometryEmotion(from) || !isGeometryEmotion(to)) throw new RangeError("Geometry requires canonical expressions");
@@ -46,7 +49,7 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
             overlay.style.display = p > 0 && p < 1 ? "contents" : "none";
             if (p <= 0 || p >= 1) return; // Untouched canonical React SVG endpoints.
             const faceProgress = sampleFaceTransitionProgress(from, to, p);
-            const frame = sampleProductionGeometry(from, to, faceProgress);
+            const frame = sampleProductionGeometry(from, to, faceProgress, directMouthTiming ? p : faceProgress);
             for (const [side, node, template] of [["left", left, templates[0]], ["right", right, templates[1]]] as const) {
                 positionGeometry(node, frame.layout[side === "left" ? "leftEye" : "rightEye"]);
                 if (from === "timeout") {

@@ -4,12 +4,16 @@ import { FACE_LAYER_LAYOUTS } from "../config/faceLayerLayouts";
 export type EffectPhase = "enter" | "exit";
 const clamp = (p: number) => Math.max(0, Math.min(1, p));
 const smooth = (p: number) => { const t = clamp(p); return t * t * (3 - 2 * t); };
+// Happier/Cry has two eye legs: reserve more time for the face, keeping the
+// requested total duration and the tear-before/after-eye ordering intact.
+const cryTearShare = (other?: LayerExpression) => other === "happier" ? .2 : .4;
 
-/** Cry eyes/water settle before tears enter; tears drain before the face exits. */
+/** Cry eye/tear schedule; direct mouths can use their own full-duration progress. */
 export function sampleFaceTransitionProgress(from: LayerExpression, to: LayerExpression, progress: number) {
     if (!Number.isFinite(progress)) throw new RangeError("Face progress must be finite");
     const p = clamp(progress);
-    return from === "cry" ? clamp((p - .4) / .6) : to === "cry" ? clamp(p / .6) : p;
+    const tearShare = cryTearShare(from === "cry" ? to : from);
+    return from === "cry" ? clamp((p - tearShare) / (1 - tearShare)) : to === "cry" ? clamp(p / (1 - tearShare)) : p;
 }
 
 /** Uses the face's progress, so effects never extend the requested duration. */
@@ -19,14 +23,17 @@ export function sampleFaceEffectMotion(expression: LayerExpression, phase: Effec
     const p = other ? sampleFaceTransitionProgress(entering ? other : expression, entering ? expression : other, progress) : clamp(progress);
     let opacity = entering ? p : 1 - p, scale = 1, y = 0, clipBottom = 0, tearOffsetPercent = 0;
     switch (expression) {
-        case "cry":
+        case "cry": {
             opacity = 1;
             // Reveal only after the cry eye (including its water) is complete.
             // On exit the image falls inside a fixed clipping window, then the
-            // eyes/mouth change. The strip never retracts upward or fades.
-            if (entering) clipBottom = 100 * (1 - smooth((progress - .6) / .4));
-            else tearOffsetPercent = 100 * smooth(progress / .4);
+            // eyes change. Direct mouths can move independently throughout.
+            // The strip never retracts upward or fades.
+            const tearShare = cryTearShare(other);
+            if (entering) clipBottom = 100 * (1 - smooth((progress - (1 - tearShare)) / tearShare));
+            else tearOffsetPercent = 100 * smooth(progress / tearShare);
             break;
+        }
         case "happier": {
             const visible = entering ? smooth((p - .15) / .85) : 1 - smooth(p);
             opacity = visible;
