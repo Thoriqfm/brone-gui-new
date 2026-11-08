@@ -1,6 +1,6 @@
 # Brone GUI
 
-Browser-based 2D robot face built with React + TypeScript and a Python FastAPI backend. Expression rendering, transitions, and JSON command delivery through HTTP/WebSocket are implemented. Visemes and live STT/LLM/TTS inference are not implemented.
+Browser-based 2D robot face built with React + TypeScript and a Python FastAPI backend. Expression rendering, transitions, and JSON command delivery through HTTP or optional MQTT ingress into WebSocket are implemented. Visemes and live STT/LLM/TTS inference are not implemented.
 
 ## Prerequisites
 
@@ -84,6 +84,8 @@ Available expressions: `idle`, `happy`, `happier`, `sad`, `cry`, `shock`, `think
 See [the local LLM integration demo](docs/LOCAL_LLM_DEMO.md) for PowerShell requests, reconnect checks, and the team integration contract. See [the protocol](docs/PROTOCOL.md) for message details.
 
 ## Run services separately (optional)
+
+To send commands through Mosquitto instead of HTTP, follow [MQTT setup and terminal commands](docs/MQTT.md). MQTT is disabled by default; enable it with `BRONE_MQTT_ENABLED=true` in the launcher's environment. A separate Mosquitto broker is required. Existing installations must rerun the backend pip install command above to add `paho-mqtt`.
 
 The root launcher is the normal development entry point. Use separate terminals only when working on one service independently.
 

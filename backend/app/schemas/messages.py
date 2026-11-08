@@ -17,7 +17,7 @@ class ExpressionMessage(StrictModel):
     payload: ExpressionPayload
 
 
-# HTTP ingress defaults; canonical WebSocket messages remain fully required.
+# HTTP/MQTT ingress defaults; canonical WebSocket messages remain fully required.
 class ExpressionRequestPayload(ExpressionPayload):
     intensity: float = Field(default=1, ge=0, le=1)
     transition_ms: int = Field(default=700, ge=0)
