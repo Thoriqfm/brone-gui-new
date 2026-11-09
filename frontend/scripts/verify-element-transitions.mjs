@@ -18,11 +18,12 @@ try {
     const canonical = useFaceStore.getState();
     assert.equal(selectTransitionStrategy("idle", "happy", 300), "ELEMENT_BASED");
     for (const from of EMOTIONS) for (const to of EMOTIONS) {
-        if (from !== "idle" || to !== "happy") assert.equal(selectTransitionStrategy(from, to, 300), "CROSSFADE");
+        if (from !== "idle" || to !== "happy") assert.equal(selectTransitionStrategy(from, to, 300),
+            from !== to && (from === "timeout" || to === "timeout") ? "GEOMETRY" : "CROSSFADE");
         assert.equal(selectTransitionStrategy(from, to, 0), "IMMEDIATE");
         assert.equal(selectTransitionStrategy(from, to, 300, true), "IMMEDIATE");
     }
-    assert.equal(selectTransitionStrategy("happier-transition", "happy", 300), "IMMEDIATE");
+    assert.equal(selectTransitionStrategy("happier-transition", "happy", 300), "GEOMETRY");
     assert.equal(compositions.idle.leftEye, compositions.happy.leftEye);
     assert.equal(compositions.idle.rightEye, compositions.happy.rightEye);
     assert.deepEqual(layouts.idle.leftEye, layouts.happy.leftEye);
@@ -51,7 +52,10 @@ try {
     assert.ok(IDLE_TO_HAPPY.incomingMouth.startScale >= 0.95);
     function node(key, opacity = 1) {
         let scale = 1;
-        const element = { key, isConnected: true, style: { opacity: String(opacity), transform: "" } };
+        const attributes = {};
+        const element = { key, isConnected: true, style: { opacity: String(opacity), transform: "" },
+            setAttribute(name, value) { attributes[name] = String(value); },
+            getAttribute(name) { return attributes[name] ?? null; } };
         Object.defineProperties(element, {
             scale: { get: () => scale, set(value) { scale = Number(value); element.style.transform = "scale(" + value + ")"; } },
             opacity: { get: () => Number(element.style.opacity), set(value) { element.style.opacity = String(value); } },
@@ -70,6 +74,7 @@ try {
                 seek(time) {
                     if (run.cancelled) return;
                     const progress = Math.max(0, Math.min(1, (time - (parameters.delay ?? 0)) / parameters.duration));
+                    if (parameters["data-progress"]) target.setAttribute("data-progress", progress);
                     for (const property of ["scale", "opacity"]) {
                         const values = parameters[property];
                         if (!values) continue;
@@ -77,6 +82,7 @@ try {
                         const fraction = progress * (values.length - 1) - segment;
                         target[property] = values[segment] + (values[segment + 1] - values[segment]) * fraction;
                     }
+                    parameters.onUpdate?.(run);
                 },
                 finish() { run.seek((parameters.delay ?? 0) + parameters.duration); parameters.onComplete(run); },
             };
@@ -182,7 +188,7 @@ try {
     oldRuns.forEach((run) => run.parameters.onComplete(run));
     assert.strictEqual(interrupted.c.layers, activeLayers);
     const crossfade = interrupted.driver.runs.slice(-2);
-    assert.ok(crossfade.every((run) => run.parameters.opacity && !run.parameters.scale));
+    assert.ok(crossfade.every((run) => run.parameters["data-progress"] && !run.parameters.scale));
     crossfade.forEach((run) => run.finish()); interrupted.render();
     assert.equal(interrupted.c.layers[0].expression, "cry");
     interrupted.dispose();

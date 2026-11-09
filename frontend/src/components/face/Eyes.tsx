@@ -21,7 +21,7 @@ export default function Eyes({ expression, leftRef, rightRef, renderer = "asset"
                     left: position.x / 800 * 100 + "%", top: position.y / 480 * 100 + "%",
                     width: position.width / 800 * 100 + "%", height: position.height / 480 * 100 + "%",
                     zIndex: FACE_LAYER_ORDER.eyes,
-                }}>{blinkChannel && expression !== "timeout" ? <MorphBlinkEye channel={blinkChannel} context={{
+                }}>{blinkChannel && expression !== "timeout" && expression !== "happier-transition" ? <MorphBlinkEye channel={blinkChannel} context={{
                     ...(blinkContext ?? {from:expression,to:expression,morphProgress:0}),side,blinkProgress:blinkChannel.progress,current:frame.eyes[side],
                 }}/> : <ProceduralEye geometry={frame.eyes[side]} />}</div>;
         })}</>;

@@ -111,7 +111,7 @@ try{
             if(samples.includes(t))renders.push({side,progress:t,width:g.width,height:g.height,layout:position,svg:render(g)});
         }
         deepNear(morph(structuredClone(a),structuredClone(b),.5),morph(a,b,.5));
-        for(const other of[HAPPIER_TRANSITION_PREVIEW[side],{...b,width:143}])
+        for(const other of[{...HAPPIER_TRANSITION_PREVIEW[side],width:157},{...b,width:143}])
             for(const t of[0,.5,1])assert.throws(()=>morph(a,other,t),/correspondence/);
         assert.throws(()=>morph(b,presets.happier[side],.5),/correspondence/);
         assert.throws(()=>morph(a,presets.sad[side==="left"?"right":"left"],.5),/sides/);

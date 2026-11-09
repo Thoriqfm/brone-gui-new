@@ -27,7 +27,7 @@ try {
     const endpoints = [];
     const configurations = [...EYE_EXPRESSIONS, "happier-transition"];
     assert.equal(Object.keys(EYE_PRESETS).length, 14);
-    assert.ok(!("happier-transition" in EYE_EXPRESSION_PRESETS));
+    assert.strictEqual(EYE_EXPRESSION_PRESETS["happier-transition"], HAPPIER_TRANSITION_PREVIEW);
     assert.ok(!("shy" in EYE_EXPRESSION_PRESETS));
     const flatten = (nodes) => nodes.flatMap((n) => [n, ...flatten(n.children)]);
     const sourceInventory = JSON.parse((await readFile("reports/eye-svg-inventory.json", "utf8")).replace(/^\uFEFF/, ""));

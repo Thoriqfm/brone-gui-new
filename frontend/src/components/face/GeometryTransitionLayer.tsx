@@ -21,9 +21,9 @@ export default function GeometryTransitionLayer({ layers, attach, attachFrame, p
     const from = source.expression, to = target.expression;
     // These mouths morph directly for the full duration, even while cry eyes
     // wait for drainage or finish before the external tears appear.
-    const directMouthTiming = ["happier", "sad", "cry"].includes(from) && ["happier", "sad", "cry"].includes(to);
+    const directMouthTiming = ["happier", "happier-transition", "sad", "cry"].includes(from) && ["happier", "happier-transition", "sad", "cry"].includes(to);
     // Spiral correspondence has no eyelid aperture; suspend blinking on its legs.
-    const morphBlink = from === "timeout" || to === "timeout" ? undefined : blinkChannel;
+    const morphBlink = [from, to].some(e => e === "timeout" || e === "happier-transition") ? undefined : blinkChannel;
     if (!isGeometryEmotion(from) || !isGeometryEmotion(to)) throw new RangeError("Geometry requires canonical expressions");
     const root = useRef<HTMLDivElement>(null), scope = "production-" + useId();
     const middle = useMemo(() => sampleProductionGeometry(from, to, .5), [from, to]);

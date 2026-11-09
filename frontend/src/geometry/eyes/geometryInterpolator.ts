@@ -109,6 +109,17 @@ export function interpolateEyeGeometry(from: EyeConfiguration, to: EyeConfigurat
     validateEyeGeometry(from); validateEyeGeometry(to);
     if (from.side !== to.side) throw new RangeError("Eye sides must match");
     const side = from.side, idle = EYE_EXPRESSION_PRESETS.idle[side], happier = EYE_EXPRESSION_PRESETS.happier[side];
+    const angular = EYE_EXPRESSION_PRESETS["happier-transition"][side];
+    for (const source of ["idle", "happier"] as const) {
+        const start = EYE_EXPRESSION_PRESETS[source][side];
+        const forward = sameSource(from, start) && sameSource(to, angular);
+        const reverse = sameSource(from, angular) && sameSource(to, start);
+        if (forward || reverse) {
+            if (t === 0) return from;
+            if (t === 1) return to;
+            return interpolateAngularEye(side, source, forward ? t : 1 - t);
+        }
+    }
     const timeout = EYE_EXPRESSION_PRESETS.timeout[side];
     const timeoutForward = sameSource(from, idle) && sameSource(to, timeout);
     const timeoutReverse = sameSource(from, timeout) && sameSource(to, idle);
@@ -287,6 +298,70 @@ function alignSadContours(source: EyeContour, target: EyeContour, targetAnchors:
     const start=(s:EyeSpan)=>sliceEyeCurve(s.start,s.curve,s.a,s.b).start;
     return {from:{start:start(fromSpans[0]),curves:from},to:{start:start(toSpans[0]),curves:to},
         fromSpans,toSpans,landmarkIndices,targetAnchors,reverse};
+}
+const angularPrepared = new Map<string, ReturnType<typeof prepareAngular>>();
+function prepareAngular(side: Side, source: "idle" | "happier") {
+    const start = EYE_EXPRESSION_PRESETS[source][side], target = EYE_EXPRESSION_PRESETS["happier-transition"][side];
+    const body = target.layers[0], defs = target.layers[1];
+    if (body.tag !== "path" || defs.tag !== "defs" || defs.children[0].tag !== "linearGradient")
+        throw new RangeError("Missing angular eye source contours");
+    const sourcePath = "kind" in start ? start.layers[0] : null;
+    if (sourcePath && sourcePath.tag !== "path") throw new RangeError("Missing Happier source body");
+    const sourceBody = "kind" in start ? cubicContour(sourcePath!.commands!) : ellipseEyeContour(start.body);
+    const sourceOutline = "kind" in start ? sourceBody : start.outline;
+    const sourceAnchors: Anchors = source === "idle" ? [0, 2, 4, 6] : [0, 1, 2.5, 4];
+    // Inspected upper outer corner, outer tip, lower outer corner, inner notch.
+    // The left chevron winds opposite to Idle/Happier; mirror the landmarks too.
+    const anchors: Anchors = side === "left" ? [0, 9.5, 8, 4] : [0, 4, 8, 9.5];
+    const targetBody = cubicContour(body.commands);
+    return freeze({
+        body: alignSadContours(sourceBody, targetBody, anchors, side === "left", sourceAnchors),
+        outline: alignSadContours(sourceOutline, targetBody, anchors, side === "left", sourceAnchors),
+        gradient: defs.children[0].attributes,
+        // A point inside the narrow chevron, where highlights close to zero.
+        anchor: (side === "left" ? [128, 76] : [30, 86]) as EyePoint,
+    });
+}
+function interpolateAngularEye(side: Side, source: "idle" | "happier", p: number): LayeredEyeGeometry {
+    const key = source + side;
+    const m = angularPrepared.get(key) ?? prepareAngular(side, source);
+    angularPrepared.set(key, m);
+    const start = EYE_EXPRESSION_PRESETS[source][side], target = EYE_EXPRESSION_PRESETS["happier-transition"][side];
+    // Reuse Idle's existing inner-shadow pipeline; Happier has no shadow.
+    const template = source === "idle" ? interpolateEyeGeometry(start, EYE_EXPRESSION_PRESETS.happier[side], p) : start;
+    if (!("kind" in template)) throw new RangeError("Missing layered angular morph template");
+    const gradient = "kind" in start ? start.layers.at(-1)!.children.find(n => n.tag === "linearGradient")!.attributes : {
+        x1: start.gradient.start[0], y1: start.gradient.start[1], x2: start.gradient.end[0], y2: start.gradient.end[1],
+    };
+    if (!("x1" in gradient)) throw new RangeError("Missing angular source gradient");
+    const body = commands(interpolateContour(m.body.from, m.body.to, p));
+    const outline = commands(interpolateContour(m.outline.from, m.outline.to, p));
+    // The angular eyes extend beyond Idle's native shadow region. Keep the
+    // complete morph inside the filter workspace; endpoints retain their SVGs.
+    const shadowRegion = { x: -16, y: -16,
+        width: Math.max(start.width, target.width) + 32,
+        height: Math.max(start.height, target.height) + 32 };
+    const result: LayeredEyeGeometry = { kind: "layered", side,
+        width: mix(start.width, target.width, p), height: mix(start.height, target.height, p),
+        layers: template.layers.map((node, index): EyeSvgNode => {
+            if (index === 0) {
+                if (node.tag === "g") return { ...node, children: node.children.map(n => n.tag === "path" ? { ...n, commands: body } : n) };
+                if (node.tag === "path") return { ...node, commands: body };
+                throw new RangeError("Missing angular morph body");
+            }
+            if (source === "idle" && index === 1 && node.tag === "path") return { ...node, commands: outline };
+            if (node.tag === "ellipse" || node.tag === "path") return { tag: "g", attributes: {
+                transform: { kind: "matrix", values: [1-p, 0, 0, 1-p, p*m.anchor[0], p*m.anchor[1]] } }, children: [node] };
+            if (node.tag === "defs") return { ...node, children: node.children.map(n => n.tag === "filter"
+                ? { ...n, attributes: { ...n.attributes, ...shadowRegion } } : n.tag !== "linearGradient" ? n : {
+                ...n, attributes: { ...n.attributes,
+                    x1: mix(gradient.x1, m.gradient.x1, p), y1: mix(gradient.y1, m.gradient.y1, p),
+                    x2: mix(gradient.x2, m.gradient.x2, p), y2: mix(gradient.y2, m.gradient.y2, p) } }) };
+            return node;
+        }),
+    };
+    validateLayeredEye(result);
+    return result;
 }
 const sadPrepared: Partial<Record<Side,ReturnType<typeof prepareSad>>>={};
 function prepareSad(side:Side, expression: "sad" | "cry" = "sad"){
@@ -554,7 +629,12 @@ function interpolateTimeoutEye(side: Side, p: number): LayeredEyeGeometry {
                     children: g.stops.map(s => ({ tag: "stop", attributes: { offset: s.offset, stopColor: s.color as `#${string}` }, children: [] })) },
                 { tag: "linearGradient", attributes: { ...dotGradient, id: "timeoutDot" }, children: g.stops.map(s => ({
                     tag: "stop", attributes: { offset: s.offset, stopColor: color("#ffffff", s.color) }, children: [] })) },
-                { tag: "filter", attributes: { id: "timeoutShadow", x: idle.shadow.region[0], y: idle.shadow.region[1], width: idle.shadow.region[2], height: idle.shadow.region[3], filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, children: [
+                // The spiral extends beyond Idle's filter bounds. Cover both
+                // endpoint sizes so its expanding fill stays fully visible.
+                { tag: "filter", attributes: { id: "timeoutShadow", x: -16, y: -16,
+                    width: Math.max(idle.width, target.width) + 32,
+                    height: Math.max(idle.height, target.height) + 32,
+                    filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, children: [
                     { tag: "feFlood", attributes: { floodOpacity: 0, result: "background" }, children: [] },
                     { tag: "feBlend", attributes: { mode: "normal", in: "SourceGraphic", in2: "background", result: "shape" }, children: [] },
                     { tag: "feColorMatrix", attributes: { in: "SourceAlpha", type: "matrix", values: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,0], result: "hardAlpha" }, children: [] },

@@ -11,6 +11,7 @@ assert.deepEqual(Object.keys(migrations).sort(), [
     "src/animation/expressionTransition.ts", "src/animation/transitionStrategy.ts", "src/animation/useExpressionTransition.ts",
     "src/animation/expressionController.ts",
     "src/geometry/mouth/expressionPresets.ts", "src/geometry/mouth/index.ts",
+    "src/geometry/eyes/presets.ts",
 ].sort(), "only the explicitly integrated files have migration hashes");
 export async function assertPhaseIntegrity(file, expected) {
     const current = createHash("sha256").update(await readFile(file)).digest("hex");

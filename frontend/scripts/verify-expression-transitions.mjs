@@ -77,31 +77,148 @@ try {
         }
         assert.ok(nodes.size <= 2, "Only two compositions may be retained");
     }
-    function fixture(connected = true) {
+    function fixture(connected = true, procedural = false, continuous = false, expression = "idle") {
         const driver = driverFixture();
         const engine = createAnimationEngine(driver);
         let notifications = 0;
-        const coordinator = createExpressionTransition(initial, () => notifications++);
+        const coordinator = createExpressionTransition({ ...initial, expression }, () => notifications++, procedural, continuous);
         const nodes = new Map();
         const render = (prepared = true) => {
             reconcile(nodes, coordinator.layers, coordinator.attach);
+            for (const layer of coordinator.layers) if (layer.strategy === "GEOMETRY") coordinator.attachFrame(layer.id, () => {});
             if (prepared) for (const layer of coordinator.layers) coordinator.prepared(layer.id);
             coordinator.commit();
         };
         render();
         if (connected) coordinator.connect(engine);
-        const complete = () => { driver.instances.slice(-2).forEach((run) => run.complete()); render(); };
+        const complete = () => { driver.instances.slice(coordinator.layers.at(-1).strategy === "GEOMETRY" ? -1 : -2).forEach((run) => run.complete()); render(); };
         return { driver, engine, coordinator, nodes, render, complete,
             get notifications() { return notifications; },
             dispose() { coordinator.dispose(); engine.dispose(); },
         };
     }
+    // Deterministic clock: the hold starts only after the entry crossfade settles.
+    const originalSetTimeout = globalThis.setTimeout, originalClearTimeout = globalThis.clearTimeout;
+    const timers = new Map();
+    let timerId = 0;
+    globalThis.setTimeout = (fn, delay) => {
+        const id = ++timerId; timers.set(id, { fn, delay }); return id;
+    };
+    globalThis.clearTimeout = id => timers.delete(id);
+    try {
+        const semantic = useFaceStore.getState();
+        for (const procedural of [false, true]) for (const source of EMOTIONS.filter(e => e !== "happier")) {
+            const staged = fixture(true, procedural, true, source);
+            try {
+                staged.coordinator.request("happier", 700); staged.render(false);
+                assert.deepEqual(staged.coordinator.layers.map(l => l.expression), [source, "happier-transition"]);
+                assert.equal(staged.coordinator.layers[1].strategy, "GEOMETRY");
+                assert.equal(timers.size, 0, "decode time is outside the hold");
+                staged.render();
+                assert.deepEqual(staged.driver.instances.map(r => r.parameters.duration), [700]);
+                assert.equal(timers.size, 0, "entry animation is outside the hold");
+                staged.complete();
+                assert.equal(staged.coordinator.layers[0].expression, "happier-transition");
+                const [id, timer] = [...timers][0];
+                assert.equal(timer.delay, 1500);
+                staged.coordinator.request("happier", 999);
+                assert.equal(timers.size, 1, "duplicates preserve the hold");
+                assert.strictEqual(timers.get(id), timer);
+                timers.delete(id); timer.fn(); staged.render();
+                assert.deepEqual(staged.coordinator.layers.map(l => l.expression), ["happier-transition", "happier"]);
+                assert.equal(staged.coordinator.layers[1].strategy, "GEOMETRY");
+                assert.deepEqual(staged.driver.instances.slice(-2).map(r => r.parameters.duration), [700, 700]);
+                staged.complete();
+                assert.equal(staged.coordinator.layers[0].expression, "happier");
+                assert.equal(timers.size, 0);
+                const count = staged.notifications;
+                staged.coordinator.request("happier", 700);
+                assert.equal(staged.notifications, count, "settled happier never restages");
+            } finally { staged.dispose(); }
+        }
+        for (const phase of ["entry", "hold", "exit"]) {
+            const staged = fixture();
+            try {
+                staged.coordinator.request("happier", 300); staged.render();
+                const staleRuns = staged.driver.instances.slice();
+                if (phase !== "entry") staged.complete();
+                const staleTimer = [...timers.values()][0];
+                if (phase === "exit") {
+                    timers.clear(); staleTimer.fn(); staged.render();
+                }
+                staged.coordinator.request("cry", 0); staged.render();
+                assert.equal(timers.size, 0);
+                staleTimer?.fn();
+                staleRuns.forEach(r => r.parameters.onComplete(r));
+                assert.equal(staged.coordinator.layers[0].expression, "cry", `latest wins during ${phase}`);
+                assert.equal(staged.coordinator.layers.length, 1);
+            } finally { staged.dispose(); }
+        }
+        const queued = fixture(true, true, true);
+        try {
+            queued.coordinator.request("sad", 300); queued.render();
+            assert.equal(queued.coordinator.layers[1].strategy, "GEOMETRY");
+            queued.coordinator.request("happier", 700);
+            assert.equal(timers.size, 0);
+            queued.driver.instances.at(-1).complete(); queued.render();
+            assert.deepEqual(queued.coordinator.layers.map(l => l.expression), ["sad", "happier-transition"]);
+            queued.complete();
+            assert.equal(timers.size, 1, "continuous geometry queue preserves the happier sequence");
+            queued.coordinator.request("happier-transition", 300, true);
+            assert.equal(timers.size, 0, "static preview cancels the sequence");
+        } finally { queued.dispose(); }
+        for (const immediate of [false, true]) {
+            const staged = fixture();
+            staged.coordinator.request("happier", immediate ? 300 : 0, immediate);
+            assert.equal(staged.coordinator.layers[0].expression, "happier");
+            assert.equal(timers.size, 0, "zero/reduced motion skip staging");
+            staged.dispose();
+        }
+        const staged = fixture();
+        staged.coordinator.request("happier", 300); staged.render(); staged.complete();
+        const stale = [...timers.values()][0];
+        const publications = staged.notifications;
+        staged.dispose();
+        assert.equal(timers.size, 0, "unmount clears hold");
+        stale.fn();
+        assert.equal(staged.notifications, publications, "disposed timer cannot publish");
+        assert.strictEqual(useFaceStore.getState(), semantic, "staging never changes semantic state");
+        console.log("PASS: happier staging from every source in both renderers, 1.5-second settled hold, duplicate preservation, interruption, stale callbacks, zero/reduced motion and cleanup.");
+    } finally {
+        globalThis.setTimeout = originalSetTimeout; globalThis.clearTimeout = originalClearTimeout;
+    }
     const semanticBefore = useFaceStore.getState();
+    // React StrictMode may replay a mounted geometry effect after its decode
+    // promise started playback. Reattach the same connected DOM, as React does.
+    const replay = fixture(true, true, true);
+    try {
+        replay.coordinator.request("sad", 700); replay.render();
+        const target = replay.coordinator.layers.at(-1), element = replay.nodes.get(target.id).element;
+        const old = replay.driver.instances.at(-1);
+        old.seek(.02);
+        replay.coordinator.request("shock", 700);
+        replay.coordinator.attachFrame(target.id, null);
+        replay.coordinator.attach(target.id, null);
+        assert.equal(old.cancelled, true);
+        replay.coordinator.attach(target.id, element);
+        replay.coordinator.attachFrame(target.id, () => {});
+        replay.coordinator.prepared(target.id);
+        assert.equal(replay.driver.instances.length, 2, "effect replay restarts the cancelled geometry run");
+        const restarted = replay.driver.instances.at(-1);
+        old.parameters.onComplete(old);
+        assert.equal(replay.coordinator.layers.at(-1).expression, "sad", "stale completion cannot consume queued state");
+        restarted.complete(); replay.render();
+        assert.deepEqual(replay.coordinator.layers.map(l => l.expression), ["sad", "shock"]);
+        replay.complete();
+        assert.equal(replay.coordinator.layers.length, 1);
+        assert.equal(replay.coordinator.layers[0].expression, "shock", "latest request survives effect replay");
+        console.log("PASS: StrictMode geometry effect replay restarts playback and drains the latest queued expression.");
+    } finally { replay.dispose(); }
     const f = fixture();
     assert.deepEqual(f.coordinator.layers, [initial]);
     assert.equal(f.driver.instances.length, 0);
-    f.coordinator.request("happier", 300);
-    assert.deepEqual(f.coordinator.layers.map((l) => l.expression), ["idle", "happier"]);
+    f.coordinator.request("sad", 300);
+    assert.deepEqual(f.coordinator.layers.map((l) => l.expression), ["idle", "sad"]);
     assert.deepEqual(f.coordinator.layers.map((l) => l.initialOpacity), [1, 0]);
     f.render(false);
     assert.equal(f.driver.instances.length, 0, "Crossfade waits for incoming image readiness");
@@ -120,12 +237,12 @@ try {
     incoming.complete();
     f.render();
     assert.equal(f.coordinator.layers.length, 1);
-    assert.equal(f.coordinator.layers[0].expression, "happier");
+    assert.equal(f.coordinator.layers[0].expression, "sad");
     assert.equal(f.nodes.size, 1);
     assert.equal(incoming.target.style.opacity, "1");
     assert.equal(outgoing.reverts, 1);
     const beforeDuplicate = f.notifications;
-    f.coordinator.request("happier", 999);
+    f.coordinator.request("sad", 999);
     f.render();
     assert.equal(f.notifications, beforeDuplicate);
     assert.equal(f.driver.instances.length, 2);
@@ -214,7 +331,7 @@ try {
     }
     realRender(); realCoordinator.connect(realEngine);
     try {
-        realCoordinator.request("happier", 300); realRender();
+        realCoordinator.request("sad", 300); realRender();
         assert.equal(realRuns.length, 2);
         realRuns.forEach((run) => run.seek(150));
         assert.deepEqual([...realNodes.values()].map((entry) => Number(entry.element.style.opacity)), [0.5, 0.5]);
@@ -280,6 +397,7 @@ try {
                 dirty = false; index = 0; scheduled = [];
                 output = module.exports.useExpressionTransition(...props);
                 reconcile(nodes, output.layers, output.attach);
+                for (const layer of output.layers) if (layer.strategy === "GEOMETRY") output.attachFrame(layer.id, () => {});
                 for (const effect of scheduled) effect();
                 if (!dirty) return output;
             }
@@ -297,7 +415,7 @@ try {
     hook.ready();
     assert.equal(hook.flush(["happier", 321, false]).layers.length, 2);
     hook.prepared();
-    assert.deepEqual(hook.driver.instances.map((run) => run.parameters.duration), [321, 321]);
+    assert.deepEqual(hook.driver.instances.map((run) => run.parameters.duration), [321]);
     const active = hook.driver.instances.slice(-2);
     hook.motion(true);
     assert.equal(hook.flush().layers.length, 1);

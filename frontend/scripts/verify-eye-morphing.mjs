@@ -149,7 +149,7 @@ try {
         const almostIdle=morph(a,b,1e-7);
         contourFromCommands(almostIdle.layers[1].commands).start.forEach((n,i)=>near(n,m.sourceOutline.start[i],1e-5));
         // No unsupported endpoint is accepted even when progress clamps to an endpoint.
-        for (const other of [HAPPIER_TRANSITION_PREVIEW[side],{...b,width:b.width+1}])
+        for (const other of [{...HAPPIER_TRANSITION_PREVIEW[side],width:157},{...b,width:b.width+1}])
             for (const t of [0,0.5,1]) assert.throws(()=>morph(a,other,t),/correspondence/);
         for (const t of [NaN,Infinity,-Infinity,"0.5",undefined,null]) {
             assert.throws(()=>morph(a,b,t),/progress/); assert.throws(()=>layout(positions.idle.leftEye,positions.happier.leftEye,t),/progress/);

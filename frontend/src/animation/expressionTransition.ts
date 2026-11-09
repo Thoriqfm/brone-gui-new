@@ -17,6 +17,8 @@ interface MountedComposition {
     prepared: boolean;
 }
 
+export const HAPPIER_HOLD_MS = 1500;
+
 // Visual composition bookkeeping only. The existing engine owns every animation.
 export function createExpressionTransition(
     initial: TransitionComposition,
@@ -31,6 +33,21 @@ export function createExpressionTransition(
     let pending: { generation: number; duration: number; started: boolean; strategy: TransitionStrategy; prepared: boolean } | null = null;
     let disposed = false;
     let queued: {expression: LayerExpression;duration:number} | null = null;
+    let happier: { duration: number; timer?: ReturnType<typeof setTimeout> } | null = null;
+    function cancelHappier(): void {
+        if (happier?.timer !== undefined) clearTimeout(happier.timer);
+        happier = null;
+    }
+    function settled(): void {
+        const sequence = happier;
+        if (!sequence || sequence.timer !== undefined || layers.length !== 1 ||
+            layers[0].expression !== "happier-transition") return;
+        sequence.timer = setTimeout(() => {
+            if (disposed || happier !== sequence) return;
+            happier = null;
+            move("happier", sequence.duration);
+        }, HAPPIER_HOLD_MS);
+    }
     const mounted = new Map<number, MountedComposition>();
     const frames = new Map<number, (progress: number) => void>();
     function attachFrame(id: number, frame: ((progress: number) => void) | null): void {
@@ -44,6 +61,12 @@ export function createExpressionTransition(
     function attach(id: number, element: HTMLDivElement | null): void {
         const old = mounted.get(id);
         if (old?.element === element) return;
+        // StrictMode can replay the geometry effect after decoding has already
+        // started its run. Detaching cancels that run, so the next mount must
+        // be allowed to start it again instead of leaving requests queued.
+        if (old && pending?.strategy === "GEOMETRY" && id === layers[layers.length - 1].id) {
+            pending.started = false;
+        }
         old?.unregister?.();
         mounted.delete(id);
         if (disposed || !element || !layers.some((layer) => layer.id === id)) return;
@@ -83,6 +106,17 @@ export function createExpressionTransition(
     }
     function request(expression: LayerExpression, duration: number, immediate = false): void {
         if (disposed) return;
+        if (expression === "happier" && duration > 0 && !immediate) {
+            if (happier || layers[layers.length - 1].expression === "happier") return;
+            happier = { duration };
+            move("happier-transition", duration);
+            return;
+        }
+        cancelHappier();
+        move(expression, duration, immediate);
+    }
+    function move(expression: LayerExpression, duration: number, immediate = false): void {
+        if (disposed) return;
         const last = layers[layers.length - 1];
         // Manual blink validation preserves the displayed morph on replacement.
         // Finish its approved leg, then consume only the latest request. The
@@ -92,7 +126,10 @@ export function createExpressionTransition(
             return;
         }
         queued=null;
-        if (last.expression === expression && (layers.length === 1 || (!immediate && duration !== 0))) return;
+        if (last.expression === expression && (layers.length === 1 || (!immediate && duration !== 0))) {
+            settled();
+            return;
+        }
         const interruptedElements = pending?.strategy === "ELEMENT_BASED";
         const interruptedGeometry = pending?.strategy === "GEOMETRY";
         // Only canonical endpoints have approved correspondence. Settle the old
@@ -132,6 +169,7 @@ export function createExpressionTransition(
             }
         }
         publish(layers);
+        settled();
     }
     function commit(): void {
         const transition = pending;
@@ -154,12 +192,13 @@ export function createExpressionTransition(
                         pending = null;
                         layers = [{ ...incoming, initialOpacity: 1, strategy: undefined }];
                         publish(layers);
+                        settled();
                         const next=queued; queued=null;
-                        if (next) request(next.expression,next.duration);
+                        if (next) move(next.expression,next.duration);
                     },
                 })) throw new Error("Geometry transition target is unavailable");
             } catch (error) {
-                request(incoming.expression, 0, true);
+                move(incoming.expression, 0, true);
                 console.error("Geometry transition failed", error);
             }
             return;
@@ -182,10 +221,11 @@ export function createExpressionTransition(
                         resetElements(true);
                         layers = [{ ...incoming, initialOpacity: 1, strategy: undefined }];
                         publish(layers);
+                        settled();
                     } })) throw new Error("Expression element target is unavailable");
                 }
             } catch (error) {
-                request(incoming.expression, 0, true);
+                move(incoming.expression, 0, true);
                 console.error("Element transition failed", error);
             }
             return;
@@ -202,6 +242,7 @@ export function createExpressionTransition(
             // Keep the incoming node and its final engine-owned opacity intact.
             layers = [incoming];
             publish(layers);
+            settled();
         };
         try {
             for (const layer of layers) {
@@ -235,7 +276,7 @@ export function createExpressionTransition(
                 })) throw new Error("Expression transition target is unavailable");
             }
         } catch (error) {
-            request(incoming.expression, 0, true);
+            move(incoming.expression, 0, true);
             console.error("Expression crossfade failed", error);
         }
     }
@@ -243,7 +284,7 @@ export function createExpressionTransition(
         if (disposed || !layers.some((layer) => layer.id === id)) return;
         if (pending?.strategy === "ELEMENT_BASED" && id === layers[layers.length - 1].id) {
             pending.prepared = true;
-            if (!success) request(layers[layers.length - 1].expression, 0, true);
+            if (!success) move(layers[layers.length - 1].expression, 0, true);
             else commit();
             return;
         }
@@ -251,7 +292,7 @@ export function createExpressionTransition(
         if (!target) return;
         target.prepared = true;
         if (!success && pending && id === layers[layers.length - 1].id) {
-            request(layers[layers.length - 1].expression, 0, true);
+            move(layers[layers.length - 1].expression, 0, true);
         } else commit();
     }
     function connect(value: AnimationEngine): void {
@@ -267,6 +308,7 @@ export function createExpressionTransition(
     }
     function dispose(): void {
         if (disposed) return;
+        cancelHappier();
         stop();
         disposed = true;
         queued=null;

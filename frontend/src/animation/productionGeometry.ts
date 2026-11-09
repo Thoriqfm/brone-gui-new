@@ -4,37 +4,39 @@ import { EYE_EXPRESSION_PRESETS, interpolateEyeGeometry, interpolateEyeLayout } 
 import { MOUTH_EXPRESSION_PRESETS, sampleMouthTransition, type MouthExpression } from "../geometry/mouth";
 
 export type FaceRendererMode = "asset" | "procedural";
-export type GeometryEmotion = Emotion;
+export type GeometryEmotion = Emotion | "happier-transition";
 export function isGeometryEmotion(value: unknown): value is GeometryEmotion {
-    return isEmotion(value);
+    return isEmotion(value) || value === "happier-transition";
 }
 // Happy and Happier use the same approved mouth export, at the same layout.
 export const PRODUCTION_MOUTH_MAP: Record<GeometryEmotion, MouthExpression> = {
     idle: "idle", happy: "happy", happier: "happy", sad: "sad", cry: "cry", shock: "shock", thinking: "thinking", timeout: "timeout",
+    "happier-transition": "happy",
 };
 // These expressions have source-identical eye artwork AND placement. This is
 // an explicit asset alias, not substitution of an unsupported expression.
-const eyeExpression = <T extends Emotion>(expression: T) =>
+const eyeExpression = <T extends GeometryEmotion>(expression: T) =>
     (expression === "happy" || expression === "shock" ? "idle" : expression) as Exclude<T, "happy" | "shock"> | "idle";
 export function supportsProductionMorph(from: string, to: string): boolean {
     return isGeometryEmotion(from) && isGeometryEmotion(to) && from !== to;
 }
-export function productionMorphRoute(from: Emotion, to: Emotion) {
+export function productionMorphRoute(from: GeometryEmotion, to: GeometryEmotion) {
     const a = eyeExpression(from), b = eyeExpression(to);
     const eyeBridge = a !== b && a !== "idle" && b !== "idle" &&
-        !((a === "sad" && b === "cry") || (a === "cry" && b === "sad"));
+        !((a === "sad" && b === "cry") || (a === "cry" && b === "sad")) &&
+        !((a === "happier-transition" && b === "happier") || (a === "happier" && b === "happier-transition"));
     const ma = PRODUCTION_MOUTH_MAP[from], mb = PRODUCTION_MOUTH_MAP[to];
     const sameMouth = ma === mb || ((ma === "sad" || ma === "cry") && (mb === "sad" || mb === "cry"));
     return { eyes: a === b ? "unchanged" : eyeBridge ? "via idle" : "direct",
         mouth: sameMouth ? "unchanged" : "direct" } as const;
 }
-export function canonicalProductionGeometry(expression: Emotion) {
+export function canonicalProductionGeometry(expression: GeometryEmotion) {
     if (!isGeometryEmotion(expression)) throw new RangeError("Expression uses original SVG layers instead of geometry");
     return { eyes: EYE_EXPRESSION_PRESETS[expression],
         mouth: MOUTH_EXPRESSION_PRESETS[PRODUCTION_MOUTH_MAP[expression]].geometry,
         layout: FACE_LAYER_LAYOUTS[expression] };
 }
-export function sampleProductionGeometry(from: Emotion, to: Emotion, progress: number, mouthProgress = progress) {
+export function sampleProductionGeometry(from: GeometryEmotion, to: GeometryEmotion, progress: number, mouthProgress = progress) {
     if (!isGeometryEmotion(from) || !isGeometryEmotion(to) || from === to) throw new RangeError("Unsupported production morph");
     if (!Number.isFinite(progress) || !Number.isFinite(mouthProgress)) throw new RangeError("Invalid production progress");
     const a = canonicalProductionGeometry(from), b = canonicalProductionGeometry(to);
@@ -61,7 +63,8 @@ export function sampleProductionGeometry(from: Emotion, to: Emotion, progress: n
 }
 export type ProductionGeometrySample = ReturnType<typeof canonicalProductionGeometry> | ReturnType<typeof sampleProductionGeometry>;
 /** Identify the already-existing eye leg without changing face routing. */
-export function productionEyeMorphContext(from: Emotion,to: Emotion,p: number) {
+export function productionEyeMorphContext(from: GeometryEmotion,to: GeometryEmotion,p: number) {
+    if (from === "happier-transition" || to === "happier-transition") throw new RangeError("Angular transition eyes do not blink");
     if (from === "timeout" || to === "timeout") throw new RangeError("Timeout morphs do not blink");
     if (!isGeometryEmotion(from) || !isGeometryEmotion(to)) throw new RangeError("Unsupported eye morph context");
     if (p<=0 || from===to) return {from,to:from,morphProgress:0};

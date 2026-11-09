@@ -1,9 +1,10 @@
 {
   "src/components/face/Eyes.tsx": {
     "previous": "cbe20a702a443a3fbf31920a150845345b42521e09139cb38893f962f556da5c",
-    "integrated": "8890daba04132640a03ff33de062c845ad367103d9382030a10fa47cc8d76cdd",
+    "integrated": "5f9a4b94468a2d0028f09d563458fed310622bcfc5c92bccbdb8ad7690fa5684",
     "beforeRobotBlink": "aae1be9e65760331461e3612535473a1304ee2a6d74a0d0a1800d2d1db83b51d",
-    "geometryIntegration": "c8726bdc2de05cf4d4b18cb0b1a324cd7bc987e57569421549a7bc56b4f505b2"
+    "geometryIntegration": "c8726bdc2de05cf4d4b18cb0b1a324cd7bc987e57569421549a7bc56b4f505b2",
+    "beforeHappierTransition": "8890daba04132640a03ff33de062c845ad367103d9382030a10fa47cc8d76cdd"
   },
   "src/components/face/FaceRenderer.tsx": {
     "previous": "bc93f7627ccdbf5adf64ffa4482e5b56d8f64781ee84ffd252cef86bac4f3180",
@@ -14,10 +15,13 @@
   },
   "src/animation/expressionTransition.ts": {
     "previous": "e2e787f08eb79b82975091a9cf94db362fe97330896c2e7a5cf7f3e518119445",
-    "integrated": "3e25da52a72e2e464380e5f1d0929a782bfd9d5dec9b66d7a83666aa1fb6faa5",
+    "integrated": "8bc0c5c86752baab1ffb8fce653a8f29f3c15de111d69902d4a0240d28308c07",
     "beforeCrySequence": "eff0a03c9c1507279cda7e7410ad6f40ef7d74115d49cb8fc9c9ae1f692fefc4",
     "beforeEffectMotion": "60580a9175a36455291ef0ded18f161f726316ebf71618e8aacba8542ceab504",
-    "geometryIntegration": "8b8dfa8f26d713e63970d13ed131c02e9662695914139ae9ae0ed13f5991271c"
+    "geometryIntegration": "8b8dfa8f26d713e63970d13ed131c02e9662695914139ae9ae0ed13f5991271c",
+    "beforeHappierTransition": "3e25da52a72e2e464380e5f1d0929a782bfd9d5dec9b66d7a83666aa1fb6faa5",
+    "beforeHappierHoldAdjustment": "392b1324051df26984a285e5b16a1e7d9ac0cfbd0962b833b0c98be8ea1cac1f",
+    "beforeStrictModeReplayFix": "0d2aeee32d466ad6338ba590c56bbef9c6ce7dc0c1af1b8299e7e11fe5f74883"
   },
   "src/geometry/mouth/expressionPresets.ts": {
     "previous": "ddb1f82c8a8c6e1647775e8bbac4f9168dad27c901530036734743411bbe0a13",
@@ -33,11 +37,16 @@
   },
   "src/animation/transitionStrategy.ts": {
     "previous": "f6fe39b1cbf4a237abf3b41f6a280c58d427fe5d7b22dde8c78cd642c63e81a4",
-    "integrated": "76fd57c32f2dcb7a365cfec816866ec23ed3134121f35ce36c435f780910ef6d"
+    "integrated": "e644a4f0e0291225da5074cc750c3d352536c6e3ca948afb05858bcc7d5d3b81",
+    "beforeHappierTransition": "76fd57c32f2dcb7a365cfec816866ec23ed3134121f35ce36c435f780910ef6d"
   },
   "src/animation/useExpressionTransition.ts": {
     "previous": "31e34eec733444408bcd23c6bde149e5021304e0f7bdaaac5d7af3cc823f568d",
     "integrated": "33198a04c92733f85d57f7905b19fdb9768ebea9acac3807cbcb18a6280b3e75",
     "geometryIntegration": "2dd6266534e2ea7be4b1a0b02c4eae22976b7100c921143f0172f2440ddb8827"
+  },
+  "src/geometry/eyes/presets.ts": {
+    "previous": "87a83969af91510bcff46f21e5a03b83217910b24c91e1017ba60d02227e0027",
+    "integrated": "5da7cd153080aec13763129d2eedc02a970a474724c196e1c3c44741a9f5a5ef"
   }
 }

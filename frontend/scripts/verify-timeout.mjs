@@ -23,7 +23,7 @@ try {
     const dom = await load("animation/productionGeometryDom.ts");
     const { createExpressionTransition } = await load("animation/expressionTransition.ts");
     const { createAnimationEngine } = await load("animation/animationEngine.ts");
-    const { EYE_EXPRESSION_PRESETS } = await load("geometry/eyes/index.ts");
+    const { EYE_EXPRESSION_PRESETS, interpolateEyeGeometry } = await load("geometry/eyes/index.ts");
     const render = (component, props) => renderToStaticMarkup(createElement(component, props));
     const { createElement } = await import(pathToFileURL(await realpath("node_modules/react/index.js")));
     const { renderToStaticMarkup } = await import(pathToFileURL(await realpath("node_modules/react-dom/server.node.js")));
@@ -37,6 +37,24 @@ try {
         const source = await readFile(`public/assets/face-layers/eyes/${side}/timeout-eye-${side}.svg`, "utf8");
         const raw = [...source.matchAll(/<path[^>]* d="([^"]+)"/g)][0][1].match(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g).map(Number);
         assert.deepEqual(EYE_EXPRESSION_PRESETS.timeout[side].layers[1].commands.flatMap(c => c.slice(1)), raw, "spiral controls are copied exactly from the approved SVG");
+        for (let sample = 1; sample < 100; sample++) {
+            const p = sample / 100;
+            const eye = interpolateEyeGeometry(EYE_EXPRESSION_PRESETS.idle[side], EYE_EXPRESSION_PRESETS.timeout[side], p);
+            near(eye, interpolateEyeGeometry(EYE_EXPRESSION_PRESETS.timeout[side], EYE_EXPRESSION_PRESETS.idle[side], 1-p));
+            const filter = eye.layers.at(-1).children.find(n => n.tag === "filter").attributes;
+            const fill = eye.layers[0].children[0].commands;
+            let previous = fill[0].slice(1);
+            for (const c of fill.slice(1,-1)) {
+                for (let i = 0; i <= 10; i++) {
+                    const t = i / 10, u = 1-t;
+                    const [x,y] = [0,1].map(k => u**3*previous[k] + 3*u*u*t*c[k+1] + 3*u*t*t*c[k+3] + t**3*c[k+5]);
+                    assert.ok(x >= filter.x-1e-7 && x <= filter.x+filter.width+1e-7 &&
+                        y >= filter.y-1e-7 && y <= filter.y+filter.height+1e-7,
+                        `${side} timeout fill is clipped at ${p}: (${x},${y})`);
+                }
+                previous = c.slice(5);
+            }
+        }
     }
     const mouthSvg = await readFile("public/assets/face-layers/mouth/timeout-mouth.svg", "utf8");
     const originalMouth = mouthSvg.match(/d="([^"]+)"/)[1].match(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g).map(Number);

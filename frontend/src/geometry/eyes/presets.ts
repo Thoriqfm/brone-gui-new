@@ -324,15 +324,16 @@ export const EYE_PRESETS = /* @__PURE__ */ (() => freeze({ IDLE_LEFT, IDLE_RIGHT
     THINKING_LEFT: SOURCE_EYE_PRESETS.THINKING_LEFT, THINKING_RIGHT: SOURCE_EYE_PRESETS.THINKING_RIGHT,
 }))();
 const idle = /* @__PURE__ */ (() => freeze({ left: EYE_PRESETS.IDLE_LEFT, right: EYE_PRESETS.IDLE_RIGHT }))();
+export const HAPPIER_TRANSITION_PREVIEW = /* @__PURE__ */ (() => freeze({
+    left: SOURCE_EYE_PRESETS.HAPPIER_TRANSITION_LEFT, right: SOURCE_EYE_PRESETS.HAPPIER_TRANSITION_RIGHT }))();
 // Both eye assets AND layouts match in FACE_LAYER_COMPOSITIONS/FACE_LAYER_LAYOUTS.
 export const EYE_EXPRESSION_PRESETS = /* @__PURE__ */ (() => freeze({ idle, happy: idle, shock: idle,
     timeout: TIMEOUT_EYES,
     happier: { left: EYE_PRESETS.HAPPIER_LEFT, right: EYE_PRESETS.HAPPIER_RIGHT },
+    "happier-transition": HAPPIER_TRANSITION_PREVIEW,
     sad: { left: EYE_PRESETS.SAD_LEFT, right: EYE_PRESETS.SAD_RIGHT },
     cry: { left: EYE_PRESETS.CRY_LEFT, right: EYE_PRESETS.CRY_RIGHT },
     thinking: { left: EYE_PRESETS.THINKING_LEFT, right: EYE_PRESETS.THINKING_RIGHT },
 }))();
-export const HAPPIER_TRANSITION_PREVIEW = /* @__PURE__ */ (() => freeze({
-    left: SOURCE_EYE_PRESETS.HAPPIER_TRANSITION_LEFT, right: SOURCE_EYE_PRESETS.HAPPIER_TRANSITION_RIGHT }))();
 export const EYE_EXPRESSIONS = ["idle", "happy", "happier", "sad", "cry", "shock", "thinking"] as const;
 export type EyeExpression = (typeof EYE_EXPRESSIONS)[number];
