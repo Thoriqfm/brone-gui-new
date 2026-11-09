@@ -86,7 +86,8 @@ def test_mqtt_defaults_broadcast_reconnect_and_http_compatibility(mqtt_client):
     assert not client.get('/health').json()['mqtt']['connected']
     ingress._on_connect(ingress.client, None, None, OK, None)
     ingress._on_subscribe(ingress.client, None, 2, [OK], None)
-    assert ingress.client.subscriptions == [('brone/face/command', 1)] * 2
+    assert ingress.client.address == ('localhost', 1883)
+    assert ingress.client.subscriptions == [('robot/expression', 1)] * 2
 
 
 @pytest.mark.parametrize('payload', [
@@ -97,12 +98,13 @@ def test_mqtt_defaults_broadcast_reconnect_and_http_compatibility(mqtt_client):
     b'{"type":"SET_EXPRESSION","request_id":"bad","payload":{"emotion":"happy","transition_ms":-1}}',
     b'{"type":"SET_EXPRESSION","request_id":"bad","payload":{"emotion":"happy","extra":1}}',
 ])
-def test_invalid_mqtt_preserves_state(mqtt_client, payload):
+def test_invalid_mqtt_preserves_state(mqtt_client, payload, caplog):
     client, ingress = mqtt_client
     before = client.get('/api/face/state').json()
     deliver(ingress, payload)
     drain(client, ingress)
     assert client.get('/api/face/state').json() == before
+    assert 'MQTT command rejected: invalid SET_EXPRESSION JSON:' in caplog.text
     # Consumer must survive malformed input and accept the next valid command.
     deliver(ingress, json.dumps(EXAMPLE).encode())
     drain(client, ingress)
@@ -155,12 +157,44 @@ def test_invalid_settings(overrides):
 
 def test_environment_configuration(monkeypatch):
     monkeypatch.setenv('BRONE_MQTT_ENABLED', 'true')
-    monkeypatch.setenv('BRONE_MQTT_HOST', 'broker.local')
+    monkeypatch.setenv('BRONE_MQTT_BROKER', 'broker.local')
     monkeypatch.setenv('BRONE_MQTT_PORT', '1884')
     monkeypatch.setenv('BRONE_MQTT_TOPIC', 'robot/brone/expression')
     settings = MqttSettings.from_env()
     assert settings.enabled and settings.host == 'broker.local'
     assert settings.port == 1884 and settings.topic == 'robot/brone/expression'
+
+
+def test_defaults_and_legacy_host_precedence(monkeypatch):
+    for name in ('ENABLED', 'BROKER', 'HOST', 'PORT', 'TOPIC'):
+        monkeypatch.delenv(f'BRONE_MQTT_{name}', raising=False)
+    settings = MqttSettings.from_env()
+    assert settings.enabled
+    assert (settings.host, settings.port, settings.topic) == ('localhost', 1883, 'robot/expression')
+    monkeypatch.setenv('BRONE_MQTT_HOST', 'legacy.local')
+    assert MqttSettings.from_env().host == 'legacy.local'
+    monkeypatch.setenv('BRONE_MQTT_BROKER', 'nuc.local')
+    assert MqttSettings.from_env().host == 'nuc.local'
+
+
+def test_mqtt_can_be_disabled(monkeypatch):
+    monkeypatch.setenv('BRONE_MQTT_ENABLED', 'false')
+    with TestClient(app) as client:
+        assert app.state.mqtt is None
+        assert client.get('/health').json()['mqtt']['enabled'] is False
+        assert client.post('/api/face/expression', json=EXAMPLE).status_code == 200
+
+
+def test_all_schema_emotions_accepted(mqtt_client):
+    client, ingress = mqtt_client
+    schema = json.loads((Path(__file__).resolve().parents[2] / 'shared/face-protocol.schema.json').read_text())
+    for emotion in schema['properties']['payload']['properties']['emotion']['enum']:
+        message = {'type': 'SET_EXPRESSION', 'request_id': f'talk-{emotion}',
+                   'payload': {'emotion': emotion}}
+        deliver(ingress, json.dumps(message).encode())
+        drain(client, ingress)
+        assert client.get('/api/face/state').json()['payload'] == {
+            'emotion': emotion, 'intensity': 1, 'transition_ms': 700}
 
 
 def test_broker_unavailable_does_not_prevent_http_or_shutdown(monkeypatch):
@@ -169,6 +203,7 @@ def test_broker_unavailable_does_not_prevent_http_or_shutdown(monkeypatch):
     import socket
     with socket.socket() as unavailable:
         unavailable.bind(('127.0.0.1', 0))
+        monkeypatch.setenv('BRONE_MQTT_BROKER', '127.0.0.1')
         monkeypatch.setenv('BRONE_MQTT_PORT', str(unavailable.getsockname()[1]))
         with TestClient(app) as client:
             assert client.get('/health').json()['mqtt']['enabled']

@@ -1,7 +1,7 @@
 # MQTT command delivery
 
 Data path: command producer -> Mosquitto broker -> Python backend -> WebSocket -> face renderer.
-The browser must remain open and connected to render the face. HTTP control remains available for compatibility/debugging; commands no longer need an HTTP POST when MQTT is enabled. Neither ROS2 nor a browser MQTT client is needed.
+The browser must remain open and connected to render the face. HTTP control remains available for compatibility/debugging; commands no longer need an HTTP POST with the default MQTT subscriber. Neither ROS2 nor a browser MQTT client is needed.
 
 ## Local Ubuntu setup
 
@@ -21,13 +21,13 @@ Update backend dependencies from the repository root (existing virtualenv):
 backend/.venv/bin/python -m pip install -e './backend[dev]'
 ```
 
-Start Brone with MQTT enabled, from the repository root:
+Start Brone from the repository root (MQTT is enabled by default):
 
 ```bash
 export BRONE_MQTT_ENABLED=true
-export BRONE_MQTT_HOST=127.0.0.1
+export BRONE_MQTT_BROKER=localhost
 export BRONE_MQTT_PORT=1883
-export BRONE_MQTT_TOPIC=brone/face/command
+export BRONE_MQTT_TOPIC=robot/expression
 npm run dev
 ```
 
@@ -45,7 +45,7 @@ Send a command without HTTP:
 
 ```bash
 mosquitto_pub -h 127.0.0.1 -p 1883 -q 1 \
-  -t brone/face/command \
+  -t robot/expression \
   -m '{"type":"SET_EXPRESSION","request_id":"mqtt-1","payload":{"emotion":"happy"}}'
 ```
 
@@ -53,7 +53,7 @@ Omitted intensity defaults to 1 and transition_ms to 700. Full form:
 
 ```bash
 mosquitto_pub -h 127.0.0.1 -p 1883 -q 1 \
-  -t brone/face/command \
+  -t robot/expression \
   -m '{"type":"SET_EXPRESSION","request_id":"mqtt-2","payload":{"emotion":"sad","intensity":1,"transition_ms":700}}'
 ```
 
@@ -61,14 +61,26 @@ Expressions: `idle`, `happy`, `happier`, `sad`, `cry`, `shock`, `thinking`, `tim
 
 Verify backend acceptance using `GET /api/face/state` or the backend's `face_command accepted` log, then verify the visible face. Success from `mosquitto_pub -q 1` acknowledges broker receipt, not backend validation or display completion. There is no MQTT response/status topic in this slice.
 
+## NUC to Jetson
+
+Run the subscriber backend on Jetson; it continues to serve HTTP/WebSocket on port 8000. If Mosquitto also runs on Jetson, keep `BRONE_MQTT_BROKER=localhost` there. The NUC publisher connects to the Jetson broker address, using the broker team's authenticated listener/ACL configuration:
+
+```bash
+mosquitto_pub -h <jetson-broker-address> -p 1883 -q 1 \
+  -t robot/expression \
+  -m '{"type":"SET_EXPRESSION","request_id":"talk-001","payload":{"emotion":"happy"}}'
+```
+
+Add the agreed broker credentials/TLS options to the publisher command. If Mosquitto runs on the NUC instead, set `BRONE_MQTT_BROKER` on Jetson to the NUC broker address. Broker port 1883 and backend port 8000 are separate. Speaking/visemes are not implemented.
+
 ## Configuration
 
 | Variable | Default | Meaning |
 | --- | --- | --- |
-| `BRONE_MQTT_ENABLED` | `false` | Enable the subscriber |
-| `BRONE_MQTT_HOST` | `127.0.0.1` | Broker hostname |
+| `BRONE_MQTT_ENABLED` | `true` | Enable the subscriber |
+| `BRONE_MQTT_BROKER` | `localhost` | Broker hostname; takes precedence over legacy `BRONE_MQTT_HOST` |
 | `BRONE_MQTT_PORT` | `1883` | Broker TCP port |
-| `BRONE_MQTT_TOPIC` | `brone/face/command` | One exact topic, no `+`/`#` wildcards |
+| `BRONE_MQTT_TOPIC` | `robot/expression` | One exact topic, no `+`/`#` wildcards |
 | `BRONE_MQTT_USERNAME` | unset | Optional broker username |
 | `BRONE_MQTT_PASSWORD` | unset | Optional broker password; keep out of Git/logs |
 | `BRONE_MQTT_TLS` | `false` | Enable TLS with certificate verification |
@@ -78,21 +90,21 @@ Set port 8883 explicitly if your broker uses it for TLS; enabling TLS does not c
 
 ## Windows development
 
-Install/run a local Mosquitto broker separately, or connect to the agreed broker. Update dependencies, then enable MQTT in the same PowerShell terminal as the launcher:
+Install/run a local Mosquitto broker separately, or connect to the agreed broker. Update dependencies, then configure MQTT in the same PowerShell terminal as the launcher:
 
 ```powershell
 .\backend\.venv\Scripts\python.exe -m pip install -e './backend[dev]'
 $env:BRONE_MQTT_ENABLED = 'true'
-$env:BRONE_MQTT_HOST = '127.0.0.1'
+$env:BRONE_MQTT_BROKER = 'localhost'
 $env:BRONE_MQTT_PORT = '1883'
-$env:BRONE_MQTT_TOPIC = 'brone/face/command'
+$env:BRONE_MQTT_TOPIC = 'robot/expression'
 npm.cmd run dev
 ```
 
 To avoid PowerShell native JSON quoting differences, publish the existing fixture via file (in another terminal at repository root):
 
 ```powershell
-mosquitto_pub -h 127.0.0.1 -p 1883 -q 1 -t brone/face/command -f shared/examples/expression.json
+mosquitto_pub -h 127.0.0.1 -p 1883 -q 1 -t robot/expression -f shared/examples/expression.json
 ```
 
 If `mosquitto_pub` is not on PATH, use its full executable path.
@@ -106,7 +118,7 @@ If `mosquitto_pub` is not on PATH, use its full executable path.
 - At most 64 MQTT commands are queued/in flight locally; overload drops new commands and logs a warning. Payload limit is 16 KiB. This is a local interactive command channel, not a durable job queue.
 - Broker outages leave the current face state intact; HTTP and display reconnect remain usable. Paho retries with 1–30 second backoff. No automatic `timeout` expression is sent.
 - Backend state resets to idle on restart, remains single-process, and must not use multiple Uvicorn workers.
-- To roll back to HTTP-only operation, unset `BRONE_MQTT_ENABLED` or set it to `false`, then restart Brone. No data migration or frontend rebuild is needed.
+- To roll back to HTTP-only operation, set `BRONE_MQTT_ENABLED=false`, then restart Brone. No data migration or frontend rebuild is needed.
 
 ## Verification
 

@@ -1,4 +1,4 @@
-"""Optional MQTT command ingress; all state/broadcasts stay on FastAPI's event loop."""
+"""MQTT command ingress; all state/broadcasts stay on FastAPI's event loop."""
 import asyncio
 from contextlib import suppress
 import logging
@@ -15,10 +15,10 @@ logger = logging.getLogger(__name__)
 
 
 class MqttSettings(BaseModel):
-    enabled: bool = False
-    host: str = Field(default='127.0.0.1', min_length=1)
+    enabled: bool = True
+    host: str = Field(default='localhost', min_length=1)
     port: int = Field(default=1883, ge=1, le=65535)
-    topic: str = 'brone/face/command'
+    topic: str = 'robot/expression'
     username: str | None = None
     password: SecretStr | None = None
     tls: bool = False
@@ -33,9 +33,13 @@ class MqttSettings(BaseModel):
 
     @classmethod
     def from_env(cls):
-        return cls.model_validate({name: os.environ[f'BRONE_MQTT_{name.upper()}']
-                                   for name in cls.model_fields
-                                   if f'BRONE_MQTT_{name.upper()}' in os.environ})
+        values = {name: os.environ[f'BRONE_MQTT_{name.upper()}']
+                  for name in cls.model_fields
+                  if f'BRONE_MQTT_{name.upper()}' in os.environ}
+        # Keep HOST as a legacy alias; the public BROKER setting takes precedence.
+        if 'BRONE_MQTT_BROKER' in os.environ:
+            values['host'] = os.environ['BRONE_MQTT_BROKER']
+        return cls.model_validate(values)
 
 
 class MqttIngress:
@@ -85,7 +89,8 @@ class MqttIngress:
             logger.warning('MQTT disconnected; reconnecting: %s', reason_code)
 
     def _on_connect_fail(self, client, userdata):
-        logger.warning('MQTT broker unavailable; retrying')
+        logger.warning('MQTT broker %s:%s unavailable; retrying',
+                       self.settings.host, self.settings.port)
 
     def _on_message(self, client, userdata, message):
         if self.stopping or message.topic != self.settings.topic:
@@ -105,8 +110,11 @@ class MqttIngress:
             try:
                 try:
                     request = ExpressionRequest.model_validate_json(raw)
-                except ValidationError:
-                    logger.warning('MQTT command rejected: invalid SET_EXPRESSION JSON')
+                except ValidationError as exc:
+                    # Explain the failure without logging untrusted payload contents.
+                    errors = [(error['loc'], error['type'])
+                              for error in exc.errors(include_input=False)]
+                    logger.warning('MQTT command rejected: invalid SET_EXPRESSION JSON: %s', errors)
                     continue
                 command = ExpressionMessage.model_validate(request.model_dump())
                 await self.commands.publish(command)

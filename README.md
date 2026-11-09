@@ -85,7 +85,7 @@ See [the local LLM integration demo](docs/LOCAL_LLM_DEMO.md) for PowerShell requ
 
 ## Run services separately (optional)
 
-To send commands through Mosquitto instead of HTTP, follow [MQTT setup and terminal commands](docs/MQTT.md). MQTT is disabled by default; enable it with `BRONE_MQTT_ENABLED=true` in the launcher's environment. A separate Mosquitto broker is required. Existing installations must rerun the backend pip install command above to add `paho-mqtt`.
+To send commands through Mosquitto instead of HTTP, follow [MQTT setup and terminal commands](docs/MQTT.md). MQTT is enabled by default on `localhost:1883`, topic `robot/expression`. Configure `BRONE_MQTT_BROKER`/`BRONE_MQTT_PORT` in the launcher environment; set `BRONE_MQTT_ENABLED=false` for HTTP-only operation. A separate Mosquitto broker is required. Existing installations must rerun the backend pip install command above to add `paho-mqtt`.
 
 The root launcher is the normal development entry point. Use separate terminals only when working on one service independently.
 
