@@ -5,7 +5,7 @@ The browser must remain open and connected to render the face. HTTP control rema
 
 ## Local Ubuntu setup
 
-Install the broker and terminal client on the robot computer:
+If the OS team already runs a broker (including a custom startup process without `mosquitto.service`), use that broker. Do not install/start a second one or add `Requires=mosquitto.service` to the GUI service. Install a broker only on a machine that does not already have one:
 
 ```bash
 sudo apt update
@@ -28,6 +28,7 @@ export BRONE_MQTT_ENABLED=true
 export BRONE_MQTT_BROKER=localhost
 export BRONE_MQTT_PORT=1883
 export BRONE_MQTT_TOPIC=robot/expression
+export BRONE_MQTT_STAGE_TOPIC=robot/voice_stage
 npm run dev
 ```
 
@@ -71,7 +72,36 @@ mosquitto_pub -h <jetson-broker-address> -p 1883 -q 1 \
   -m '{"type":"SET_EXPRESSION","request_id":"talk-001","payload":{"emotion":"happy"}}'
 ```
 
-Add the agreed broker credentials/TLS options to the publisher command. If Mosquitto runs on the NUC instead, set `BRONE_MQTT_BROKER` on Jetson to the NUC broker address. Broker port 1883 and backend port 8000 are separate. Speaking/visemes are not implemented.
+Add the agreed broker credentials/TLS options to the publisher command. If Mosquitto runs on the NUC instead, set `BRONE_MQTT_BROKER` on Jetson to the NUC broker address. Broker port 1883 and backend port 8000 are separate. Speaking telemetry is accepted as described below; mouth animation/visemes are not implemented.
+
+## brone-talk compatibility
+
+The existing LLM publisher can stay unchanged. The backend subscribes to both topics in one QoS 1 subscription request. Health `mqtt.subscribed=true` requires successful acknowledgment for both topics. They must be different exact topics. Configure `BRONE_MQTT_STAGE_TOPIC` if the stage topic differs.
+
+| LLM expression | GUI emotion |
+| --- | --- |
+| idle / neutral | idle |
+| happy | happy |
+| excited | happier |
+| sad | sad |
+| confused | thinking |
+| speaking | Last brone-talk answer emotion, initially idle |
+
+Canonical GUI emotion names are also accepted. Expression messages allow only `expression` and optional `duration`. Duration must be a finite nonnegative JSON number in seconds; strings, booleans, null and unknown expressions are rejected. Omission holds the expression; zero schedules immediate idle. Duration starts when the backend receives the MQTT message, not when sound starts. At expiry the backend broadcasts idle with the usual 700 ms transition. The frontend's existing happier sequence may be interrupted by expiry.
+
+`robot/voice_stage` requires nonempty string `stage` and `state`, with optional producer metadata. `llm/start` displays thinking; `error/llm` displays timeout. Other valid pairs (such as tts/start) are ignored. Stage expressions do not overwrite the last answer; confused -> thinking is an answer and remains thinking during speaking. A new applied expression, mapped stage, canonical MQTT command or HTTP command cancels the previous idle timer. Invalid, retained replay and ignored stage messages do not cancel it. Shutdown cancels pending timers. No duration or answer state is persisted across backend restart.
+
+Minimal live smoke test (append the broker team's authentication/TLS options):
+
+```bash
+mosquitto_pub -h 127.0.0.1 -t robot/voice_stage -m '{"stage":"llm","state":"start"}'
+mosquitto_pub -h 127.0.0.1 -t robot/expression -m '{"expression":"happy"}'
+mosquitto_pub -h 127.0.0.1 -t robot/expression -m '{"expression":"speaking","duration":4}'
+```
+
+Wait for each visible state before the next command. Expect thinking -> happy -> happy during the four-second countdown -> idle transition. Confirm through `/api/face/state` and the browser; broker receipt alone does not prove rendering. Repeat with confused (thinking), excited (happier), and error/llm (timeout). During a long duration, send a new sad expression and confirm the old timer does not later force idle. Test browser reconnect, broker reconnect/resubscription, and NUC-to-Jetson delivery using the actual LLM. No live hardware result is established by the automated tests.
+
+Timing is a duration estimate, not audio synchronization. Cross-topic events are applied in backend arrival order; no shared conversation ID means late events cannot be reliably matched to a turn. voice_status/vad_status are not subscribed. Broker loss leaves the face as-is unless an already scheduled idle timer expires.
 
 ## Configuration
 
@@ -81,6 +111,7 @@ Add the agreed broker credentials/TLS options to the publisher command. If Mosqu
 | `BRONE_MQTT_BROKER` | `localhost` | Broker hostname; takes precedence over legacy `BRONE_MQTT_HOST` |
 | `BRONE_MQTT_PORT` | `1883` | Broker TCP port |
 | `BRONE_MQTT_TOPIC` | `robot/expression` | One exact topic, no `+`/`#` wildcards |
+| `BRONE_MQTT_STAGE_TOPIC` | `robot/voice_stage` | Exact stage telemetry topic, different from expression topic |
 | `BRONE_MQTT_USERNAME` | unset | Optional broker username |
 | `BRONE_MQTT_PASSWORD` | unset | Optional broker password; keep out of Git/logs |
 | `BRONE_MQTT_TLS` | `false` | Enable TLS with certificate verification |
@@ -116,7 +147,7 @@ If `mosquitto_pub` is not on PATH, use its full executable path.
 - Do not use `mosquitto_pub -r`: commands are transient. Retained messages replayed at subscribe time are ignored. MQTT can forward a retained publish to an already-connected subscriber as a live message; this is not an end-to-end ban on the publisher's retain flag.
 - Duplicate delivery is possible. `SET_EXPRESSION` replaces absolute state; identical current emotion/intensity does not restart the frontend animation. Request IDs are correlation only, not ordering/deduplication keys. Mixed HTTP/MQTT producers share arrival-order state; avoid competing controllers.
 - At most 64 MQTT commands are queued/in flight locally; overload drops new commands and logs a warning. Payload limit is 16 KiB. This is a local interactive command channel, not a durable job queue.
-- Broker outages leave the current face state intact; HTTP and display reconnect remain usable. Paho retries with 1–30 second backoff. No automatic `timeout` expression is sent.
+- Broker outages leave the current face state intact unless an existing duration timer expires; HTTP and display reconnect remain usable. Paho retries with 1–30 second backoff. No automatic `timeout` expression is sent on broker loss.
 - Backend state resets to idle on restart, remains single-process, and must not use multiple Uvicorn workers.
 - To roll back to HTTP-only operation, set `BRONE_MQTT_ENABLED=false`, then restart Brone. No data migration or frontend rebuild is needed.
 
@@ -127,5 +158,7 @@ backend/.venv/bin/python -m pytest backend/tests
 ```
 
 Tests cover MQTT callback-to-state/WebSocket delivery with a simulated Paho client, normalization, invalid/retained/oversized messages, bounded backlog, resubscription, shutdown and HTTP compatibility. A real Paho connection to an unavailable local port verifies nonblocking startup/shutdown. These are not a live Mosquitto or visual acceptance test; run the publish/health/state steps above against the actual broker too.
+
+brone-talk tests additionally cover expression mapping, speaking fallback, stage metadata/ignored stages, invalid duration values, duration expiry/WebSocket replay, cancellation by every ingress, timer replacement, receipt-time accounting and shutdown cleanup.
 
 References: [Paho client API](https://eclipse.dev/paho/files/paho.mqtt.python/html/client.html), [Mosquitto broker](https://mosquitto.org/man/mosquitto-8.html), [mosquitto_pub](https://mosquitto.org/man/mosquitto_pub-1.html).

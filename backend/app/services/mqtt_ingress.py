@@ -4,12 +4,14 @@ from contextlib import suppress
 import logging
 import os
 from threading import BoundedSemaphore
+from time import monotonic
 
 import paho.mqtt.client as mqtt
 from pydantic import BaseModel, Field, SecretStr, ValidationError, field_validator
 
 from app.schemas.messages import ExpressionMessage, ExpressionRequest
 from app.services.face_command import FaceCommands
+from app.services.talk_adapter import TalkAdapter
 
 logger = logging.getLogger(__name__)
 
@@ -19,12 +21,13 @@ class MqttSettings(BaseModel):
     host: str = Field(default='localhost', min_length=1)
     port: int = Field(default=1883, ge=1, le=65535)
     topic: str = 'robot/expression'
+    stage_topic: str = 'robot/voice_stage'
     username: str | None = None
     password: SecretStr | None = None
     tls: bool = False
     ca_file: str | None = None
 
-    @field_validator('topic')
+    @field_validator('topic', 'stage_topic')
     @classmethod
     def exact_topic(cls, value):
         if not value or any(char in value for char in ('+', '#', '\x00')) or len(value.encode('utf-8')) > 65535:
@@ -48,7 +51,10 @@ class MqttIngress:
         self.connected = False
         self.subscribed = False
         self.stopping = False
-        self.queue: asyncio.Queue[bytes] = asyncio.Queue(maxsize=64)
+        if settings.topic == settings.stage_topic:
+            raise ValueError('Expression and stage topics must be different')
+        self.adapter = TalkAdapter()
+        self.queue: asyncio.Queue[tuple[str, bytes, float]] = asyncio.Queue(maxsize=64)
         # Bound pending cross-thread callbacks as well as the asyncio queue.
         self.slots = BoundedSemaphore(64)
         self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, clean_session=True)
@@ -72,14 +78,14 @@ class MqttIngress:
         if reason_code.is_failure:
             logger.warning('MQTT connection rejected: %s', reason_code)
             return
-        result, _ = client.subscribe(self.settings.topic, qos=1)
+        result, _ = client.subscribe([(self.settings.topic, 1), (self.settings.stage_topic, 1)])
         if result != mqtt.MQTT_ERR_SUCCESS:
             logger.error('MQTT subscription could not be sent: %s', result)
 
     def _on_subscribe(self, client, userdata, mid, reason_codes, properties):
-        self.subscribed = bool(reason_codes) and all(not code.is_failure for code in reason_codes)
+        self.subscribed = len(reason_codes) == 2 and all(not code.is_failure for code in reason_codes)
         if self.subscribed:
-            logger.info('MQTT subscribed topic=%s', self.settings.topic)
+            logger.info('MQTT subscribed topics=%s,%s', self.settings.topic, self.settings.stage_topic)
         else:
             logger.error('MQTT subscription rejected')
 
@@ -93,7 +99,7 @@ class MqttIngress:
                        self.settings.host, self.settings.port)
 
     def _on_message(self, client, userdata, message):
-        if self.stopping or message.topic != self.settings.topic:
+        if self.stopping or message.topic not in (self.settings.topic, self.settings.stage_topic):
             return
         # Commands are transient. Never replay a stale retained command on reconnect.
         if message.retain or len(message.payload) > 16384:
@@ -102,22 +108,33 @@ class MqttIngress:
         if not self.slots.acquire(blocking=False):
             logger.warning('MQTT command rejected: ingress queue full')
             return
-        self.loop.call_soon_threadsafe(self.queue.put_nowait, message.payload)
+        self.loop.call_soon_threadsafe(self.queue.put_nowait,
+                                      (message.topic, message.payload, monotonic()))
 
     async def _consume(self):
         while True:
-            raw = await self.queue.get()
+            topic, raw, received_at = await self.queue.get()
             try:
                 try:
-                    request = ExpressionRequest.model_validate_json(raw)
+                    duration = None
+                    if topic == self.settings.stage_topic:
+                        request = self.adapter.stage(raw)
+                        if request is None:
+                            continue
+                    else:
+                        try:
+                            request = ExpressionRequest.model_validate_json(raw)
+                        except ValidationError:
+                            request, duration = self.adapter.expression(raw)
                 except ValidationError as exc:
                     # Explain the failure without logging untrusted payload contents.
                     errors = [(error['loc'], error['type'])
                               for error in exc.errors(include_input=False)]
-                    logger.warning('MQTT command rejected: invalid SET_EXPRESSION JSON: %s', errors)
+                    logger.warning('MQTT command rejected: invalid expression/stage JSON topic=%s: %s', topic, errors)
                     continue
                 command = ExpressionMessage.model_validate(request.model_dump())
-                await self.commands.publish(command)
+                remaining = max(0, duration - (monotonic() - received_at)) if duration is not None else None
+                await self.commands.publish(command, reset_after=remaining)
             finally:
                 self.slots.release()
                 self.queue.task_done()

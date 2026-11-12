@@ -20,6 +20,7 @@ async def lifespan(app: FastAPI):
     finally:
         if ingress:
             await ingress.stop()
+        await app.state.face_commands.stop()
 
 app = FastAPI(title='Brone GUI Backend', version='0.1.0', lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS, allow_methods=['GET','POST'], allow_headers=['*'])
